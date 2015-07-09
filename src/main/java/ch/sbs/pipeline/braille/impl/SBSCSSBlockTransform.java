@@ -24,6 +24,7 @@ import static org.daisy.pipeline.braille.common.Transform.Provider.util.dispatch
 import static org.daisy.pipeline.braille.common.Transform.Provider.util.logCreate;
 import static org.daisy.pipeline.braille.common.Transform.Provider.util.logSelect;
 import static org.daisy.pipeline.braille.common.Transform.Provider.util.memoize;
+import static org.daisy.pipeline.braille.common.util.Locales.parseLocale;
 import org.daisy.pipeline.braille.common.WithSideEffect;
 import org.daisy.pipeline.braille.common.XProcTransform;
 import org.daisy.pipeline.braille.libhyphen.LibhyphenHyphenator;
@@ -60,6 +61,7 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 		 * Recognized features:
 		 *
 		 * - translator: Will only match if the value is `sbs'.
+		 * - locale: Will only match if the language subtag is 'de'.
 		 * - grade: `1' or `2'.
 		 *
 		 */
@@ -96,6 +98,9 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 			protected final Iterable<WithSideEffect<SBSCSSBlockTransform,Logger>> __get(String query) {
 				Map<String,Optional<String>> q = new HashMap<String,Optional<String>>(parseQuery(query));
 				Optional<String> o;
+				if ((o = q.remove("locale")) != null)
+					if (!"de".equals(parseLocale(o.get()).getLanguage()))
+						return empty;
 				if ((o = q.remove("translator")) != null)
 					if (o.get().equals("sbs"))
 						if ((o = q.remove("grade")) != null) {
