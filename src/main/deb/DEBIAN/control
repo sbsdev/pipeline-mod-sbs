@@ -3,6 +3,6 @@ Version: [[version]]
 Section: text
 Priority: optional
 Architecture: all
-Depends: daisy-pipeline2 (>= 1.9) sbs-braille-tables (>= 1.6) sbs-hyphenation-tables (>= 1.17)
+Depends: daisy-pipeline2 (>= 1.9.1)
 Maintainer: Bert Frees <bertfrees@gmail.com>
 Description: DAISY Pipeline 2 braille module for SBS

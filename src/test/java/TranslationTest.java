@@ -61,6 +61,7 @@ public class TranslationTest {
 			mavenBundle().groupId("org.liblouis").artifactId("liblouis-java").versionAsInProject(),
 			mavenBundle().groupId("org.daisy.braille").artifactId("braille-utils.api").versionAsInProject(),
 			mavenBundle().groupId("org.daisy.libs").artifactId("jstyleparser").versionAsInProject(),
+			mavenBundle().groupId("org.unbescape").artifactId("unbescape").versionAsInProject(),
 			mavenBundle().groupId("org.daisy.braille").artifactId("braille-css").versionAsInProject(),
 			mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.antlr-runtime").versionAsInProject(),
 			brailleModule("common-utils"),
@@ -77,7 +78,7 @@ public class TranslationTest {
 			forThisPlatform(brailleModule("libhyphen-native")),
 			mavenBundle().groupId("ch.sbs.pipeline").artifactId("sbs-braille-tables").versionAsInProject(),
 			mavenBundle().groupId("ch.sbs.pipeline").artifactId("sbs-hyphenation-tables").versionAsInProject(),
-			thisBundle("org.daisy.pipeline.modules.braille", "mod-sbs"),
+			thisBundle(),
 			xprocspecBundles(),
 			junitBundles()
 		);
