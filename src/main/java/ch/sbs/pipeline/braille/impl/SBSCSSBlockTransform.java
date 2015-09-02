@@ -1,5 +1,6 @@
 package ch.sbs.pipeline.braille.impl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 
 import static org.daisy.pipeline.braille.css.Query.parseQuery;
+import static org.daisy.pipeline.braille.common.util.Files.unpack;
 import static org.daisy.pipeline.braille.common.util.Tuple3;
 import static org.daisy.pipeline.braille.common.util.URIs.asURI;
 import org.daisy.pipeline.braille.common.CSSBlockTransform;
@@ -51,10 +53,14 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 	public class Provider implements XProcTransform.Provider<SBSCSSBlockTransform>, CSSBlockTransform.Provider<SBSCSSBlockTransform> {
 		
 		private URI href;
+		private URI displayTable;
 		
 		@Activate
 		private void activate(ComponentContext context, final Map<?,?> properties) {
 			href = asURI(context.getBundleContext().getBundle().getEntry("xml/block-translate.xpl"));
+			File f = new File(makeUnpackDir(context), "virtual.dis");
+			unpack(context.getBundleContext().getBundle().getEntry("/liblouis/virtual.dis"), f);
+			displayTable = asURI(f);
 		}
 		
 		/**
@@ -77,14 +83,14 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 	
 		private class ProviderImpl extends AbstractProvider<SBSCSSBlockTransform> {
 			
-			private final static String grade1Table = "(liblouis-table:'http://www.sbs.ch/pipeline/liblouis/tables/" +
+			private final static String grade1Table = "http://www.sbs.ch/pipeline/liblouis/tables/" +
 				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
 				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-g1-white.mod,sbs-de-g1-core.mod," +
-				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod')";
-			private final static String grade2Table = "(liblouis-table:'http://www.sbs.ch/pipeline/liblouis/tables/" +
+				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod";
+			private final static String grade2Table = "http://www.sbs.ch/pipeline/liblouis/tables/" +
 				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod," +
 				"sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod," +
-				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod')";
+				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod";
 			private final static String hyphenationTable = "(libhyphen-table:'http://www.sbs.ch/pipeline/hyphen/hyph_de_DE.dic')";
 		
 			private ProviderImpl(Logger context) {
@@ -114,7 +120,8 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 							if (q.size() == 0) {
 								Iterable<WithSideEffect<LibhyphenHyphenator,Logger>> hyphenators
 									= logSelect(hyphenationTable, libhyphenHyphenatorProvider.get(hyphenationTable));
-								final String liblouisTable = grade == 1 ? grade1Table : grade2Table;
+								final String liblouisTable = "(liblouis-table:'" + displayTable
+									+ "," + ( grade == 1 ? grade1Table : grade2Table ) + "')";
 								return transform(
 									hyphenators,
 									new WithSideEffect.Function<LibhyphenHyphenator,SBSCSSBlockTransform,Logger>() {
@@ -202,5 +209,13 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 		private Transform.Provider.MemoizingProvider<LibhyphenHyphenator> libhyphenHyphenatorProvider
 		= memoize(dispatch(libhyphenHyphenatorProviders));
 		
+		private static File makeUnpackDir(ComponentContext context) {
+			File directory;
+			for (int i = 0; true; i++) {
+				directory = context.getBundleContext().getDataFile("resources" + i);
+				if (!directory.exists()) break; }
+			directory.mkdirs();
+			return directory;
+		}
 	}
 }
