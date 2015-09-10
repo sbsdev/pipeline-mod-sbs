@@ -68,7 +68,7 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 		 *
 		 * - translator: Will only match if the value is `sbs'.
 		 * - locale: Will only match if the language subtag is 'de'.
-		 * - grade: `1' or `2'.
+		 * - grade: `0', `1' or `2'.
 		 *
 		 */
 		public Iterable<SBSCSSBlockTransform> get(String query) {
@@ -83,6 +83,10 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 	
 		private class ProviderImpl extends AbstractProvider<SBSCSSBlockTransform> {
 			
+			private final static String grade0Table = "http://www.sbs.ch/pipeline/liblouis/tables/" +
+				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
+				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
+				"sbs-special.mod";
 			private final static String grade1Table = "http://www.sbs.ch/pipeline/liblouis/tables/" +
 				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
 				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-g1-white.mod,sbs-de-g1-core.mod," +
@@ -111,7 +115,9 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 					if (o.get().equals("sbs"))
 						if ((o = q.remove("grade")) != null) {
 							final int grade;
-							if (o.get().equals("1"))
+							if (o.get().equals("0"))
+								grade = 0;
+							else if (o.get().equals("1"))
 								grade = 1;
 							else if (o.get().equals("2"))
 								grade = 2;
