@@ -127,7 +127,7 @@ public interface SBSCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 								Iterable<WithSideEffect<LibhyphenHyphenator,Logger>> hyphenators
 									= logSelect(hyphenationTable, libhyphenHyphenatorProvider.get(hyphenationTable));
 								final String liblouisTable = "(liblouis-table:'" + displayTable
-									+ "," + ( grade == 1 ? grade1Table : grade2Table ) + "')";
+								        + "," + ( grade == 2 ? grade2Table : ( grade == 1 ? grade1Table : grade0Table )) + "')";
 								return transform(
 									hyphenators,
 									new WithSideEffect.Function<LibhyphenHyphenator,SBSCSSBlockTransform,Logger>() {
