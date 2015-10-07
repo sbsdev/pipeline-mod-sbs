@@ -1,0 +1,28 @@
+
+@page { size: 28 28; } 
+
+dtbook {
+  hyphens: none;
+}
+
+level1 {
+  page-break-after: right;  /* später evtl. anpassen */
+}
+
+h2 {
+	display: block;
+	text-align: left;
+	margin-top: 1;
+}
+
+p {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+}
+
+.center {
+	display: block;
+	text-align: center;
+  margin-top: 5;
+}

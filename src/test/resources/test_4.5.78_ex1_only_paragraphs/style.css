@@ -1,0 +1,46 @@
+
+@page { size: 28 5; } 
+
+dtbook {
+  hyphens: none;
+}
+
+p {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+}
+
+.break_before {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+	page-break-before: always;
+	
+}
+
+.protect_block {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+	page-break-inside: avoid;
+	
+}
+
+.orphan {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+	orphans: 2;
+}
+
+.widow {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+	widows: 2;
+}
+
+.dummy + .keep {
+	page-break-before: avoid;
+}

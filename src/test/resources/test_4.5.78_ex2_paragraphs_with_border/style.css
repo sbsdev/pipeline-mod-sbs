@@ -1,0 +1,33 @@
+
+@page { size: 28 7; } 
+
+dtbook {
+  hyphens: none;
+}
+
+p {
+	display: block;
+	text-align: center;
+  margin-left: 2;
+	margin-right: 2;
+	border-top: ⠒;
+	border-bottom: ⠒;
+}
+
+.protect_block {
+	display: block;
+	page-break-inside: avoid;
+	
+}
+
+.orphan {
+	display: block;
+	orphans: 2;
+}
+
+.widow {
+	display: block;
+	widows: 2;
+}
+
+

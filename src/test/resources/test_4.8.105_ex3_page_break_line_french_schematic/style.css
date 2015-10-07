@@ -1,0 +1,26 @@
+
+@page { size: 28 28; } 
+
+dtbook {
+  hyphens: none;
+}
+
+h1 {
+	display: block;
+	text-align: center;
+	margin-top: 1;
+	margin-bottom: 2;
+}
+
+h2 {
+	display: block;
+	text-align: center;
+	margin-top: 1;
+	margin-bottom: 1;
+}
+
+p {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+}
