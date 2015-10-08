@@ -5,6 +5,7 @@ dtbook {
   hyphens: none;
 }
 
+/* left is not supported for now */
 level1 {
   page-break-after: left; 
 }

@@ -1,8 +1,37 @@
 
-@page { size: 28 28; } 
+@page {
+	size: 28 28;
+	margin-top: 1;
+	counter-increment: continuation;
+	@top-left {
+		content: counter(continuation, abc) "⠠" string(print-page);
+		/* this translates numbers by adding dot 6 to all digits: */
+		text-transform: pagenum;
+	}
+	@top-right {
+		content: "⠠" counter(page, pagenum);
+	}
+}
+
+@counter-style pagenum {
+	system: numeric;
+	symbols: '⠺' '⠡' '⠣' '⠩' '⠹' '⠱' '⠫' '⠻' '⠳' '⠪'
+	/* or alternatively: /*
+	/* symbols: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9' */
+	/* text-transform: pagenum; */
+}
+
+@counter-style abc {
+	system: numeric;
+	symbols: '' '⠁' '⠃' '⠉' '⠙' '⠑' ...;
+}
 
 dtbook {
   hyphens: none;
+}
+
+level1 {
+	page-break-after: always;
 }
 
 h1 {
@@ -24,3 +53,20 @@ p {
 	text-align: left;
 	text-indent: 2;
 }
+
+pagenum {
+	display: block;
+	text-transform: pagenum;
+	string-set: print-page content();
+	counter-set: continuation 0;
+}
+
+pagenum::before {
+	content: leader('⠤') '⠠';
+}
+
+/* add the following when :first-of-page is supported: *//*
+pagenum:first-of-page {
+	display: none;
+}
+*/

@@ -1,5 +1,24 @@
 
-@page { size: 28 28; } 
+@page {
+	size: 28 28;
+}
+
+@page:right {
+	margin-bottom: 1;
+	@bottom-left {
+		content: "⠸" string(print-page);
+		/* change to the following when string() supports it: */
+		/* content: "_" string(print-page, start-spread) "/" string(print-page, last-on-spread); */
+		/* this translates _x/ (single print page) as _x and _x/y (range) as a fraction: */
+		/* text-transform: print-page; */
+	}
+	@bottom-center {
+		content: string(running-footer);
+	}
+	@bottom-right {
+		content: counter(page);
+	}
+}
 
 dtbook {
   hyphens: none;
@@ -15,6 +34,7 @@ h1 {
 	margin-top: 1;
 	border-bottom: ⠤;
 	margin-bottom: 1;
+	string-set: running-footer content();
 }
 
 p {
@@ -23,4 +43,11 @@ p {
 	text-indent: 2;
 }
 
+pagenum {
+	display: none;
+	string-set: print-page content();
+}
 
+level1 {
+	string-set: print-page "";
+}

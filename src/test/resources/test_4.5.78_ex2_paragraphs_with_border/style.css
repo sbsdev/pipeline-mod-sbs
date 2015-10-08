@@ -1,3 +1,4 @@
+@namespace brl "http://www.daisy.org/z3986/2009/braille/";
 
 @page { size: 28 7; } 
 
@@ -14,18 +15,18 @@ p {
 	border-bottom: ⠒;
 }
 
-.protect_block {
+[brl|class~=protect_block] {
 	display: block;
 	page-break-inside: avoid;
 	
 }
 
-.orphan {
+[brl|class~=orphan] {
 	display: block;
 	orphans: 2;
 }
 
-.widow {
+[brl|class~=widow] {
 	display: block;
 	widows: 2;
 }
