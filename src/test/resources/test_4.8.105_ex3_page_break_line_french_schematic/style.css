@@ -21,6 +21,7 @@ dtbook {
 }
 
 level1 {
+	display: block;
 	page-break-after: always;
 }
 
