@@ -11,7 +11,7 @@
 	
 	<xsl:param name="query" required="yes"/>
 	
-	<xsl:template match="css:block" mode="#all">
+	<xsl:template match="css:block" mode="#default before after">
 		<xsl:variable name="text" as="text()*" select="//text()"/>
 		<xsl:variable name="style" as="xs:string*">
 			<xsl:for-each select="$text">
@@ -30,7 +30,7 @@
 		</xsl:apply-templates>
 	</xsl:template>
 	
-	<xsl:template match="css:property[@name=('text-transform','font-style','font-weight','text-decoration','color')]"
+	<xsl:template match="css:property[@name=('font-style','font-weight','text-decoration','color')]"
 	              mode="translate-declaration-list"/>
 	
 	<xsl:template match="css:property[@name='hyphens' and @value='auto']" mode="translate-declaration-list">
