@@ -21,27 +21,35 @@ SBS specific modules for the DAISY Pipeline 2
   and look for relevant Github issues on [https://github.com/search](https://github.com/search))
 - Perform the release with Maven.
 
-```sh
+  ```sh
   mvn clean release:clean release:prepare -DpushChanges=false
   mvn release:perform -DlocalCheckout=true
   ```
   
 - Push and make a pull request (for turning an existing issue into a PR use the `-i <issueno>` switch).
 
-    git push origin release/${VERSION}:release/${VERSION}
-    hub pull-request -b snaekobbi:master -h snaekobbi:release/${VERSION} -m "Release version ${VERSION}"
-
+  ```sh
+  git push origin release/${VERSION}:release/${VERSION}
+  hub pull-request -b snaekobbi:master -h snaekobbi:release/${VERSION} -m "Release version ${VERSION}"
+  ```
+  
 - Stage the artifact on https://oss.sonatype.org and comment on pull request.
 
-    ghi comment -m staged ${ISSUE_NO}
-
+  ```sh
+  ghi comment -m staged ${ISSUE_NO}
+  ```
+  
 - Test and stage all projects that depend on this release before continuing.
 - Release the artifact on https://oss.sonatype.org  and close pull request.
 
-    ghi comment --close -m released ${ISSUE_NO}
-
+  ```sh
+  ghi comment --close -m released ${ISSUE_NO}
+  ```
+  
 - Push the tag.
 
-    git push origin v${VERSION}
+  ```sh
+  git push origin v${VERSION}
+  ```
 
 - Add the release notes to http://github.com/snaekobbi/pipeline-mod-sbs/releases/v${VERSION}.
