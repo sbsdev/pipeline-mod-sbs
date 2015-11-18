@@ -2,14 +2,14 @@
 <xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:louis="http://liblouis.org/liblouis"
+                xmlns:pf="http://www.daisy.org/ns/pipeline/functions"
                 xmlns:css="http://www.daisy.org/ns/pipeline/braille-css"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="#all">
 	
 	<xsl:import href="http://www.daisy.org/pipeline/modules/braille/css-utils/transform/block-translator-template.xsl"/>
 	
-	<xsl:param name="query" required="yes"/>
+	<xsl:param name="text-transform" required="yes"/>
 	
 	<xsl:template match="css:block" mode="#default before after">
 		<xsl:variable name="text" as="text()*" select="//text()"/>
@@ -26,7 +26,7 @@
 			</xsl:for-each>
 		</xsl:variable>
 		<xsl:apply-templates select="node()[1]" mode="treewalk">
-			<xsl:with-param name="new-text-nodes" select="louis:translate($query,$text,$style)"/>
+			<xsl:with-param name="new-text-nodes" select="pf:text-transform($text-transform,$text,$style)"/>
 		</xsl:apply-templates>
 	</xsl:template>
 	

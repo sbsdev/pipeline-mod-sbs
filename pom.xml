@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.daisy.pipeline.modules.braille</groupId>
     <artifactId>braille-modules-parent</artifactId>
-    <version>1.9.6</version>
+    <version>1.9.7-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -108,7 +108,7 @@
         <configuration>
           <instructions>
             <_dsannotations>
-              ch.sbs.pipeline.braille.impl.SBSCSSBlockTransform$Provider
+              ch.sbs.pipeline.braille.impl.SBSTranslator$Provider
             </_dsannotations>
           </instructions>
         </configuration>
