@@ -6,11 +6,8 @@
 @page:right {
 	margin-bottom: 1;
 	@bottom-left {
-		content: "⠸" string(print-page);
-		/* change to the following when string() supports it: */
-		/* content: "_" string(print-page, start-spread) "/" string(print-page, last-on-spread); */
-		/* this translates _x/ (single print page) as _x and _x/y (range) as a fraction: */
-		/* text-transform: print-page; */
+		content: string(print-page, spread-start) string(slash-print-page, spread-last-except-start);
+		text-transform: print-page;
 	}
 	@bottom-center {
 		content: string(running-footer);
@@ -40,5 +37,5 @@ p {
 
 pagenum {
 	display: none;
-	string-set: print-page content();
+	string-set: print-page content(), slash-print-page '/' content();
 }
