@@ -121,11 +121,11 @@ public interface SBSTranslator extends BrailleTranslator, CSSStyledTextTransform
 							final String liblouisTable = "(liblouis-table:'" + displayTable
 								+ "," + ( grade == 2 ? grade2Table : ( grade == 1 ? grade1Table : grade0Table )) + "')";
 							return concat(
-								transform(
+								Iterables.transform(
 									hyphenators,
 									new Function<LibhyphenHyphenator,Iterable<SBSTranslator>>() {
 										public Iterable<SBSTranslator> _apply(LibhyphenHyphenator h) {
-											return transform(
+											return Iterables.transform(
 												logSelect(liblouisTable + "(hyphenator:" + h.getIdentifier() + ")", liblouisTranslatorProvider),
 												new Function<LiblouisTranslator,SBSTranslator>() {
 													public SBSTranslator _apply(LiblouisTranslator translator) {
