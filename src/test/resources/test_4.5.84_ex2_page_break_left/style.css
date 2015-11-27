@@ -1,0 +1,20 @@
+
+@page { size: 28 28; } 
+
+dtbook {
+  hyphens: none;
+}
+
+/* left is not supported for now */
+level1 {
+  page-break-after: left; 
+}
+
+
+p {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+}
+
+

@@ -1,0 +1,52 @@
+
+@page {
+	size: 28 28;
+}
+
+@page:right {
+	@bottom-right {
+		content: "      " counter(page);
+	}
+}
+
+dtbook {
+  hyphens: none;
+}
+
+h1 {
+	display: block;
+	text-align: center;
+	margin-top: 1;
+	margin-bottom: 1;
+}
+
+p {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+}
+
+pagenum {
+	display: block;
+	text-indent: 0;
+}
+
+pagenum::before {
+	content: leader('⠤') '⠸';
+}
+
+/* add the following when :has() is supported: *//*
+pagenum:has(+ pagenum) {
+	display: none;
+	string-set: print-page content(),
+	            first-print-page content();
+}
+
+pagenum + pagenum {
+	string-set: print-page content();
+}
+
+pagenum + pagenum::before {
+	content: leader('⠤') '⠸' string(first-print-page) '⠤⠸';
+}
+*/

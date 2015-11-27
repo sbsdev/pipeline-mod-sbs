@@ -1,0 +1,62 @@
+
+@page {
+	size: 28 28;
+	margin-top: 1;
+	counter-increment: continuation;
+	@top-left {
+		content: "⠸" string(print-page) counter(continuation, abc);
+	}
+	@top-right {
+		content: counter(page);
+	}
+}
+
+@counter-style abc {
+	system: numeric;
+	symbols: '' '⠠⠁' '⠠⠃' '⠠⠉' '⠠⠙' '⠠⠑' ...;
+}
+
+dtbook {
+  hyphens: none;
+}
+
+level1 {
+	display: block;
+	page-break-after: always;
+}
+
+h1 {
+	display: block;
+	text-align: center;
+	margin-top: 1;
+	margin-bottom: 2;
+}
+
+h2 {
+	display: block;
+	text-align: center;
+	margin-top: 1;
+	margin-bottom: 1;
+}
+
+p {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+}
+
+pagenum {
+	display: block;
+	string-set: print-page content();
+	counter-set: continuation 0;
+}
+
+pagenum::before {
+	content: leader('⠤') '⠸';
+}
+
+/* add the following when :first-of-page is supported: *//*
+pagenum:first-of-page {
+	display: none;
+}
+*/

@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.daisy.org/ns/xprocspec"
+               xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
+               script="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl">
+
+  <x:scenario label="4.5.78_ex1_only_paragraphs" pending="not fully implemented">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.78_ex1_only_paragraphs/test_4.5.78.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.78_ex1_only_paragraphs/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.78_ex1_only_paragraphs/test_4.5.78.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.78_ex1_only_paragraphs/output_expected/test_4.5.78.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.78_ex2_paragraphs_with_border" pending="not fully implemented">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.78_ex2_paragraphs_with_border/test_4.5.78.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.78_ex2_paragraphs_with_border/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.78_ex2_paragraphs_with_border/test_4.5.78.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.78_ex2_paragraphs_with_border/output_expected/test_4.5.78.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.80_ex1_page_dimensions" pending="duplex is always true. fix expected pef?">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.80_ex1_page_dimensions/test_4.5.80.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.80_ex1_page_dimensions/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.80_ex1_page_dimensions/test_4.5.80.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.80_ex1_page_dimensions/output_expected/test_4.5.80.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.80_ex2_page_margins" pending="margin-left and margin-right not supported
+                                                       fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.80_ex2_page_margins/test_4.5.80.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:2)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.80_ex2_page_margins/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.80_ex2_page_margins/test_4.5.80.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.80_ex2_page_margins/output_expected/test_4.5.80.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.81_ex1_footer_complete" pending="pagenum inside paragraphs are moved to next
+                                                          fix css to get page range">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.81_ex1_footer_complete/test_4.5.81.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.81_ex1_footer_complete/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.81_ex1_footer_complete/test_4.5.81.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.81_ex1_footer_complete/output_expected/test_4.5.81.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.81_ex2_footer_no_info" pending="pagenum inside paragraphs are moved to next
+                                                         fix css to get page range">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.81_ex2_footer_no_info/test_4.5.81.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.81_ex2_footer_no_info/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.81_ex2_footer_no_info/test_4.5.81.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.81_ex2_footer_no_info/output_expected/test_4.5.81.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.81_ex3_footer_no_print_page_number" pending="fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.81_ex3_footer_no_print_page_number/test_4.5.81.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.81_ex3_footer_no_print_page_number/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.81_ex3_footer_no_print_page_number/test_4.5.81.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.81_ex3_footer_no_print_page_number/output_expected/test_4.5.81.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.81_ex4_footer_only_braille_page_number" pending="fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.81_ex4_footer_only_braille_page_number/test_4.5.81.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.81_ex4_footer_only_braille_page_number/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.81_ex4_footer_only_braille_page_number/test_4.5.81.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.81_ex4_footer_only_braille_page_number/output_expected/test_4.5.81.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.82_ex1_frontmatter" pending="counter-set does not work
+                                                      fix expected pef?">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.82_ex1_frontmatter/test_4.5.82.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.82_ex1_frontmatter/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.82_ex1_frontmatter/test_4.5.82.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.82_ex1_frontmatter/output_expected/test_4.5.82.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.82_ex2_parts_without_print_page_number" pending="shrink-to-fit not supported yet
+                                                                          fix css to get page range
+                                                                          pagenum inside paragraphs are moved to next
+                                                                          string-set: print-page '' does not make ⠸ go away
+                                                                          fix metadata in pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.82_ex2_parts_without_print_page_number/test_4.5.82.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.82_ex2_parts_without_print_page_number/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.82_ex2_parts_without_print_page_number/test_4.5.82.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.82_ex2_parts_without_print_page_number/output_expected/test_4.5.82.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.83_ex1_footer_flowing_text" pending="shrink-to-fit not supported yet
+                                                              flow into footer not supported yet">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.83_ex1_footer_flowing_text/test_4.5.83.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.83_ex1_footer_flowing_text/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.83_ex1_footer_flowing_text/test_4.5.83.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.83_ex1_footer_flowing_text/output_expected/test_4.5.83.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.83_ex2_header_flowing_text" pending="flow into header not supported yet">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.83_ex2_header_flowing_text/test_4.5.83.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.83_ex2_header_flowing_text/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.83_ex2_header_flowing_text/test_4.5.83.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.83_ex2_header_flowing_text/output_expected/test_4.5.83.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.84_ex1_page_break_right" pending="fix xml?">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.84_ex1_page_break_right/test_4.5.84.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.84_ex1_page_break_right/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.84_ex1_page_break_right/test_4.5.84.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.84_ex1_page_break_right/output_expected/test_4.5.84.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.84_ex2_page_break_left" pending="page-break-after:left not supported">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.84_ex2_page_break_left/test_4.5.84.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.84_ex2_page_break_left/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.84_ex2_page_break_left/test_4.5.84.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.84_ex2_page_break_left/output_expected/test_4.5.84.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.85_ex1_footer_only_right" pending="pagenum inside paragraphs are moved to next
+                                                            page range not working on first page
+                                                            fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.85_ex1_footer_only_right/test_4.5.85.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.85_ex1_footer_only_right/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.85_ex1_footer_only_right/test_4.5.85.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.85_ex1_footer_only_right/output_expected/test_4.5.85.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.5.85_ex2_footer_left_and_right" pending="pagenum inside paragraphs are moved to next
+                                                                fix css to get page range">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.5.85_ex2_footer_left_and_right/test_4.5.85.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.5.85_ex2_footer_left_and_right/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.5.85_ex2_footer_left_and_right/test_4.5.85.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.5.85_ex2_footer_left_and_right/output_expected/test_4.5.85.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.8.105_ex1_page_break_line_draft" pending=":has() not supported yet
+                                                                 flow into footer not supported yet
+                                                                 fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.8.105_ex1_page_break_line_draft/test_4.8.105.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.8.105_ex1_page_break_line_draft/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.8.105_ex1_page_break_line_draft/test_4.8.105.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.8.105_ex1_page_break_line_draft/output_expected/test_4.8.105.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.8.105_ex2_page_break_line_french" pending="last print page taken instead of first
+                                                                  @counter-style in @page not implemented yet
+                                                                  counter-increment in @page not implemented yet
+                                                                  text-transform in @page not supported yet
+                                                                  :first-of-page/:last-of-page not supported yet
+                                                                  not translated with french table">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.8.105_ex2_page_break_line_french/test_4.8.105.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.8.105_ex2_page_break_line_french/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.8.105_ex2_page_break_line_french/test_4.8.105.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.8.105_ex2_page_break_line_french/output_expected/test_4.8.105.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.8.105_ex3_page_break_line_french_schematic" pending="last print page taken instead of first
+                                                                            @counter-style in @page not implemented yet
+                                                                            counter-increment in @page not implemented yet
+                                                                            :first-of-page/:last-of-page not supported yet
+                                                                            fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.8.105_ex3_page_break_line_french_schematic/test_4.8.105.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.8.105_ex3_page_break_line_french_schematic/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.8.105_ex3_page_break_line_french_schematic/test_4.8.105.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.8.105_ex3_page_break_line_french_schematic/output_expected/test_4.8.105.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.8.106_ex1_page_break_mark_footer_only_right" pending="fix css to get page range
+                                                                             position:page not supported yet
+                                                                             ::alternate not supported yet
+                                                                             fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.8.106_ex1_page_break_mark_footer_only_right/test_4.8.106.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.8.106_ex1_page_break_mark_footer_only_right/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.8.106_ex1_page_break_mark_footer_only_right/test_4.8.106.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.8.106_ex1_page_break_mark_footer_only_right/output_expected/test_4.8.106.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.8.106_ex2_page_break_mark_footer_left_and_right" pending="fix css to get page range
+                                                                                 position:page not supported yet
+                                                                                 ::alternate not supported yet
+                                                                                 fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.8.106_ex2_page_break_mark_footer_left_and_right/test_4.8.106.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.8.106_ex2_page_break_mark_footer_left_and_right/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.8.106_ex2_page_break_mark_footer_left_and_right/test_4.8.106.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.8.106_ex2_page_break_mark_footer_left_and_right/output_expected/test_4.8.106.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.8.107_ex1_skip_page_breaks" pending="fix css to get page range
+                                                            fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.8.107_ex1_skip_page_breaks/test_4.8.107.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.8.107_ex1_skip_page_breaks/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.8.107_ex1_skip_page_breaks/test_4.8.107.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.8.107_ex1_skip_page_breaks/output_expected/test_4.8.107.pef"/>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="4.8.107_ex2_skip_page_breaks" pending="fix css to get page range
+                                                            fix metadata in expected pef">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.8.107_ex2_skip_page_breaks/test_4.8.107.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.8.107_ex2_skip_page_breaks/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.8.107_ex2_skip_page_breaks/test_4.8.107.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.8.107_ex2_skip_page_breaks/output_expected/test_4.8.107.pef"/>
+    </x:expect>
+  </x:scenario>
+  
+</x:description>
