@@ -286,7 +286,24 @@
       <x:document type="file" href="../resources/test_4.5.85_ex2_footer_left_and_right/output_expected/test_4.5.85.pef"/>
     </x:expect>
   </x:scenario>
-
+  
+  <x:scenario label="4.7.102_generated_content" pending="h1 in footer not centered correctly">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.7.102_generated_content/test_4.7.102.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:1)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.7.102_generated_content/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.7.102_generated_content/test_4.7.102.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.7.102_generated_content/output_expected/test_4.7.102.pef"/>
+    </x:expect>
+  </x:scenario>
+  
   <x:scenario label="4.8.105_ex1_page_break_line_draft" pending=":has() not supported yet
                                                                  flow into footer not supported yet
                                                                  fix metadata in expected pef">
