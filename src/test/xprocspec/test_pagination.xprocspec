@@ -3,7 +3,7 @@
                xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
                script="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl">
 
-  <x:scenario label="4.5.78_ex1_only_paragraphs" pending="not fully implemented">
+  <x:scenario label="4.5.78_ex1_only_paragraphs">
     <x:call step="px:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.78_ex1_only_paragraphs/test_4.5.78.xml"/>
@@ -20,7 +20,7 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.78_ex2_paragraphs_with_border" pending="not fully implemented">
+  <x:scenario label="4.5.78_ex2_paragraphs_with_border" pending="bug">
     <x:call step="px:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.78_ex2_paragraphs_with_border/test_4.5.78.xml"/>
