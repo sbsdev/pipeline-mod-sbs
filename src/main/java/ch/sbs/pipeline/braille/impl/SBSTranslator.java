@@ -8,34 +8,35 @@ import java.util.Map;
 import java.net.URI;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.xml.namespace.QName;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import static com.google.common.collect.Iterables.size;
 import static com.google.common.collect.Lists.newArrayList;
 
-import static org.daisy.pipeline.braille.css.Query.parseQuery;
-import static org.daisy.pipeline.braille.common.util.Files.unpack;
-import static org.daisy.pipeline.braille.common.util.Tuple3;
-import static org.daisy.pipeline.braille.common.util.URIs.asURI;
-import org.daisy.pipeline.braille.common.AbstractTransform;
-import org.daisy.pipeline.braille.common.AbstractTransform.Provider.util.Function;
-import org.daisy.pipeline.braille.common.AbstractTransform.Provider.util.Iterables;
-import static org.daisy.pipeline.braille.common.AbstractTransform.Provider.util.Iterables.concat;
-import static org.daisy.pipeline.braille.common.AbstractTransform.Provider.util.Iterables.transform;
-import static org.daisy.pipeline.braille.common.AbstractTransform.Provider.util.logCreate;
-import static org.daisy.pipeline.braille.common.AbstractTransform.Provider.util.logSelect;
+import org.daisy.pipeline.braille.common.AbstractBrailleTranslator;
+import org.daisy.pipeline.braille.common.AbstractTransformProvider;
+import org.daisy.pipeline.braille.common.AbstractTransformProvider.util.Function;
+import org.daisy.pipeline.braille.common.AbstractTransformProvider.util.Iterables;
+import static org.daisy.pipeline.braille.common.AbstractTransformProvider.util.Iterables.concat;
+import static org.daisy.pipeline.braille.common.AbstractTransformProvider.util.Iterables.transform;
+import static org.daisy.pipeline.braille.common.AbstractTransformProvider.util.logCreate;
+import static org.daisy.pipeline.braille.common.AbstractTransformProvider.util.logSelect;
 import org.daisy.pipeline.braille.common.BrailleTranslator;
-import org.daisy.pipeline.braille.common.CSSBlockTransform;
-import org.daisy.pipeline.braille.common.CSSStyledTextTransform;
-import org.daisy.pipeline.braille.common.TextTransform;
-import org.daisy.pipeline.braille.common.Transform;
-import static org.daisy.pipeline.braille.common.Transform.Provider.util.dispatch;
-import static org.daisy.pipeline.braille.common.Transform.Provider.util.memoize;
+import org.daisy.pipeline.braille.common.BrailleTranslatorProvider;
+import org.daisy.pipeline.braille.common.Query;
+import org.daisy.pipeline.braille.common.Query.Feature;
+import org.daisy.pipeline.braille.common.Query.MutableQuery;
+import static org.daisy.pipeline.braille.common.Query.util.mutableQuery;
+import org.daisy.pipeline.braille.common.TransformProvider;
+import static org.daisy.pipeline.braille.common.TransformProvider.util.dispatch;
+import static org.daisy.pipeline.braille.common.TransformProvider.util.memoize;
+import static org.daisy.pipeline.braille.common.util.Files.unpack;
 import static org.daisy.pipeline.braille.common.util.Locales.parseLocale;
-import org.daisy.pipeline.braille.common.XProcTransform;
+import static org.daisy.pipeline.braille.common.util.URIs.asURI;
 import org.daisy.pipeline.braille.libhyphen.LibhyphenHyphenator;
 import org.daisy.pipeline.braille.liblouis.LiblouisTranslator;
 
@@ -46,49 +47,51 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.component.ComponentContext;
 
-public interface SBSTranslator extends BrailleTranslator, CSSStyledTextTransform, CSSBlockTransform, XProcTransform {
+public interface SBSTranslator {
 	
 	@Component(
 		name = "ch.sbs.pipeline.braille.impl.SBSTranslator.Provider",
 		service = {
-			BrailleTranslator.Provider.class,
-			TextTransform.Provider.class,
-			XProcTransform.Provider.class,
-			CSSBlockTransform.Provider.class
+			BrailleTranslatorProvider.class,
+			TransformProvider.class
 		}
 	)
-	public class Provider extends AbstractTransform.Provider<SBSTranslator>
-	                      implements BrailleTranslator.Provider<SBSTranslator>,
-	                                 TextTransform.Provider<SBSTranslator>,
-	                                 XProcTransform.Provider<SBSTranslator>,
-	                                 CSSBlockTransform.Provider<SBSTranslator> {
+	public class Provider extends AbstractTransformProvider<BrailleTranslator> implements BrailleTranslatorProvider<BrailleTranslator> {
 		
 		private URI href;
-		private URI displayTable;
+		private Query grade0Table;
+		private Query grade1Table;
+		private Query grade2Table;
 		
 		@Activate
 		private void activate(ComponentContext context, final Map<?,?> properties) {
 			href = asURI(context.getBundleContext().getBundle().getEntry("xml/block-translate.xpl"));
 			File f = new File(makeUnpackDir(context), "virtual.dis");
 			unpack(context.getBundleContext().getBundle().getEntry("/liblouis/virtual.dis"), f);
-			displayTable = asURI(f);
+			URI displayTable = asURI(f);
+			grade0Table = mutableQuery().add("liblouis-table", displayTable +
+				",http://www.sbs.ch/pipeline/liblouis/tables/" +
+				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
+				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
+				"sbs-special.mod");
+			grade1Table = mutableQuery().add("liblouis-table", displayTable +
+				",http://www.sbs.ch/pipeline/liblouis/tables/" +
+				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
+				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-g1-white.mod,sbs-de-g1-core.mod," +
+				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod");
+			grade2Table = mutableQuery().add("liblouis-table", displayTable +
+				",http://www.sbs.ch/pipeline/liblouis/tables/" +
+				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod," +
+				"sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod," +
+				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod");
 		}
-			
-		private final static String grade0Table = "http://www.sbs.ch/pipeline/liblouis/tables/" +
-			"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
-			"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
-			"sbs-special.mod";
-		private final static String grade1Table = "http://www.sbs.ch/pipeline/liblouis/tables/" +
-			"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
-			"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-g1-white.mod,sbs-de-g1-core.mod," +
-			"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod";
-		private final static String grade2Table = "http://www.sbs.ch/pipeline/liblouis/tables/" +
-			"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod," +
-			"sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod," +
-			"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod";
-		private final static String hyphenationTable = "(libhyphen-table:'http://www.sbs.ch/pipeline/hyphen/hyph_de_DE.dic')";
 		
-		private final static Iterable<SBSTranslator> empty = Iterables.<SBSTranslator>empty();
+		private final static Query hyphenTable = mutableQuery().add("libhyphen-table", "http://www.sbs.ch/pipeline/hyphen/hyph_de_DE.dic");
+		
+		private final static Iterable<BrailleTranslator> empty = Iterables.<BrailleTranslator>empty();
+		
+		private final static List<String> supportedInput = ImmutableList.of("css","text-css","dtbook","html");
+		private final static List<String> supportedOutput = ImmutableList.of("css","braille");
 		
 		/**
 		 * Recognized features:
@@ -98,38 +101,44 @@ public interface SBSTranslator extends BrailleTranslator, CSSStyledTextTransform
 		 * - grade: `0', `1' or `2'.
 		 *
 		 */
-		protected final Iterable<SBSTranslator> _get(String query) {
-			Map<String,Optional<String>> q = new HashMap<String,Optional<String>>(parseQuery(query));
-			Optional<String> o;
-			if ((o = q.remove("locale")) != null)
-				if (!"de".equals(parseLocale(o.get()).getLanguage()))
+		protected final Iterable<BrailleTranslator> _get(Query query) {
+			final MutableQuery q = mutableQuery(query);
+			for (Feature f : q.removeAll("input"))
+				if (!supportedInput.contains(f.getValue().get()))
 					return empty;
-			if ((o = q.remove("translator")) != null)
-				if (o.get().equals("sbs"))
-					if ((o = q.remove("grade")) != null) {
+			for (Feature f : q.removeAll("output"))
+				if (!supportedOutput.contains(f.getValue().get()))
+					return empty;
+			if (q.containsKey("locale"))
+				if (!"de".equals(parseLocale(q.removeOnly("locale").getValue().get()).getLanguage()))
+					return empty;
+			if (q.containsKey("translator"))
+				if ("sbs".equals(q.removeOnly("translator").getValue().get()))
+					if (q.containsKey("grade")) {
+						String v = q.removeOnly("grade").getValue().get();
 						final int grade;
-						if (o.get().equals("0"))
+						if (v.equals("0"))
 							grade = 0;
-						else if (o.get().equals("1"))
+						else if (v.equals("1"))
 							grade = 1;
-						else if (o.get().equals("2"))
+						else if (v.equals("2"))
 							grade = 2;
 						else
 							return empty;
-						if (q.size() == 0) {
-							Iterable<LibhyphenHyphenator> hyphenators = logSelect(hyphenationTable, libhyphenHyphenatorProvider);
-							final String liblouisTable = "(liblouis-table:'" + displayTable
-								+ "," + ( grade == 2 ? grade2Table : ( grade == 1 ? grade1Table : grade0Table )) + "')";
+						if (q.isEmpty()) {
+							Iterable<LibhyphenHyphenator> hyphenators = logSelect(hyphenTable, libhyphenHyphenatorProvider);
+							final Query liblouisTable = grade == 2 ? grade2Table : grade == 1 ? grade1Table : grade0Table;
 							return concat(
-								Iterables.transform(
+								transform(
 									hyphenators,
-									new Function<LibhyphenHyphenator,Iterable<SBSTranslator>>() {
-										public Iterable<SBSTranslator> _apply(LibhyphenHyphenator h) {
+									new Function<LibhyphenHyphenator,Iterable<BrailleTranslator>>() {
+										public Iterable<BrailleTranslator> _apply(LibhyphenHyphenator h) {
+											final Query translatorQuery = mutableQuery(liblouisTable).add("hyphenator", h.getIdentifier());
 											return Iterables.transform(
-												logSelect(liblouisTable + "(hyphenator:" + h.getIdentifier() + ")", liblouisTranslatorProvider),
-												new Function<LiblouisTranslator,SBSTranslator>() {
-													public SBSTranslator _apply(LiblouisTranslator translator) {
-														return __apply(logCreate(new TransformImpl(grade, translator))); }}); }})); }}
+												logSelect(translatorQuery, liblouisTranslatorProvider),
+												new Function<LiblouisTranslator,BrailleTranslator>() {
+													public BrailleTranslator _apply(LiblouisTranslator translator) {
+														return __apply(logCreate(new TransformImpl(grade, translator, translatorQuery))); }}); }})); }}
 			return empty;
 		}
 		
@@ -143,63 +152,47 @@ public interface SBSTranslator extends BrailleTranslator, CSSStyledTextTransform
 		private final static String[] LOWER_DIGIT_TABLE = new String[]{
 			"\u2834","\u2802","\u2806","\u2812","\u2832","\u2822","\u2816","\u2836","\u2826","\u2814"};
 
-		private class TransformImpl extends AbstractTransform implements SBSTranslator {
+		private class TransformImpl extends AbstractBrailleTranslator {
 			
-			private final Tuple3<URI,QName,Map<String,String>> xproc;
+			private final XProc xproc;
 			private final int grade;
-			private final LiblouisTranslator translator;
+			private final FromStyledTextToBraille translator;
 			
-			private TransformImpl(int grade, LiblouisTranslator translator) {
-				Map<String,String> options = ImmutableMap.of("text-transform", "(id:" + this.getIdentifier() + ")");
-				xproc = new Tuple3<URI,QName,Map<String,String>>(href, null, options);
+			private TransformImpl(int grade, LiblouisTranslator translator, Query translatorQuery) {
+				Map<String,String> options = ImmutableMap.of("text-transform", translatorQuery.toString());
+				xproc = new XProc(href, null, options);
 				this.grade = grade;
-				this.translator = translator;
+				this.translator = translator.fromStyledTextToBraille();
 			}
 			
-			public TextTransform asTextTransform() {
-				return this;
-			}
-			
-			public Tuple3<URI,QName,Map<String,String>> asXProc() {
+			@Override
+			public XProc asXProc() {
 				return xproc;
 			}
 			
-			public boolean isHyphenating() {
-				return translator.isHyphenating();
+			@Override
+			public FromStyledTextToBraille fromStyledTextToBraille() {
+				return fromStyledTextToBraille;
 			}
 			
-			public String transform(String text) {
-				return translator.transform(text);
-			}
-			
-			public String[] transform(String[] text) {
-				return translator.transform(text);
-			}
-			
-			public String[] transform(String[] text, String[] cssStyle) {
-				if (text.length == 1)
-					return new String[]{transform(text[0], cssStyle[0])};
-				return translator.transform(text, cssStyle);
-			}
-			
-			public String transform(String text, String cssStyle) {
-				if (cssStyle != null) {
-					Map<String,String> style = new HashMap<String,String>(CSS_PARSER.split(cssStyle));
-					String t = style.remove("text-transform");
-					if (t != null) {
-						if (!style.isEmpty())
-							throw new RuntimeException("Translator does not support '" + cssStyle +"'");
-						List<String> textTransform = newArrayList(TEXT_TRANSFORM_PARSER.split(t));
-						boolean isPrintPage = textTransform.remove("print-page");
-						if (!textTransform.isEmpty())
-							throw new RuntimeException("Translator does not support '" + cssStyle +"'");
-						if (isPrintPage)
-							return translatePrintPageNumber(text); }}
-				return translator.transform(text, cssStyle);
-			}
+			private final FromStyledTextToBraille fromStyledTextToBraille = new FromStyledTextToBraille() {
+				public java.lang.Iterable<String> transform(java.lang.Iterable<CSSStyledText> styledText) {
+					if (size(styledText) == 1) {
+						CSSStyledText s = styledText.iterator().next();
+						Map<String,String> style = new HashMap<String,String>(CSS_PARSER.split(s.getStyle()));
+						String t = style.remove("text-transform");
+						if (t != null) {
+							List<String> textTransform = newArrayList(TEXT_TRANSFORM_PARSER.split(t));
+							if (textTransform.remove("print-page")) {
+								if (!style.isEmpty() || !textTransform.isEmpty())
+									throw new RuntimeException("Translator does not support '" + s.getStyle() +"'");
+								return Optional.of(translatePrintPageNumber(s.getText())).asSet(); }}}
+					return translator.transform(styledText);
+				}
+			};
 			
 			private String translatePrintPageNumber(String number) {
-				Matcher m = PRINT_PAGE_NUMBER.matcher(number);
+				Matcher m = PRINT_PAGE_NUMBER.matcher(number.replaceAll("\u200B",""));
 				if (!m.matches())
 					throw new RuntimeException("'" + number + "' is not a valid print page number or print page number range");
 				StringBuilder b = new StringBuilder();
@@ -253,9 +246,9 @@ public interface SBSTranslator extends BrailleTranslator, CSSStyledTextTransform
 			liblouisTranslatorProvider.invalidateCache();
 		}
 	
-		private List<Transform.Provider<LiblouisTranslator>> liblouisTranslatorProviders
-		= new ArrayList<Transform.Provider<LiblouisTranslator>>();
-		private Transform.Provider.MemoizingProvider<LiblouisTranslator> liblouisTranslatorProvider
+		private List<TransformProvider<LiblouisTranslator>> liblouisTranslatorProviders
+		= new ArrayList<TransformProvider<LiblouisTranslator>>();
+		private TransformProvider.util.MemoizingProvider<LiblouisTranslator> liblouisTranslatorProvider
 		= memoize(dispatch(liblouisTranslatorProviders));
 		
 		@Reference(
@@ -274,9 +267,9 @@ public interface SBSTranslator extends BrailleTranslator, CSSStyledTextTransform
 			libhyphenHyphenatorProvider.invalidateCache();
 		}
 	
-		private List<Transform.Provider<LibhyphenHyphenator>> libhyphenHyphenatorProviders
-		= new ArrayList<Transform.Provider<LibhyphenHyphenator>>();
-		private Transform.Provider.MemoizingProvider<LibhyphenHyphenator> libhyphenHyphenatorProvider
+		private List<TransformProvider<LibhyphenHyphenator>> libhyphenHyphenatorProviders
+		= new ArrayList<TransformProvider<LibhyphenHyphenator>>();
+		private TransformProvider.util.MemoizingProvider<LibhyphenHyphenator> libhyphenHyphenatorProvider
 		= memoize(dispatch(libhyphenHyphenatorProviders));
 		
 		private static File makeUnpackDir(ComponentContext context) {
