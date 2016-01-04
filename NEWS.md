@@ -1,3 +1,7 @@
+pipeline-mod-sbs v1.3.0
+=======================
+Compatibility update
+
 pipeline-mod-sbs v1.2.0
 =======================
 
