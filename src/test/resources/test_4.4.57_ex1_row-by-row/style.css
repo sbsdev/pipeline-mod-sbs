@@ -1,0 +1,41 @@
+
+@page {
+  size:28 28;
+}
+
+dtbook{
+  hyphens:none;
+}
+
+table{
+  display:block;
+}
+
+tr{
+  display:block;
+  text-indent:-2;
+  margin-left:2;
+}
+
+th + th::before{
+  content:" ⠒⠒ ";
+}
+
+td + td::before{
+  content:" ⠒⠒ ";
+}
+
+caption{
+  display:block;
+  margin-bottom:1;
+}
+
+thead,
+tbody{
+  display:block;
+  border-bottom:⠒;
+}
+
+tfoot{
+  display:table-footer-group;
+}
