@@ -3,7 +3,7 @@
                xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
                script="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl">
   
-  <x:scenario label="4.4.57_ex1_row-by-row" pending="TODO: Not supported yet, Bert is working on a solution">
+  <x:scenario label="4.4.57_ex1_row-by-row" pending="borders after thead and before tfoot not supported yet">
     <x:call step="px:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.4.57_ex1_row-by-row/test_4.4.57.xml"/>
@@ -20,7 +20,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="foo">
+  <x:scenario label="foo" pending="TODO: Mischa: verify result">
     <x:call step="px:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_tables_foo/test_foo.xml"/>
@@ -39,7 +39,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="faa">
+  <x:scenario label="faa" pending="TODO: Mischa: verify result">
     <x:call step="px:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_tables_faa/test_faa.xml"/>
