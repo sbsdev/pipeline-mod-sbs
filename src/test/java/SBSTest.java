@@ -1,8 +1,16 @@
 import javax.inject.Inject;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.daisy.maven.xproc.xprocspec.XProcSpecRunner;
+
+import org.daisy.pipeline.braille.common.BrailleTranslator.CSSStyledText;
+import org.daisy.pipeline.braille.common.BrailleTranslator.FromStyledTextToBraille;
+import static org.daisy.pipeline.braille.common.Query.util.query;
+import org.daisy.pipeline.braille.liblouis.LiblouisTranslator;
 
 import static org.daisy.pipeline.pax.exam.Options.brailleModule;
 import static org.daisy.pipeline.pax.exam.Options.calabashConfigFile;
@@ -15,6 +23,7 @@ import static org.daisy.pipeline.pax.exam.Options.pipelineModule;
 import static org.daisy.pipeline.pax.exam.Options.thisBundle;
 import static org.daisy.pipeline.pax.exam.Options.xprocspecBundles;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +43,39 @@ import static org.ops4j.pax.exam.CoreOptions.systemPackage;
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class SBSTest {
+	
+	@Inject
+	private LiblouisTranslator.Provider provider;
+	
+	@Test(expected = AssertionError.class) // XFAIL
+	public void testWhiteSpaceSegmentsLost() {
+		FromStyledTextToBraille translator = provider
+			.get(query("(liblouis-table:'http://www.sbs.ch/pipeline/liblouis/tables/" +
+			           "sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
+			           "sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
+			           "sbs-special.mod')"))
+			.iterator().next()
+			.fromStyledTextToBraille();
+		
+		// with sbs-whitespace.mod included, fails when "foo" and "bar" have 5 or more white space segments in between them
+		assertEquals(braille("⠋⠕⠕"," ","","","","","⠃⠁⠗"),
+		             translator.transform(text("foo"," "," "," "," "," ","bar")));
+	}
+	
+	@Test
+	public void testWhiteSpaceSegmentsPreserved() {
+		FromStyledTextToBraille translator = provider
+			.get(query("(liblouis-table:'http://www.sbs.ch/pipeline/liblouis/tables/" +
+			           "sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-numsign.mod," +
+			           "sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
+			           "sbs-special.mod')"))
+			.iterator().next()
+			.fromStyledTextToBraille();
+		
+		// without sbs-whitespace.mod included, works fine
+		assertEquals(braille("⠋⠕⠕"," "," "," "," "," ","⠃⠁⠗"),
+		             translator.transform(text("foo"," "," "," "," "," ","bar")));
+	}
 	
 	@Inject
 	private XProcSpecRunner xprocspecRunner;
@@ -115,5 +157,31 @@ public class SBSTest {
 			xprocspecBundles(),
 			junitBundles()
 		);
+	}
+	
+	private Iterable<CSSStyledText> styledText(String... textAndStyle) {
+		List<CSSStyledText> styledText = new ArrayList<CSSStyledText>();
+		String text = null;
+		boolean textSet = false;
+		for (String s : textAndStyle) {
+			if (textSet)
+				styledText.add(new CSSStyledText(text, s));
+			else
+				text = s;
+			textSet = !textSet; }
+		if (textSet)
+			throw new RuntimeException();
+		return styledText;
+	}
+	
+	private Iterable<CSSStyledText> text(String... text) {
+		List<CSSStyledText> styledText = new ArrayList<CSSStyledText>();
+		for (String t : text)
+			styledText.add(new CSSStyledText(t, ""));
+		return styledText;
+	}
+	
+	private Iterable<String> braille(String... text) {
+		return Arrays.asList(text);
 	}
 }
