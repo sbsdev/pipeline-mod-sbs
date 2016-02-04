@@ -20,6 +20,23 @@
     </x:expect>
   </x:scenario>
   
+  <x:scenario label="4.4.57_ex2_row_as_sublist_axes" pending="input and expected output are actually different tables">
+    <x:call step="px:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="file" href="../resources/test_4.4.57_ex2_row_as_sublist_axes/test_4.4.57.xml"/>
+      </x:input>
+      <x:option name="transform" select="'(formatter:dotify)(translator:sbs)(grade:0)'"/>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/test_4.4.57_ex2_row_as_sublist_axes/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
+    </x:call>
+    <x:context label="result">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_4.4.57_ex2_row_as_sublist_axes/test_4.4.57.pef"/>
+    </x:context>
+    <x:expect label="result" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_4.4.57_ex2_row_as_sublist_axes/output_expected/test_4.4.57.pef"/>
+    </x:expect>
+  </x:scenario>
+  
   <x:scenario label="foo" pending="TODO: Mischa: verify result">
     <x:call step="px:dtbook-to-pef">
       <x:input port="source">
