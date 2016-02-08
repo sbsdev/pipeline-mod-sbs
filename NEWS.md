@@ -1,3 +1,7 @@
+pipeline-mod-sbs v1.3.1
+=======================
+Bugfix release
+
 pipeline-mod-sbs v1.3.0
 =======================
 Compatibility update
