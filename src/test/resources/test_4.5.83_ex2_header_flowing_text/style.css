@@ -1,0 +1,21 @@
+
+@page {
+	size: 28 28;
+}
+
+@page:right {
+	@top-right {
+		content: "      " counter(page);
+	}
+}
+
+dtbook {
+  hyphens: none;
+}
+p {
+	display: block;
+	text-align: left;
+	text-indent: 2;
+}
+
+

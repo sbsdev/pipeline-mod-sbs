@@ -13,8 +13,8 @@
       <p:import href="http://www.daisy.org/pipeline/modules/braille/common-utils/library.xpl"/>
       <p:add-attribute match="/*" attribute-name="style" attribute-value="hyphens:auto"/>
       <p:add-attribute match="html:p" attribute-name="style" attribute-value="display:block"/>
-      <px:transform type="css-block">
-        <p:with-option name="query" select="concat('(translator:sbs)(locale:de)(grade:',$grade,')')"/>
+      <px:transform>
+        <p:with-option name="query" select="concat('(input:html)(input:css)(output:css)(translator:sbs)(locale:de)(grade:',$grade,')')"/>
       </px:transform>
       <p:delete match="@style"/>
     </p:declare-step>
