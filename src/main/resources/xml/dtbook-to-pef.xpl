@@ -17,7 +17,7 @@
     <p:option name="preview-output-dir"/>
     <p:option name="temp-dir"/>
 
-    <p:option name="stylesheet" select="'http://www.sbs.ch/pipeline/modules/braille/default.css'"/>
+    <p:option name="stylesheet" select="'http://www.sbs.ch/pipeline/modules/braille/default.scss'"/>
 
     <p:option name="contraction-grade" required="false" select="'0'">
       <p:pipeinfo>
@@ -86,7 +86,7 @@
         <p:with-option name="preview-output-dir" select="$preview-output-dir"/>
         <p:with-option name="temp-dir" select="$temp-dir"/>
         <p:with-option name="stylesheet" select="$stylesheet"/>
-        <p:with-option name="transform" select="concat('(formatter:dotify)(translator:nota)(grade:',$contraction-grade,')')"/>
+        <p:with-option name="transform" select="concat('(formatter:dotify)(translator:sbs)(grade:',$contraction-grade,')')"/>
         <p:with-option name="ascii-table" select="$ascii-table"/>
         <p:with-option name="include-preview" select="$include-preview"/>
         <p:with-option name="include-brf" select="$include-brf"/>
