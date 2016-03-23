@@ -10,8 +10,8 @@
        px:extends="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
 
   <!-- css -->
-  <uri name="http://www.sbs.ch/pipeline/modules/braille/default.css"
-       uri="../css/default.css"/>
+  <uri name="http://www.sbs.ch/pipeline/modules/braille/default.scss"
+       uri="../css/default.scss"/>
 
   <!-- dependencies -->
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>

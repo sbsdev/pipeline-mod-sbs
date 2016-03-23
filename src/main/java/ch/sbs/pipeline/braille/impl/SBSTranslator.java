@@ -71,17 +71,17 @@ public interface SBSTranslator {
 			URI displayTable = asURI(f);
 			grade0Table = mutableQuery().add("liblouis-table", displayTable +
 				",http://www.sbs.ch/pipeline/liblouis/tables/" +
-				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
+				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-numsign.mod," +
 				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
 				"sbs-special.mod");
 			grade1Table = mutableQuery().add("liblouis-table", displayTable +
 				",http://www.sbs.ch/pipeline/liblouis/tables/" +
-				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
+				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-numsign.mod," +
 				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-g1-white.mod,sbs-de-g1-core.mod," +
 				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod");
 			grade2Table = mutableQuery().add("liblouis-table", displayTable +
 				",http://www.sbs.ch/pipeline/liblouis/tables/" +
-				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod," +
+				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-de-letsign.mod," +
 				"sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod," +
 				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod");
 		}
