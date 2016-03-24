@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pef version="2008-1" xmlns="http://www.daisy.org/ns/2008/pef">
+<pef version="2008-1" xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="de">
   <head>
     <meta xmlns:dc="http://purl.org/dc/elements/1.1/">
       <dc:title>Ohne Titel</dc:title>
@@ -104,36 +104,8 @@
           <row>⠼⠊⠀⠼⠊⠀⠼⠊⠀⠼⠊⠀⠼⠊⠀⠼⠊⠀⠼⠊</row>
           <row>⠸⠼⠑⠔⠀⠀⠀⠀⠀⠀⠅⠁⠏⠊⠞⠑⠇⠀⠼⠁⠀⠀⠀⠀⠀⠀⠼⠉</row>
         </page>
-        <page>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-        </page>
+      </section>
+      <section>
         <page>
           <row/>
           <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠁⠝⠅⠎⠁⠛⠥⠝⠛</row>
@@ -163,36 +135,6 @@
           <row/>
           <row/>
           <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠁⠝⠅⠎⠁⠛⠥⠝⠛⠀⠀⠀⠀⠀⠀⠀⠼⠑</row>
-        </page>
-        <page>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
-          <row/>
         </page>
       </section>
     </volume>

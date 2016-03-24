@@ -4,7 +4,7 @@
 	margin-top: 1;
 	counter-increment: continuation;
 	@top-left {
-		content: counter(continuation, abc) "⠠" string(print-page);
+		content: counter(continuation, abc) "⠠" string(print-page, start);
 		/* this translates numbers by adding dot 6 to all digits: */
 		text-transform: pagenum;
 	}
@@ -13,18 +13,20 @@
 	}
 }
 
+/*
 @counter-style pagenum {
 	system: numeric;
 	symbols: '⠺' '⠡' '⠣' '⠩' '⠹' '⠱' '⠫' '⠻' '⠳' '⠪'
-	/* or alternatively: */
-	/* symbols: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9' */
-	/* text-transform: pagenum; */
+	/ * or alternatively: * /
+	/ * symbols: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9' * /
+	/ * text-transform: pagenum; * /
 }
 
 @counter-style abc {
 	system: numeric;
 	symbols: '' '⠁' '⠃' '⠉' '⠙' '⠑' ...;
 }
+*/
 
 dtbook {
 	hyphens: none;

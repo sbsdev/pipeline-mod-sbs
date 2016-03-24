@@ -1,12 +1,12 @@
 
-/* margin-left and margin-right are currently not supported within @page */
-/* why the margin shorthand doesn't work is not clear, but using the shorthand */
-/* doesn't make that much sense anyway if only top and bottom are supported */
 @page {
 	size: 35 18;
+	/* the margin shorthand doesn't work in @page (why is not clear) */
 	/* margin: 2; */
 	margin-top: 2;
 	margin-bottom: 2;
+	margin-left: 2;
+	margin-right: 2;
 }
 
 dtbook {
