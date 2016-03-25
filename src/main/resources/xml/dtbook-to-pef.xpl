@@ -74,9 +74,9 @@
     <p:option name="footnotes-placement"/>
     <p:option name="colophon-metadata-placement"/>
     <p:option name="rear-cover-placement"/>
-    <p:option name="number-of-pages"/>
-    <p:option name="maximum-number-of-pages"/>
-    <p:option name="minimum-number-of-pages"/>
+    <p:option name="number-of-sheets"/>
+    <p:option name="maximum-number-of-sheets"/>
+    <p:option name="minimum-number-of-sheets"/>
 
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
 
@@ -120,9 +120,9 @@
         <p:with-option name="footnotes-placement" select="$footnotes-placement"/>
         <p:with-option name="colophon-metadata-placement" select="$colophon-metadata-placement"/>
         <p:with-option name="rear-cover-placement" select="$rear-cover-placement"/>
-        <p:with-option name="number-of-pages" select="$number-of-pages"/>
-        <p:with-option name="maximum-number-of-pages" select="$maximum-number-of-pages"/>
-        <p:with-option name="minimum-number-of-pages" select="$minimum-number-of-pages"/>
+        <p:with-option name="number-of-sheets" select="$number-of-sheets"/>
+        <p:with-option name="maximum-number-of-sheets" select="$maximum-number-of-sheets"/>
+        <p:with-option name="minimum-number-of-sheets" select="$minimum-number-of-sheets"/>
     </px:dtbook-to-pef>
 
 </p:declare-step>
