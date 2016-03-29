@@ -4,17 +4,19 @@
 	margin-top: 1;
 	counter-increment: continuation;
 	@top-left {
-		content: "⠸" string(print-page) counter(continuation, abc);
+		content: "⠸" string(print-page, start) counter(continuation, abc);
 	}
 	@top-right {
 		content: counter(page);
 	}
 }
 
+/*
 @counter-style abc {
 	system: numeric;
 	symbols: '' '⠠⠁' '⠠⠃' '⠠⠉' '⠠⠙' '⠠⠑' ...;
 }
+*/
 
 dtbook {
   hyphens: none;
@@ -22,7 +24,7 @@ dtbook {
 
 level1 {
 	display: block;
-	page-break-after: always;
+	page-break-before: always;
 }
 
 h1 {
@@ -60,3 +62,8 @@ pagenum:first-of-page {
 	display: none;
 }
 */
+
+/* alternative: */
+pagenum:has(+level2, +h1) {
+	display: none;
+}

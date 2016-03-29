@@ -35,7 +35,6 @@ pagenum::before {
 	content: leader('⠤') '⠸';
 }
 
-/* add the following when :has() is supported: *//*
 pagenum:has(+ pagenum) {
 	display: none;
 	string-set: print-page content(),
@@ -49,4 +48,3 @@ pagenum + pagenum {
 pagenum + pagenum::before {
 	content: leader('⠤') '⠸' string(first-print-page) '⠤⠸';
 }
-*/

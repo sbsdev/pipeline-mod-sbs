@@ -22,7 +22,7 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.78_ex2_paragraphs_with_border" pending="bug">
+  <x:scenario label="4.5.78_ex2_paragraphs_with_border">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.78_ex2_paragraphs_with_border/test_4.5.78.xml"/>
@@ -41,7 +41,7 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.80_ex1_page_dimensions" pending="duplex is always true. fix expected pef?">
+  <x:scenario label="4.5.80_ex1_page_dimensions">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.80_ex1_page_dimensions/test_4.5.80.xml"/>
@@ -61,8 +61,7 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.80_ex2_page_margins" pending="margin-left and margin-right not supported
-                                                       fix metadata in expected pef">
+  <x:scenario label="4.5.80_ex2_page_margins">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.80_ex2_page_margins/test_4.5.80.xml"/>
@@ -81,8 +80,12 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.81_ex1_footer_complete" pending="pagenum inside paragraphs are moved to next
-                                                          fix css to get page range">
+  <x:scenario label="4.5.81_ex1_footer_complete" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+      - h1 in footer not centered correctly
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.81_ex1_footer_complete/test_4.5.81.xml"/>
@@ -101,8 +104,11 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.81_ex2_footer_no_info" pending="pagenum inside paragraphs are moved to next
-                                                         fix css to get page range">
+  <x:scenario label="4.5.81_ex2_footer_no_info" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.81_ex2_footer_no_info/test_4.5.81.xml"/>
@@ -121,7 +127,7 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.81_ex3_footer_no_print_page_number" pending="fix metadata in expected pef">
+  <x:scenario label="4.5.81_ex3_footer_no_print_page_number">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.81_ex3_footer_no_print_page_number/test_4.5.81.xml"/>
@@ -140,7 +146,7 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.81_ex4_footer_only_braille_page_number" pending="fix metadata in expected pef">
+  <x:scenario label="4.5.81_ex4_footer_only_braille_page_number">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.81_ex4_footer_only_braille_page_number/test_4.5.81.xml"/>
@@ -159,8 +165,7 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.82_ex1_frontmatter" pending="counter-set does not work
-                                                      fix expected pef?">
+  <x:scenario label="4.5.82_ex1_frontmatter">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.82_ex1_frontmatter/test_4.5.82.xml"/>
@@ -179,11 +184,12 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.82_ex2_parts_without_print_page_number" pending="shrink-to-fit not supported yet
-                                                                          fix css to get page range
-                                                                          pagenum inside paragraphs are moved to next
-                                                                          string-set: print-page '' does not make ⠸ go away
-                                                                          fix metadata in pef">
+  <x:scenario label="4.5.82_ex2_parts_without_print_page_number" xfail="true">
+    <x:documentation>
+      Broken:
+      - "shrink-to-fit" not supported yet
+      - print page range on first braille page does not include first print page
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.82_ex2_parts_without_print_page_number/test_4.5.82.xml"/>
@@ -202,8 +208,12 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.83_ex1_footer_flowing_text" pending="shrink-to-fit not supported yet
-                                                              flow into footer not supported yet">
+  <x:scenario label="4.5.83_ex1_footer_flowing_text" xfail="true">
+    <x:documentation>
+      Broken:
+      - "shrink-to-fit" not supported yet
+      - flow into footer not supported yet
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.83_ex1_footer_flowing_text/test_4.5.83.xml"/>
@@ -222,7 +232,11 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.83_ex2_header_flowing_text" pending="flow into header not supported yet">
+  <x:scenario label="4.5.83_ex2_header_flowing_text" xfail="true">
+    <x:documentation>
+      Broken:
+      - flow into header not supported yet
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.83_ex2_header_flowing_text/test_4.5.83.xml"/>
@@ -241,7 +255,7 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.84_ex1_page_break_right" pending="fix xml?">
+  <x:scenario label="4.5.84_ex1_page_break_right">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.84_ex1_page_break_right/test_4.5.84.xml"/>
@@ -260,7 +274,11 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.84_ex2_page_break_left" pending="page-break-after:left not supported">
+  <x:scenario label="4.5.84_ex2_page_break_left" xfail="true">
+    <x:documentation>
+      Broken:
+      - page-break-after:left not supported
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.84_ex2_page_break_left/test_4.5.84.xml"/>
@@ -279,9 +297,12 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.85_ex1_footer_only_right" pending="pagenum inside paragraphs are moved to next
-                                                            page range not working on first page
-                                                            fix metadata in expected pef">
+  <x:scenario label="4.5.85_ex1_footer_only_right" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+      - h1 in footer not centered correctly
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.85_ex1_footer_only_right/test_4.5.85.xml"/>
@@ -300,8 +321,11 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.85_ex2_footer_left_and_right" pending="pagenum inside paragraphs are moved to next
-                                                                fix css to get page range">
+  <x:scenario label="4.5.85_ex2_footer_left_and_right" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.85_ex2_footer_left_and_right/test_4.5.85.xml"/>
@@ -320,7 +344,15 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="4.7.102_generated_content" pending="h1 in footer not centered correctly">
+  <!--
+      Question: what does this test have to do with generated content?
+  -->
+  <x:scenario label="4.7.102_generated_content" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+      - h1 in footer not centered correctly
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.7.102_generated_content/test_4.7.102.xml"/>
@@ -339,9 +371,11 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="4.8.105_ex1_page_break_line_draft" pending=":has() not supported yet
-                                                                 flow into footer not supported yet
-                                                                 fix metadata in expected pef">
+  <x:scenario label="4.8.105_ex1_page_break_line_draft" xfail="true">
+    <x:documentation>
+      Broken:
+      - flow into footer not supported yet
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.8.105_ex1_page_break_line_draft/test_4.8.105.xml"/>
@@ -360,12 +394,15 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.8.105_ex2_page_break_line_french" pending="last print page taken instead of first
-                                                                  @counter-style in @page not implemented yet
-                                                                  counter-increment in @page not implemented yet
-                                                                  text-transform in @page not supported yet
-                                                                  :first-of-page/:last-of-page not supported yet
-                                                                  not translated with french table">
+  <x:scenario label="4.8.105_ex2_page_break_line_french" xfail="true">
+    <x:documentation>
+      Broken:
+      - @counter-style not supported yet
+      - counter() function not supported in page margin for other counters than 'page'
+      - counter-increment in @page not supported yet
+      - not translated with french table
+      - :first-of-page/:last-of-page not supported
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.8.105_ex2_page_break_line_french/test_4.8.105.xml"/>
@@ -384,11 +421,15 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.8.105_ex3_page_break_line_french_schematic" pending="last print page taken instead of first
-                                                                            @counter-style in @page not implemented yet
-                                                                            counter-increment in @page not implemented yet
-                                                                            :first-of-page/:last-of-page not supported yet
-                                                                            fix metadata in expected pef">
+  <x:scenario label="4.8.105_ex3_page_break_line_french_schematic" xfail="true">
+    <x:documentation>
+      Broken:
+      - string(..., start) does not behave as expected (print page number at beginning of page is
+        treated as if it's in the middle of the page)
+      - @counter-style not supported yet
+      - counter() function not supported in page margin for other counters than 'page'
+      - counter-increment in @page not supported yet
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.8.105_ex3_page_break_line_french_schematic/test_4.8.105.xml"/>
@@ -407,10 +448,12 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.8.106_ex1_page_break_mark_footer_only_right" pending="fix css to get page range
-                                                                             position:page not supported yet
-                                                                             ::alternate not supported yet
-                                                                             fix metadata in expected pef">
+  <x:scenario label="4.8.106_ex1_page_break_mark_footer_only_right" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+      - h1 in footer not centered correctly
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.8.106_ex1_page_break_mark_footer_only_right/test_4.8.106.xml"/>
@@ -429,10 +472,12 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.8.106_ex2_page_break_mark_footer_left_and_right" pending="fix css to get page range
-                                                                                 position:page not supported yet
-                                                                                 ::alternate not supported yet
-                                                                                 fix metadata in expected pef">
+  <x:scenario label="4.8.106_ex2_page_break_mark_footer_left_and_right" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+      - h1 in footer not centered correctly
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.8.106_ex2_page_break_mark_footer_left_and_right/test_4.8.106.xml"/>
@@ -451,8 +496,12 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.8.107_ex1_skip_page_breaks" pending="fix css to get page range
-                                                            fix metadata in expected pef">
+  <x:scenario label="4.8.107_ex1_skip_page_breaks" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+      - string(..., last) does not behave as expected (print page numbers at end of page are moved to next)
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.8.107_ex1_skip_page_breaks/test_4.8.107.xml"/>
@@ -471,8 +520,12 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.8.107_ex2_skip_page_breaks" pending="fix css to get page range
-                                                            fix metadata in expected pef">
+  <x:scenario label="4.8.107_ex2_skip_page_breaks" xfail="true">
+    <x:documentation>
+      Broken:
+      - print page range on first braille page does not include first print page
+      - string(..., last) does not behave as expected (print page numbers at end of page are moved to next)
+    </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.8.107_ex2_skip_page_breaks/test_4.8.107.xml"/>
