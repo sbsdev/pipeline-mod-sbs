@@ -1,0 +1,104 @@
+/***************************************************************************************
+ * SBS Default CSS								       *
+ * http://www.sbs.ch/								       *
+ * 										       *
+ * Author: Christian Egli <christian.egli@sbs.ch>				       *
+ * Author: Bert Frees <bertfrees@gmail.com>					       *
+ * 										       *
+ * See also Braille CSS: http://snaekobbi.github.io/braille-css-spec/master/index.html *
+ ***************************************************************************************/
+
+/* General rules */
+
+/* Namespaces */
+
+@namespace xml "http://www.w3.org/XML/1998/namespace";
+
+/* Page layout
+ *
+ * A page contains 28 columns by 28 rows of braille (configurable with
+ * options, defaults in script). */
+
+@page {
+    size: 28 28;
+}
+
+/* Boilerplate */
+
+/* Hidden elements
+ *
+ * These are not directly incldued in the output.
+ * See also the #generated-doctitle and #generated-docauthors rules. */
+
+head, doctitle, docauthor {
+    display: none;
+}
+
+/* Block elements */
+
+/* Front matter, body matter and rear matter
+ *
+ * These elements always start on a new page. The print page number is
+ * reset on the start of these elements.
+ *
+ * If any of these consist of only content that is not rendered, then
+ * that element as a whole is not rendered. */
+
+frontmatter, bodymatter, rearmatter {
+    display: block;
+    page-break-before: always;
+}
+
+/* frontmatter:not(:has(> *:not(doctitle, docauthor, #generated-title-page))) { */
+/*     display: none; */
+/* } */
+
+/* Headings */
+
+hd, h1, h2, h3, h4, h5, h6 {
+    display: block;
+    text-align: center;
+    margin-top: 3;
+    margin-bottom: 1;
+
+    page-break-after: avoid;
+}
+
+/* Divisions */
+
+div {
+    display: block;
+}
+
+/* Paragraphs
+ *
+ * A paragraph is a block element with no special features.
+ *
+ * To precede the paragraph by a blank line, add class
+ * precedingemptyline. To indent the first line of the paragraph, add
+ * class indented. If this paragraph is a table title or caption, add
+ * class table-title. */
+
+/* p { */
+/*     display: block; */
+/*     text-align: left; */
+/*     text-indent: 2; */
+/* } */
+
+/* Preceding empty line
+ *
+ * Adds a blank line before the element. */
+
+.precedingemptyline::before {
+    /* The next line prevents newline characters from being converted to spaces. */
+    white-space: pre-line;
+    content: '\A';
+}
+
+/* xml:space="preserve"
+ *
+ * Elements with this attribute and value are treated as preformatted text. */
+
+[xml|space=preserve] {
+    white-space: pre-wrap;
+}
