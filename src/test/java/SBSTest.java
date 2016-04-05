@@ -89,7 +89,8 @@ public class SBSTest {
 		for (String test : new String[]{
 				"test_translator",
 				"test_tables",
-				"test_pagination"
+				"test_pagination",
+				"test_titlepage"
 			})
 			tests.put(test, new File(baseDir, "src/test/xprocspec/" + test + ".xprocspec"));
 		boolean success = xprocspecRunner.run(tests,
