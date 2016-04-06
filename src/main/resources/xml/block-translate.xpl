@@ -4,21 +4,24 @@
             xmlns:pxi="http://www.daisy.org/ns/pipeline/xproc/internal"
             exclude-inline-prefixes="#all">
 	
-	<p:option name="text-transform" required="true"/>
-        <p:option name="contraction-grade" required="true"/>
+	<p:option name="contraction-grade" required="true"/>
+	<p:option name="virtual.dis-uri" required="true"/>
+	<p:option name="hyphenator" required="true"/>
 	
-        <p:xslt>
-                <p:input port="stylesheet">
-                        <p:document href="insert-boilerplate.xsl"/>
-                </p:input>
-                <p:with-param name="contraction-grade" select="$contraction-grade"/>
-        </p:xslt>
+	<p:xslt>
+		<p:input port="stylesheet">
+			<p:document href="insert-boilerplate.xsl"/>
+		</p:input>
+		<p:with-param name="contraction-grade" select="$contraction-grade"/>
+	</p:xslt>
 
 	<p:xslt>
 		<p:input port="stylesheet">
 			<p:document href="block-translate.xsl"/>
 		</p:input>
-		<p:with-param name="text-transform" select="$text-transform"/>
+		<p:with-param name="contraction-grade" select="$contraction-grade"/>
+		<p:with-param name="virtual.dis-uri" select="$virtual.dis-uri"/>
+		<p:with-param name="hyphenator" select="$hyphenator"/>
 	</p:xslt>
 	
 </p:pipeline>

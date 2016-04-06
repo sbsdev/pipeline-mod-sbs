@@ -3,13 +3,11 @@
     version="2.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:dtb="http://www.daisy.org/z3986/2005/dtbook/"
-    xmlns:louis="http://liblouis.org/liblouis"
     xmlns:brl="http://www.daisy.org/z3986/2009/braille/"
     xmlns:my="http://my-functions"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:data="http://sbsform.ch/data"
     xmlns:math="http://www.w3.org/1998/Math/MathML"
-    exclude-result-prefixes="dtb louis data my" extension-element-prefixes="my">
+    exclude-result-prefixes="dtb my" extension-element-prefixes="my">
 
   <!-- =========================== -->
   <!-- Queries for block vs inline -->
@@ -168,7 +166,7 @@
 
   <xsl:function name="my:filter-hyphenation" as="xs:string">
     <xsl:param name="string"/>
-    <xsl:value-of select="if ($hyphenation) then $string else translate($string, '­', '')"/>
+    <xsl:value-of select="if ($hyphenation='true') then $string else translate($string, '­', '')"/>
   </xsl:function>
 
   <xsl:function name="my:has-brl-class" as="xs:boolean">

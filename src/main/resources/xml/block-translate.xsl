@@ -4,51 +4,72 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:pf="http://www.daisy.org/ns/pipeline/functions"
                 xmlns:css="http://www.daisy.org/ns/pipeline/braille-css"
-                xmlns:html="http://www.w3.org/1999/xhtml"
+                xmlns:my="http://my-functions"
                 exclude-result-prefixes="#all">
 	
 	<xsl:import href="http://www.daisy.org/pipeline/modules/braille/css-utils/transform/block-translator-template.xsl"/>
 	<xsl:import href="functions.xsl"/>
 	<xsl:import href="select-braille-table.xsl"/>
-	<!-- <xsl:import href="handle-elements.xsl"/> -->
+	<xsl:import href="handle-elements.xsl"/>
 	
-	<xsl:param name="contraction-grade" required="yes"/>
-	<xsl:param name="use_local_dictionary" required="yes"/>
-	<xsl:param name="document-identifier" required="yes"/>
-	<xsl:param name="hyphenation" required="yes"/>
-	<xsl:param name="accented-letters" required="yes"/>
-	<xsl:param name="enable_capitalization" required="yes"/>
-
-	<xsl:param name="text-transform" required="yes"/>
-
-	<xsl:param name="TABLE_BASE_URI" select="''"/>
+	<xsl:param name="virtual.dis-uri" select="resolve-uri('../liblouis/virtual.dis')"/> <!-- must be file URI -->
+	<xsl:param name="hyphenator" required="yes"/>
+	
+	<xsl:variable name="TABLE_BASE_URI"
+	              select="concat($virtual.dis-uri,',http://www.sbs.ch/pipeline/liblouis/tables/')"/>
 	
 	<xsl:template match="css:block" mode="#default before after">
-		<xsl:variable name="text" as="text()*" select="//text()"/>
-		<xsl:variable name="style" as="xs:string*">
-			<xsl:for-each select="$text">
-				<xsl:variable name="inline-style" as="element()*"
-				              select="css:computed-properties($inline-properties, true(), parent::*)"/>
-				<xsl:variable name="transform" as="xs:string?"
-				              select="if (ancestor::html:strong) then 'louis-bold' else
-				                      if (ancestor::html:em) then 'louis-ital' else ()"/>
-				<xsl:variable name="inline-style" as="element()*"
-				              select="if ($transform) then ($inline-style,css:property('transform',$transform)) else $inline-style"/>
-				<xsl:sequence select="css:serialize-declaration-list($inline-style[not(@value=css:initial-value(@name))])"/>
-			</xsl:for-each>
-		</xsl:variable>
-		<xsl:apply-templates select="node()">
-		  <xsl:with-param name="new-text-nodes"
-				  select="pf:text-transform($text-transform,$text,$style)"/>
-		  <!-- (table:table-path, i.e tables+hyphenator) -->
-		</xsl:apply-templates>
+		<xsl:apply-templates/>
 	</xsl:template>
 	
-	<xsl:template match="css:property[@name=('font-style','font-weight','text-decoration','color')]"
-	              mode="translate-declaration-list"/>
+	<xsl:function name="my:louis-translate" as="xs:string">
+		<xsl:param name="context" as="node()"/>
+		<xsl:param name="table" as="xs:string"/>
+		<xsl:param name="text" as="xs:string"/>
+		<xsl:sequence select="pf:text-transform(
+		                        concat('(liblouis-table:&quot;',$table,'&quot;)',$hyphenator),
+		                        $text,
+		                        my:get-style($context))"/>
+	</xsl:function>
 	
-	<xsl:template match="css:property[@name='hyphens' and @value='auto']" mode="translate-declaration-list">
+	<xsl:function name="my:get-style" as="xs:string">
+		<xsl:param name="context" as="node()"/>
+		<xsl:variable name="inline-style" as="element()*"
+		              select="css:computed-properties($inline-properties, true(),
+		                        if ($context/self::*) then $context else $context/parent::*)"/>
+		<xsl:variable name="inline-style" as="element()*">
+			<xsl:apply-templates select="$inline-style" mode="property"/>
+		</xsl:variable>
+		<xsl:sequence select="css:serialize-declaration-list($inline-style)"/>
+	</xsl:function>
+	
+	<xsl:template match="css:property" mode="property">
+		<xsl:if test="not(@value=css:initial-value(@name))">
+			<xsl:sequence select="."/>
+		</xsl:if>
+	</xsl:template>
+	
+	<xsl:template match="css:property[@name='word-spacing']" mode="property"/>
+	
+	<xsl:template match="@style">
+		<xsl:variable name="translated-rules" as="element()*">
+			<xsl:apply-templates select="css:parse-stylesheet(.)" mode="translate-rule-list">
+				<xsl:with-param name="context" select="parent::*" tunnel="yes"/>
+			</xsl:apply-templates>
+		</xsl:variable>
+		<xsl:sequence select="css:style-attribute(css:serialize-stylesheet($translated-rules))"/>
+	</xsl:template>
+	
+	<xsl:template mode="translate-declaration-list"
+	              match="css:property[@name='hyphens' and @value='auto']">
 		<xsl:sequence select="css:property('hyphens','manual')"/>
 	</xsl:template>
+	
+	<xsl:template mode="translate-declaration-list"
+	              match="css:property[@name=('letter-spacing',
+	                                         'font-style',
+	                                         'font-weight',
+	                                         'text-decoration',
+	                                         'color')]"/>
 	
 </xsl:stylesheet>

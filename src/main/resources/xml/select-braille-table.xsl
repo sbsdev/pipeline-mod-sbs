@@ -12,6 +12,8 @@
   <!-- Table selection -->
   <!-- =============== -->
 
+  <xsl:param name="contraction-grade" required="yes"/>
+  
   <xsl:function name="my:get-contraction" as="xs:string">
     <xsl:param name="context"/>
     <xsl:sequence
@@ -70,7 +72,7 @@
       </xsl:if>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="$hyphenation = false()">
+      <xsl:when test="not($hyphenation='true')">
         <xsl:text>sbs-de-hyph-none.mod,</xsl:text>
       </xsl:when>
       <xsl:otherwise>

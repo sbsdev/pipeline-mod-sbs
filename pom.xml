@@ -22,6 +22,10 @@
   <properties>
     <sbs-hyphenation-tables.version>1.17</sbs-hyphenation-tables.version>
     <sbs-braille-tables.version>2.0</sbs-braille-tables.version>
+    <!--
+        depends on branch pipeline2 (https://github.com/sbsdev/sbs-braille-tables/issues/1)
+    -->
+    <sbs-braille-tables.version>2.1-SNAPSHOT</sbs-braille-tables.version>
   </properties>
   
   <dependencies>
@@ -106,6 +110,21 @@
     <dependency>
       <groupId>org.daisy.maven</groupId>
       <artifactId>xprocspec-runner</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.maven</groupId>
+      <artifactId>xspec-runner</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.xmlresolver</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline</groupId>
+      <artifactId>saxon-adapter</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

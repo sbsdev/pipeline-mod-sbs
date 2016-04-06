@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.daisy.maven.xproc.xprocspec.XProcSpecRunner;
+import org.daisy.maven.xspec.TestResults;
+import org.daisy.maven.xspec.XSpecRunner;
 
 import org.daisy.pipeline.braille.common.BrailleTranslator.CSSStyledText;
 import org.daisy.pipeline.braille.common.BrailleTranslator.FromStyledTextToBraille;
@@ -25,6 +27,7 @@ import static org.daisy.pipeline.pax.exam.Options.mavenBundlesWithDependencies;
 import static org.daisy.pipeline.pax.exam.Options.pipelineModule;
 import static org.daisy.pipeline.pax.exam.Options.thisBundle;
 import static org.daisy.pipeline.pax.exam.Options.xprocspec;
+import static org.daisy.pipeline.pax.exam.Options.xspec;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -80,6 +83,19 @@ public class SBSTest {
 	}
 	
 	@Inject
+	private XSpecRunner xspecRunner;
+	
+	@Test
+	public void runXSpec() throws Exception {
+		File baseDir = new File(PathUtils.getBaseDir());
+		File testsDir = new File(baseDir, "src/test/xspec");
+		File reportsDir = new File(baseDir, "target/surefire-reports");
+		reportsDir.mkdirs();
+		TestResults result = xspecRunner.run(testsDir, reportsDir);
+		assertEquals("Number of failures and errors should be zero", 0L, result.getFailures() + result.getErrors());
+	}
+	
+	@Inject
 	private XProcSpecRunner xprocspecRunner;
 	
 	@Test
@@ -132,7 +148,11 @@ public class SBSTest {
 				logbackClassic(),
 				// xprocspec
 				xprocspec(),
-				mavenBundle("org.daisy.maven:xproc-engine-daisy-pipeline:?"))
+				mavenBundle("org.daisy.maven:xproc-engine-daisy-pipeline:?"),
+				// xspec
+				xspec(),
+				mavenBundle("org.apache.servicemix.bundles:org.apache.servicemix.bundles.xmlresolver:?"),
+				mavenBundle("org.daisy.pipeline:saxon-adapter:?"))
 		);
 	}
 	

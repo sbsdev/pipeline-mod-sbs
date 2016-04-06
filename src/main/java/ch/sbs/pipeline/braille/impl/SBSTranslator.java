@@ -62,24 +62,25 @@ public interface SBSTranslator {
 		private Query grade0Table;
 		private Query grade1Table;
 		private Query grade2Table;
+		private URI virtualDisTable;
 		
 		@Activate
 		private void activate(ComponentContext context, final Map<?,?> properties) {
 			href = asURI(context.getBundleContext().getBundle().getEntry("xml/block-translate.xpl"));
 			File f = new File(makeUnpackDir(context), "virtual.dis");
 			unpack(context.getBundleContext().getBundle().getEntry("/liblouis/virtual.dis"), f);
-			URI displayTable = asURI(f);
-			grade0Table = mutableQuery().add("liblouis-table", displayTable +
+			virtualDisTable = asURI(f);
+			grade0Table = mutableQuery().add("liblouis-table", virtualDisTable +
 				",http://www.sbs.ch/pipeline/liblouis/tables/" +
 				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-numsign.mod," +
 				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
 				"sbs-special.mod");
-			grade1Table = mutableQuery().add("liblouis-table", displayTable +
+			grade1Table = mutableQuery().add("liblouis-table", virtualDisTable +
 				",http://www.sbs.ch/pipeline/liblouis/tables/" +
 				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-numsign.mod," +
 				"sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-g1-white.mod,sbs-de-g1-core.mod," +
 				"sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod");
-			grade2Table = mutableQuery().add("liblouis-table", displayTable +
+			grade2Table = mutableQuery().add("liblouis-table", virtualDisTable +
 				",http://www.sbs.ch/pipeline/liblouis/tables/" +
 				"sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-de-letsign.mod," +
 				"sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod," +
@@ -132,13 +133,14 @@ public interface SBSTranslator {
 								transform(
 									hyphenators,
 									new Function<LibhyphenHyphenator,Iterable<BrailleTranslator>>() {
-										public Iterable<BrailleTranslator> _apply(LibhyphenHyphenator h) {
-											final Query translatorQuery = mutableQuery(liblouisTable).add("hyphenator", h.getIdentifier());
+										public Iterable<BrailleTranslator> _apply(final LibhyphenHyphenator h) {
+											final Query hyphenatorQuery = mutableQuery().add("hyphenator", h.getIdentifier());
+											final Query translatorQuery = mutableQuery(liblouisTable).addAll(hyphenatorQuery);
 											return Iterables.transform(
 												logSelect(translatorQuery, liblouisTranslatorProvider),
 												new Function<LiblouisTranslator,BrailleTranslator>() {
 													public BrailleTranslator _apply(LiblouisTranslator translator) {
-														return __apply(logCreate(new TransformImpl(grade, translator, translatorQuery))); }}); }})); }}
+														return __apply(logCreate(new TransformImpl(grade, translator, hyphenatorQuery.toString()))); }}); }})); }}
 			return empty;
 		}
 		
@@ -158,10 +160,11 @@ public interface SBSTranslator {
 			private final int grade;
 			private final FromStyledTextToBraille translator;
 			
-			private TransformImpl(int grade, LiblouisTranslator translator, Query translatorQuery) {
+			private TransformImpl(int grade, LiblouisTranslator translator, String hyphenatorQuery) {
 				Map<String,String> options = ImmutableMap.of(
-									     "text-transform", translatorQuery.toString(),
-									     "contraction-grade", ""+grade);
+					"contraction-grade", ""+grade,
+					"virtual.dis-uri", virtualDisTable.toASCIIString(),
+					"hyphenator", hyphenatorQuery);
 				xproc = new XProc(href, null, options);
 				this.grade = grade;
 				this.translator = translator.fromStyledTextToBraille();
