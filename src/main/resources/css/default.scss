@@ -94,11 +94,3 @@ div {
     white-space: pre-line;
     content: '\A';
 }
-
-/* xml:space="preserve"
- *
- * Elements with this attribute and value are treated as preformatted text. */
-
-[xml|space=preserve] {
-    white-space: pre-wrap;
-}
