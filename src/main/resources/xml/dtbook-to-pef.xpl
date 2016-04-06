@@ -42,7 +42,7 @@
       </p:documentation>
     </p:option>
 
-    <p:option name="ascii-table"/>
+    <p:option name="ascii-table" select="'(liblouis-table:&quot;http://www.sbs.ch/pipeline/liblouis/tables/sbs.dis&quot;)'"/>
     <p:option name="include-preview"/>
     <p:option name="include-brf"/>
 
