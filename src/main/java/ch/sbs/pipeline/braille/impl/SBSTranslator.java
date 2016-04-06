@@ -159,7 +159,9 @@ public interface SBSTranslator {
 			private final FromStyledTextToBraille translator;
 			
 			private TransformImpl(int grade, LiblouisTranslator translator, Query translatorQuery) {
-				Map<String,String> options = ImmutableMap.of("text-transform", translatorQuery.toString());
+				Map<String,String> options = ImmutableMap.of(
+									     "text-transform", translatorQuery.toString(),
+									     "contraction-grade", ""+grade);
 				xproc = new XProc(href, null, options);
 				this.grade = grade;
 				this.translator = translator.fromStyledTextToBraille();
