@@ -77,6 +77,7 @@
     <p:option name="number-of-sheets"/>
     <p:option name="maximum-number-of-sheets"/>
     <p:option name="minimum-number-of-sheets"/>
+    <p:option name="document-identifier"/>
 
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/dtbook-to-pef.xpl"/>
 
@@ -123,6 +124,7 @@
         <p:with-option name="number-of-sheets" select="$number-of-sheets"/>
         <p:with-option name="maximum-number-of-sheets" select="$maximum-number-of-sheets"/>
         <p:with-option name="minimum-number-of-sheets" select="$minimum-number-of-sheets"/>
+        <p:with-option name="document-identifier" select="$document-identifier"/>
     </px:dtbook-to-pef>
 
 </p:declare-step>
