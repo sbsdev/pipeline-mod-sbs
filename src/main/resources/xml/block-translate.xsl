@@ -10,6 +10,7 @@
 	<xsl:import href="http://www.daisy.org/pipeline/modules/braille/css-utils/transform/block-translator-template.xsl"/>
 	<xsl:import href="functions.xsl"/>
 	<xsl:import href="select-braille-table.xsl"/>
+	<!-- <xsl:import href="handle-elements.xsl"/> -->
 	
 	<xsl:param name="contraction-grade" required="yes"/>
 	<xsl:param name="use_local_dictionary" required="yes"/>
