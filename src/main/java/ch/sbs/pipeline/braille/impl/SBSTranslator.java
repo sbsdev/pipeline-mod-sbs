@@ -148,6 +148,7 @@ public interface SBSTranslator {
 		= Splitter.on(';').omitEmptyStrings().withKeyValueSeparator(Splitter.on(':').limit(2).trimResults());
 		private final static Splitter TEXT_TRANSFORM_PARSER = Splitter.on(' ').omitEmptyStrings().trimResults();
 		private final static Pattern PRINT_PAGE_NUMBER = Pattern.compile("(?<first>[0-9]+)?(?:/(?<last>[0-9]+))?");
+		private final static Pattern NUMBER = Pattern.compile("[0-9]+");
 		private final static String PRINT_PAGE_NUMBER_SIGN = "\u2838\u283c";
 		private final static String[] UPPER_DIGIT_TABLE = new String[]{
 			"\u281a","\u2801","\u2803","\u2809","\u2819","\u2811","\u280b","\u281b","\u2813","\u280a"};
@@ -191,7 +192,15 @@ public interface SBSTranslator {
 							if (textTransform.remove("print-page")) {
 								if (!style.isEmpty() || !textTransform.isEmpty())
 									throw new RuntimeException("Translator does not support '" + s.getStyle() +"'");
-								return Optional.of(translatePrintPageNumber(s.getText())).asSet(); }}}
+								return Optional.of(translatePrintPageNumber(s.getText())).asSet(); }
+							else if (textTransform.remove("volume")) {
+								if (!style.isEmpty() || !textTransform.isEmpty())
+									throw new RuntimeException("Translator does not support '" + s.getStyle() +"'");
+								return Optional.of(translateVolumeNumber(s.getText())).asSet(); }
+							else if (textTransform.remove("volumes")) {
+								if (!style.isEmpty() || !textTransform.isEmpty())
+									throw new RuntimeException("Translator does not support '" + s.getStyle() +"'");
+								return Optional.of(translateVolumesCount(s.getText())).asSet(); }}}
 					return translator.transform(styledText);
 				}
 			};
@@ -210,6 +219,22 @@ public interface SBSTranslator {
 				if (last != null)
 					b.append(translateNaturalNumber(Integer.parseInt(last), true));
 				return b.toString();
+			}
+			
+			// FIXME: Erster, Zweiter, Dritter, ..., Zwölfter, 13., 14., ...
+			private String translateVolumeNumber(String number) {
+				Matcher m = NUMBER.matcher(number);
+				if (!m.matches())
+					throw new RuntimeException("'" + number + "' is not a valid volume number");
+				return translateNaturalNumber(Integer.parseInt(number));
+			}
+			
+			// FIXME: einem, zwei, drei, ..., zwölf, 13, 14, ...
+			private String translateVolumesCount(String number) {
+				Matcher m = NUMBER.matcher(number);
+				if (!m.matches())
+					throw new RuntimeException("'" + number + "' is not a valid number");
+				return translateNaturalNumber(Integer.parseInt(number));
 			}
 			
 			private String translateNaturalNumber(int number) {
