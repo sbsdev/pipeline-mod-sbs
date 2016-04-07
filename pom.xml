@@ -49,6 +49,10 @@
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>dtbook-to-pef</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.daisy.dotify</groupId>
+      <artifactId>dotify.api</artifactId>
+    </dependency>
     <!--
         runtime dependencies
     -->
@@ -168,7 +172,8 @@
         <configuration>
           <instructions>
             <_dsannotations>
-              ch.sbs.pipeline.braille.impl.SBSTranslator$Provider
+              ch.sbs.pipeline.braille.impl.SBSTranslator$Provider,
+              ch.sbs.pipeline.braille.impl.GermanInteger2TextFactoryService
             </_dsannotations>
           </instructions>
         </configuration>

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.daisy.dotify.api.text.Integer2TextFactoryMakerService;
+
 import org.daisy.maven.xproc.xprocspec.XProcSpecRunner;
 import org.daisy.maven.xspec.TestResults;
 import org.daisy.maven.xspec.XSpecRunner;
@@ -93,6 +95,14 @@ public class SBSTest {
 		reportsDir.mkdirs();
 		TestResults result = xspecRunner.run(testsDir, reportsDir);
 		assertEquals("Number of failures and errors should be zero", 0L, result.getFailures() + result.getErrors());
+	}
+	
+	@Inject
+	private Integer2TextFactoryMakerService int2textFactory;
+	
+	// @Test // XFAIL
+	public void testInt2textFactory() throws Exception {
+		assertEquals("zwölf", int2textFactory.newInteger2Text("de").intToText(12));
 	}
 	
 	@Inject
