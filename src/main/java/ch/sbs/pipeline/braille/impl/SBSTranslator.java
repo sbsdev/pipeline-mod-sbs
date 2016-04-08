@@ -221,19 +221,99 @@ public interface SBSTranslator {
 				return b.toString();
 			}
 			
-			// FIXME: Erster, Zweiter, Dritter, ..., Zwölfter, 13., 14., ...
 			private String translateVolumeNumber(String number) {
 				Matcher m = NUMBER.matcher(number);
+				String ret;
 				if (!m.matches())
 					throw new RuntimeException("'" + number + "' is not a valid volume number");
-				return translateNaturalNumber(Integer.parseInt(number));
+				switch (number) {
+				case "1":
+				    ret = "Erster";
+				    break;
+				case "2":
+				    ret = "Zweiter";
+				    break;
+				case "3":
+				    ret = "Dritter";
+				    break;
+				case "4":
+				    ret = "Vierter";
+				    break;
+				case "5":
+				    ret = "Fünfter";
+				    break;
+				case "6":
+				    ret = "Sechster";
+				    break;
+				case "7":
+				    ret = "Siebter";
+				    break;
+				case "8":
+				    ret = "Achter";
+				    break;
+				case "9":
+				    ret = "Neunter";
+				    break;
+				case "10":
+				    ret = "Zehnter";
+				    break;
+				case "11":
+				    ret = "Elfter";
+				    break;
+				case "12":
+				    ret = "Zwölfter";
+				    break;
+				default:
+				    ret = translateNaturalNumber(Integer.parseInt(number));
+				}
+				return ret;
 			}
 			
-			// FIXME: einem, zwei, drei, ..., zwölf, 13, 14, ...
 			private String translateVolumesCount(String number) {
 				Matcher m = NUMBER.matcher(number);
 				if (!m.matches())
 					throw new RuntimeException("'" + number + "' is not a valid number");
+				String ret;
+				switch (number) {
+				case "1":
+				    ret = "Einem";
+				    break;
+				case "2":
+				    ret = "Zwei";
+				    break;
+				case "3":
+				    ret = "Drei";
+				    break;
+				case "4":
+				    ret = "Vier";
+				    break;
+				case "5":
+				    ret = "Fünf";
+				    break;
+				case "6":
+				    ret = "Sechs";
+				    break;
+				case "7":
+				    ret = "Sieben";
+				    break;
+				case "8":
+				    ret = "Acht";
+				    break;
+				case "9":
+				    ret = "Neun";
+				    break;
+				case "10":
+				    ret = "Zehn";
+				    break;
+				case "11":
+				    ret = "Elf";
+				    break;
+				case "12":
+				    ret = "Zwölf";
+				    break;
+				default:
+				    ret = translateNaturalNumber(Integer.parseInt(number));
+				}
 				return translateNaturalNumber(Integer.parseInt(number));
 			}
 			
