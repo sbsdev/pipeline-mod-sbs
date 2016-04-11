@@ -28,29 +28,27 @@
 		<xsl:param name="context" as="node()"/>
 		<xsl:param name="table" as="xs:string"/>
 		<xsl:param name="text" as="xs:string"/>
+		<xsl:variable name="unicode-braille"
+			      select="pf:text-transform(
+		                      concat('(liblouis-table:&quot;',$table,'&quot;)',$hyphenator),
+		                      $text,
+		                      my:get-style($context))"/>
 		<xsl:choose>
 		  <xsl:when test="$ascii-braille = 'yes'">
-		    <xsl:variable name="unicode-braille"
-				  select="pf:text-transform(
-					  concat('(liblouis-table:&quot;',$table,'&quot;)'),
-					  replace($text, '(\p{Z}|\s)+', ' '))"/>
 		    <xsl:variable name="ascii-braille" as="xs:string*">
 		      <xsl:analyze-string regex="[\s&#x00A0;&#x00AD;&#x200B;]+" select="$unicode-braille">
 			<xsl:matching-substring>
-			  <xsl:sequence select="translate($context,'&#x00AD;&#x200B;','tm')"/>
+			  <xsl:sequence select="translate(.,'&#x00AD;&#x200B;','tm')"/>
 			</xsl:matching-substring>
 			<xsl:non-matching-substring>
-			  <xsl:sequence select="pef:encode('(liblouis-table:&quot;sbs.dis&quot;)', $context)"/>
+			  <xsl:sequence select="pef:encode('(liblouis-table:&quot;sbs.dis&quot;)', .)"/>
 			</xsl:non-matching-substring>
 		      </xsl:analyze-string>
 		    </xsl:variable>
 		    <xsl:sequence select="string-join($ascii-braille,'')"/>
 		  </xsl:when>
 		  <xsl:otherwise>
-		    <xsl:sequence select="pf:text-transform(
-		                          concat('(liblouis-table:&quot;',$table,'&quot;)',$hyphenator),
-		                          $text,
-		                          my:get-style($context))"/>
+		    <xsl:sequence select="$unicode-braille"/>
 		  </xsl:otherwise>
 		</xsl:choose>
 	</xsl:function>
