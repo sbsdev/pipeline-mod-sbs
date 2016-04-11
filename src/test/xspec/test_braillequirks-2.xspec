@@ -8,6 +8,7 @@
 
   <x:param name="contraction-grade">0</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
   <x:scenario label="&lt;em&gt; with previous text node ending in word">
     <x:context>
@@ -17,14 +18,11 @@
       </stub>
     </x:context>
     <x:expect label="braille">
-y LINEb
- FOO
-y LINEe
-
-y LINEb
- _BAR
-y LINEe
-</x:expect>
+      <stub xml:lang="de">
+	<dtb:line>FOO</dtb:line>
+	<dtb:line><dtb:em>_BAR</dtb:em></dtb:line>
+      </stub>
+    </x:expect>
   </x:scenario>
   
   <x:scenario label="test for em with subelements (http://redmine.sbszh.ch/issues/show/816) ">
@@ -33,7 +31,11 @@ y LINEe
         <dtb:em><dtb:abbr>US</dtb:abbr>-Justizministerium</dtb:em>
       </stub>
     </x:context>
-    <x:expect label="braille">__&gt;US-JUSTIZMINISTERIUM'.</x:expect>
+    <x:expect label="braille">
+      <stub xml:lang="de">
+        <dtb:em>__<dtb:abbr>&gt;US</dtb:abbr>-JUSTIZMINISTERIUM'.</dtb:em>
+      </stub>
+    </x:expect>
   </x:scenario>
   
 </x:description>

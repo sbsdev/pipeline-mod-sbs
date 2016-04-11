@@ -7,14 +7,14 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="bridgehead">
       <x:context>
         <dtb:bridgehead xml:lang="de">A Man of Many Styles</dtb:bridgehead>
       </x:context>
       <x:expect label="braille">
-y BRIDGE
- 'A M OF M+'Y ]'YL%</x:expect>
+	<dtb:bridgehead xml:lang="de">'A M OF M+'Y ]'YL%</dtb:bridgehead></x:expect>
     </x:scenario>
 
 </x:description>

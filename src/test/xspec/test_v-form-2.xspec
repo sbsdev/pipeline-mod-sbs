@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">1</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Sie G1">
       <x:context>
         <dtb:p xml:lang="de"><brl:v-form>Sie</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $S0</x:expect>
+	<dtb:p xml:lang="de">$S0</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="SIE G1">
@@ -22,8 +23,8 @@ y P
         <dtb:p xml:lang="de"><brl:v-form>SIE</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $S0</x:expect>
+	<dtb:p xml:lang="de">$S0</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Euerem G1">
@@ -31,8 +32,8 @@ y P
         <dtb:p xml:lang="de"><brl:v-form>Euerem</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $2EREM</x:expect>
+	<dtb:p xml:lang="de">$2EREM</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="EUEREM G1">
@@ -40,8 +41,8 @@ y P
         <dtb:p xml:lang="de"><brl:v-form>EUEREM</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $2EREM</x:expect>
+	<dtb:p xml:lang="de">$2EREM</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

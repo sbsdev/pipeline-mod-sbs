@@ -7,14 +7,14 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Homograph mit 's am Ende (#2195)">
       <x:context>
         <dtb:p xml:lang="de"> bla <brl:homograph>wachs<brl:separator/>tube</brl:homograph>'s blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  BLA W&lt;STUBE'S BLO</x:expect>
+	<dtb:p xml:lang="de"> BLA W&lt;STUBE'S BLO</dtb:p></x:expect>
     </x:scenario>
 
 </x:description>

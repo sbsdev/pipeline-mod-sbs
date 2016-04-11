@@ -15,8 +15,10 @@
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- "A"A"C"C"C"C"L"L"S"S"R"R"S"S"T"T"Z"Z</x:expect>
+        <stub xml:lang="de">
+          <dtb:p>"A"A"C"C"C"C"L"L"S"S"R"R"S"S"T"T"Z"Z</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

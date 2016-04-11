@@ -7,18 +7,19 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="context across block boundaries Bug #1395 with em before">
       <x:context>
         <stub xml:lang="de"><dtb:byline><dtb:em>Tages-Anzeiger</dtb:em></dtb:byline>
-      <!-- <utfx:with-param name="hyphenation" select="true()"/> -->
           <dtb:p>Zum Autor</dtb:p></stub>
       </x:context>
       <x:expect label="braille">
-y BYLINE
- __TAG%-+Z3G7'.
-y P
- ZM 1TOR</x:expect>
+        <stub xml:lang="de">
+	  <dtb:byline><dtb:em>__TAG%-+Z3G7'.</dtb:em></dtb:byline>
+          <dtb:p>ZM 1TOR</dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="context across block boundaries Bug #1395 with em after">
@@ -26,10 +27,10 @@ y P
         <stub xml:lang="de"><dtb:byline>Tages-Anzeiger</dtb:byline><dtb:p><dtb:em>Zum Autor</dtb:em></dtb:p></stub>
       </x:context>
       <x:expect label="braille">
-y BYLINE
- TAG%-+Z3G7
-y P
- __ZM 1TOR'.</x:expect>
+        <stub xml:lang="de">
+	  <dtb:byline>TAG%-+Z3G7</dtb:byline><dtb:p><dtb:em>__ZM 1TOR'.</dtb:em></dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="context across block boundaries Bug #1395 with em both">
@@ -38,10 +39,11 @@ y P
           <dtb:p><dtb:em>Zum Autor</dtb:em></dtb:p></stub>
       </x:context>
       <x:expect label="braille">
-y BYLINE
- __TAG%-+Z3G7'.
-y P
- __ZM 1TOR'.</x:expect>
+        <stub xml:lang="de">
+	  <dtb:byline><dtb:em>__TAG%-+Z3G7'.</dtb:em></dtb:byline>
+          <dtb:p><dtb:em>__ZM 1TOR'.</dtb:em></dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="context across block boundaries Bug #1395">
@@ -50,26 +52,29 @@ y P
           <dtb:p>Zum Autor</dtb:p></stub>
       </x:context>
       <x:expect label="braille">
-y BYLINE
- TAG%-+Z3G7
-y P
- ZM 1TOR</x:expect>
+        <stub xml:lang="de">
+	  <dtb:byline>TAG%-+Z3G7</dtb:byline>
+          <dtb:p>ZM 1TOR</dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Context across text nodes ending with punctuation ">
       <x:context>
         <stub xml:lang="de">»<dtb:span>Tages-Anzeiger.</dtb:span>« Zum Autor</stub>
       </x:context>
-      <x:expect label="braille">(TAG%-+Z3G7.) ZM 1TOR</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">(<dtb:span>TAG%-+Z3G7.</dtb:span>) ZM 1TOR</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Context across block boundaries ending with punctuation ">
       <x:context>
         <stub xml:lang="de">»Tages-Anzeiger.<dtb:p>« Zum Autor</dtb:p></stub>
       </x:context>
-      <x:expect label="braille">(TAG%-+Z3G7.
-y P
- ) ZM 1TOR</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">(TAG%-+Z3G7.<dtb:p>) ZM 1TOR</dtb:p></stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Another weird context problem">
@@ -77,8 +82,8 @@ y P
         <dtb:p xml:lang="de"><dtb:em>Mist</dtb:em>, dachte er, <dtb:em>wie komme ich hier raus?</dtb:em></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- _MI], D&lt;( 7, __2 KXE # HR R1S?'.</x:expect>
+        <dtb:p xml:lang="de"><dtb:em>_MI]</dtb:em>, D&lt;( 7, <dtb:em>__2 KXE # HR R1S?'.</dtb:em></dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

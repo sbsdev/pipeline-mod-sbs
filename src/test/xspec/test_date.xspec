@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Date normal">
       <x:context>
         <dtb:p xml:lang="de"><brl:date value="1911-11-11">11.11.1911</brl:date></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- #,,AA#AIAA</x:expect>
+	<dtb:p xml:lang="de">#,,AA#AIAA</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Date in Klammern">
@@ -22,8 +23,8 @@ y P
         <dtb:p xml:lang="de">(<brl:date value="1911-11-11">11.11.1911</brl:date>)</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- =#,,AA#AIAA'=</x:expect>
+	<dtb:p xml:lang="de">=#,,AA#AIAA'=</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Date und danach Semikolon">
@@ -31,8 +32,8 @@ y P
         <dtb:p xml:lang="de"><brl:date value="1911-11-11">11.11.1911</brl:date>;</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- #,,AA#AIAA';</x:expect>
+	<dtb:p xml:lang="de">#,,AA#AIAA';</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Date partiell normal">
@@ -40,8 +41,8 @@ y P
         <dtb:p xml:lang="de"><brl:date value="--11-11">11.11.</brl:date></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- #,,AA</x:expect>
+	<dtb:p xml:lang="de">#,,AA</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Date partiell in Klammern">
@@ -49,8 +50,8 @@ y P
         <dtb:p xml:lang="de">(<brl:date value="--11-11">11.11.</brl:date>)</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- =#,,AA'=</x:expect>
+	<dtb:p xml:lang="de">=#,,AA'=</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Date partiell und danach Semikolon">
@@ -58,8 +59,8 @@ y P
         <dtb:p xml:lang="de"><brl:date value="--11-11">11.11.</brl:date>;</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- #,,AA';</x:expect>
+	<dtb:p xml:lang="de">#,,AA';</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

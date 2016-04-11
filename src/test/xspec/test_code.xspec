@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Code">
       <x:context>
@@ -15,8 +16,10 @@
 	</stub>
       </x:context>
       <x:expect label="braille">
-y P
- '$"C:/ORDNER/INHALT"_VERSION"_1</x:expect>
+	<stub xml:lang="de">
+	  <dtb:p><dtb:code>'$"C:/ORDNER/INHALT"_VERSION"_1</dtb:code></dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Program listing">
@@ -26,8 +29,10 @@ y P
 	</stub>
       </x:context>
       <x:expect label="braille">
-y P
- $$FOR(I=0;I&lt;=12; I++ [ BLABLA ]'.</x:expect>
+	<stub xml:lang="de">
+	  <dtb:p><dtb:code>$$FOR(I=0;I&lt;=12; I++ [ BLABLA ]'.</dtb:code></dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

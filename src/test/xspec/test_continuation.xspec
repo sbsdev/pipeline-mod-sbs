@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="brl:continuation attribute on &lt;em&gt;">
       <x:context>
@@ -20,18 +21,15 @@
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- __BLA BLA BLA.
-y P
- BLA BLA BLA.
-y P
- BLA BLA BLA.
-y P
- BLA BLA BLA.'. BLA BLA BLA.
-y P
- BLA BLA BLA.
-y P
- __BLA BLA BLA.'.</x:expect>
+        <stub xml:lang="de">
+          <dtb:p><dtb:em brl:continuation="em1 em2 em3">__BLA BLA BLA.</dtb:em></dtb:p>
+          <dtb:p><dtb:em id="em1">BLA BLA BLA.</dtb:em></dtb:p>
+          <dtb:p><dtb:em id="em2">BLA BLA BLA.</dtb:em></dtb:p>
+          <dtb:p><dtb:em id="em3">BLA BLA BLA.'.</dtb:em> BLA BLA BLA.</dtb:p>
+          <dtb:p>BLA BLA BLA.</dtb:p>
+          <dtb:p><dtb:em>__BLA BLA BLA.'.</dtb:em></dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

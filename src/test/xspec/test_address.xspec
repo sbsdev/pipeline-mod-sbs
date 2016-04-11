@@ -6,18 +6,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="address">
       <x:context>
         <dtb:address xml:lang="de">Foo</dtb:address>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:address
-
-y LINEGRb
- FOO
-y LINEGRe
-</x:expect>
+        <dtb:address xml:lang="de">FOO</dtb:address>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="address with lines">
@@ -28,20 +25,11 @@ y LINEGRe
 	</dtb:address>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:address
-
-y LINEGRb
- 
-y LINEb
- BAR
-y LINEe
-
-y LINEb
- BAZ
-y LINEe
-
-y LINEGRe
-</x:expect>
+        <dtb:address xml:lang="de">
+	  <dtb:line>BAR</dtb:line>
+	  <dtb:line>BAZ</dtb:line>
+	</dtb:address>
+      </x:expect>
     </x:scenario>
 
 </x:description>

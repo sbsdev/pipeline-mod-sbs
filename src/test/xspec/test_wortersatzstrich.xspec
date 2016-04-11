@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Wortersatzstrich (http://redmine.sbszh.ch/issues/1505)">
       <x:context>
         <dtb:p xml:lang="de">Arbeits und blah, -losenheim</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- )BS U BLAH, '-LOSCH3M</x:expect>
+	<dtb:p xml:lang="de">)BS U BLAH, '-LOSCH3M</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Wortersatzstrich II(http://redmine.sbszh.ch/issues/1505)">
@@ -22,10 +23,9 @@ y P
         <dtb:p xml:lang="de">Arbeits</dtb:p><dtb:p xml:lang="de"> -losenheim</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- )BS
-y P
-  '-LOSCH3M</x:expect>
+	<dtb:p xml:lang="de">)BS</dtb:p>
+	<dtb:p xml:lang="de"> '-LOSCH3M</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

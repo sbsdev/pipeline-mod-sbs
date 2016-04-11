@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Sie G2">
       <x:context>
         <dtb:p xml:lang="de"><brl:v-form>Sie</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $S</x:expect>
+	<dtb:p xml:lang="de">$S</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="SIE G2">
@@ -22,8 +23,7 @@ y P
         <dtb:p xml:lang="de"><brl:v-form>SIE</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $S</x:expect>
+	<dtb:p xml:lang="de">$S</dtb:p></x:expect>
     </x:scenario>
 
     <x:scenario label="Euerem G2">
@@ -31,8 +31,8 @@ y P
         <dtb:p xml:lang="de"><brl:v-form>Euerem</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $27[</x:expect>
+	<dtb:p xml:lang="de">$27[</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="EUEREM G2">
@@ -40,8 +40,8 @@ y P
         <dtb:p xml:lang="de"><brl:v-form>EUEREM</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $27[</x:expect>
+	<dtb:p xml:lang="de">$27[</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Sie mit Apostroph ausserhalb Tag (#2109)">
@@ -49,8 +49,7 @@ y P
         <dtb:p xml:lang="de"><brl:v-form>Sie</brl:v-form>'s</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $S'S</x:expect>
+	<dtb:p xml:lang="de">$S'S</dtb:p></x:expect>
     </x:scenario>
 
 </x:description>

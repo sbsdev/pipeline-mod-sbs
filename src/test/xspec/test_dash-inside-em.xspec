@@ -7,14 +7,14 @@
 
   <x:param name="contraction-grade">0</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="test for text starting with space followed by dash">
       <x:context>
         <dtb:p xml:lang="de"> -steigen</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  '-STEIGEN</x:expect>
+	<dtb:p xml:lang="de"> '-STEIGEN</dtb:p></x:expect>
     </x:scenario>
 
 </x:description>

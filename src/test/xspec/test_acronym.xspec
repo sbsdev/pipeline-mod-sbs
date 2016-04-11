@@ -6,14 +6,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="acronym Foo">
       <x:context>
         <dtb:acronym xml:lang="de">Foo</dtb:acronym>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:acronym
- $FOO</x:expect>
+        <dtb:acronym xml:lang="de">$FOO</dtb:acronym>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="acronym NATO">
@@ -21,8 +22,8 @@ xxx Was originally a dtb:acronym
         <dtb:acronym xml:lang="de">NATO</dtb:acronym>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:acronym
- &gt;NATO</x:expect>
+        <dtb:acronym xml:lang="de">&gt;NATO</dtb:acronym>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="acronym USA">
@@ -30,8 +31,8 @@ xxx Was originally a dtb:acronym
         <dtb:acronym xml:lang="de">USA</dtb:acronym>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:acronym
- &gt;USA</x:expect>
+        <dtb:acronym xml:lang="de">&gt;USA</dtb:acronym>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="acronym with context">
@@ -41,10 +42,9 @@ xxx Was originally a dtb:acronym
 	</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- HAHA 
-xxx Was originally a dtb:acronym
- &gt;USA </x:expect>
+        <dtb:p xml:lang="de">HAHA <dtb:acronym>&gt;USA</dtb:acronym>
+	</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>
