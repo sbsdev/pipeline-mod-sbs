@@ -4,6 +4,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:pf="http://www.daisy.org/ns/pipeline/functions"
                 xmlns:css="http://www.daisy.org/ns/pipeline/braille-css"
+                xmlns:pef="http://www.daisy.org/ns/2008/pef"
                 xmlns:my="http://my-functions"
                 exclude-result-prefixes="#all">
 	
@@ -14,6 +15,7 @@
 	
 	<xsl:param name="virtual.dis-uri" select="resolve-uri('../liblouis/virtual.dis')"/> <!-- must be file URI -->
 	<xsl:param name="hyphenator" required="yes"/>
+	<xsl:param name="ascii-braille" select="'no'"/>
 	
 	<xsl:variable name="TABLE_BASE_URI"
 	              select="concat($virtual.dis-uri,',http://www.sbs.ch/pipeline/liblouis/tables/')"/>
@@ -26,10 +28,31 @@
 		<xsl:param name="context" as="node()"/>
 		<xsl:param name="table" as="xs:string"/>
 		<xsl:param name="text" as="xs:string"/>
-		<xsl:sequence select="pf:text-transform(
-		                        concat('(liblouis-table:&quot;',$table,'&quot;)',$hyphenator),
-		                        $text,
-		                        my:get-style($context))"/>
+		<xsl:choose>
+		  <xsl:when test="$ascii-braille = 'yes'">
+		    <xsl:variable name="unicode-braille"
+				  select="pf:text-transform(
+					  concat('(liblouis-table:&quot;',$table,'&quot;)'),
+					  replace($text, '(\p{Z}|\s)+', ' '))"/>
+		    <xsl:variable name="ascii-braille" as="xs:string*">
+		      <xsl:analyze-string regex="[\s&#x00A0;&#x00AD;&#x200B;]+" select="$unicode-braille">
+			<xsl:matching-substring>
+			  <xsl:sequence select="translate($context,'&#x00AD;&#x200B;','tm')"/>
+			</xsl:matching-substring>
+			<xsl:non-matching-substring>
+			  <xsl:sequence select="pef:encode('(liblouis-table:&quot;sbs.dis&quot;)', $context)"/>
+			</xsl:non-matching-substring>
+		      </xsl:analyze-string>
+		    </xsl:variable>
+		    <xsl:sequence select="string-join($ascii-braille,'')"/>
+		  </xsl:when>
+		  <xsl:otherwise>
+		    <xsl:sequence select="pf:text-transform(
+		                          concat('(liblouis-table:&quot;',$table,'&quot;)',$hyphenator),
+		                          $text,
+		                          my:get-style($context))"/>
+		  </xsl:otherwise>
+		</xsl:choose>
 	</xsl:function>
 	
 	<xsl:function name="my:get-style" as="xs:string">
