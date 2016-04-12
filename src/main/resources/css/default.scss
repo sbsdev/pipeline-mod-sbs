@@ -20,6 +20,7 @@
  * A page contains 28 columns by 28 rows of braille (configurable with
  * options, defaults in script). */
 
+// FIXME: move defaults from CSS to script
 @page {
     size: 28 28;
 }
@@ -360,11 +361,18 @@ list list[type=ul] {
 }
 
 list[type=ol] {
-    list-style-type: decimal;
-    /*  hier  downshifted  einsetzen  */
+    list-style-type: symbols(numeric "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔");
+    /*
+     * A slightly nicer solution would be "list-style-type: downshifted", where "downshifted" is defined as:
+     *    @counter-style downshifted {
+     *      system: numeric;
+     *      symbols: "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔";
+     *    }
+     * but this is not supported yet.
+     */
 }
 
-list[type=ol][enum=1] {
+list[type=ol][enum="1"] {
     list-style-type: decimal;
 }
 

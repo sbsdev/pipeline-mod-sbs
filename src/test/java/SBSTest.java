@@ -114,9 +114,10 @@ public class SBSTest {
 		Map<String,File> tests = new HashMap<String,File>();
 		for (String test : new String[]{
 				"test_translator",
-				"test_tables",
-				"test_pagination",
-				"test_titlepage"
+				"test_dtbook-to-pef",
+				"test_dtbook-to-pef_tables",
+				"test_dtbook-to-pef_pagination",
+				"test_dtbook-to-pef_titlepage"
 			})
 			tests.put(test, new File(baseDir, "src/test/xprocspec/" + test + ".xprocspec"));
 		boolean success = xprocspecRunner.run(tests,
