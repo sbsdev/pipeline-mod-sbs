@@ -361,8 +361,15 @@ list list[type=ul] {
 }
 
 list[type=ol] {
-    list-style-type: decimal;
-    /*  hier  downshifted  einsetzen  */
+    list-style-type: symbols(numeric "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔");
+    /*
+     * A slightly nicer solution would be "list-style-type: downshifted", where "downshifted" is defined as:
+     *    @counter-style downshifted {
+     *      system: numeric;
+     *      symbols: "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔";
+     *    }
+     * but this is not supported yet.
+     */
 }
 
 list[type=ol][enum="1"] {
