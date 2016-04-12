@@ -345,6 +345,30 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- ====== -->
+  <!-- IMAGES -->
+  <!-- ====== -->
+
+  <xsl:template match="dtb:imggroup">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="dtb:img">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string(@alt))"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="dtb:caption">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string())"/>
+    </xsl:copy>
+  </xsl:template>
+
   <!-- ================= -->
   <!-- Contraction hints -->
   <!-- ================= -->
