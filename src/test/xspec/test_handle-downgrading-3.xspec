@@ -7,8 +7,9 @@
 
   <x:param name="contraction-grade">0</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
-    <x:scenario label="Language change (but contraction for whole document is '0')">
+    <x:scenario label="Language change (but contraction for whole document is '0')" pending="test seems fishy. Check with Mischa">
       <x:context>
         <stub xml:lang="de">
           <dtb:p>Jetzt folgt ein Gedicht:</dtb:p>

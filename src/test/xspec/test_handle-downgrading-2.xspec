@@ -7,8 +7,9 @@
 
   <x:param name="contraction-grade">1</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
-    <x:scenario label="Downgrading from grade 1 to grade 0">
+    <x:scenario label="Downgrading from grade 1 to grade 0" pending="test seems fishy. Check with Mischa">
       <x:context>
         <stub xml:lang="de">
           <dtb:p>Vollschrift schrift schrift <dtb:span brl:grade="1">Basisschrift/Basisschrift</dtb:span> voll voll voll</dtb:p>
