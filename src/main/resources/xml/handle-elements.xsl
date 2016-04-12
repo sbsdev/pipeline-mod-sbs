@@ -154,8 +154,11 @@
       FIXME: also copy
   -->
   <xsl:template match="brl:computer">
-    <xsl:value-of select="my:louis-translate(.,string($computer_braille_tables), '&#x257C;')"/>
-    <xsl:apply-templates/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,string($computer_braille_tables), '&#x257C;')"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
   </xsl:template>
 
   <xsl:template match="brl:computer/text()">
