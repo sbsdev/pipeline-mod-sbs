@@ -7,26 +7,33 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Answer">
       <x:context>
         <dtb:span class="answer">foo</dtb:span>
       </x:context>
-      <x:expect label="braille">---</x:expect>
+      <x:expect label="braille">
+	<dtb:span class="answer">---</dtb:span>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Box">
       <x:context>
         <dtb:span class="box">foo</dtb:span>
       </x:context>
-      <x:expect label="braille">---</x:expect>
+      <x:expect label="braille">
+	<dtb:span class="box">---</dtb:span>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Answer for one character">
       <x:context>
         <dtb:span class="answer_1">foo</dtb:span>
       </x:context>
-      <x:expect label="braille">-</x:expect>
+      <x:expect label="braille">
+	<dtb:span class="answer_1">-</dtb:span>
+      </x:expect>
     </x:scenario>
 
 </x:description>

@@ -369,6 +369,29 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- Handle extensions that are defined in the Nordic spec i.e. the
+       "Requirements for Text and Image Quality and Markup with DTBook
+       XML, Version: 2011-2" -->
+
+  <!-- ========== -->
+  <!-- Excercises -->
+  <!-- ========== -->
+
+  <!-- Excercise answers and boxes -->
+  <xsl:template match="dtb:span[@class=('answer','box')]">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:text>---</xsl:text>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="dtb:span[@class='answer_1']">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:text>-</xsl:text>
+    </xsl:copy>
+  </xsl:template>
+
   <!-- ================= -->
   <!-- Contraction hints -->
   <!-- ================= -->
