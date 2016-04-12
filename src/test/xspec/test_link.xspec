@@ -7,33 +7,42 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Plain link">
       <x:context>
         <dtb:a xml:lang="de" href="www.foo.ch">foo</dtb:a>
       </x:context>
-      <x:expect label="braille">FOO</x:expect>
+      <x:expect label="braille">
+	<dtb:a xml:lang="de" href="www.foo.ch">FOO</dtb:a>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External link">
       <x:context>
         <dtb:a xml:lang="de" href="www.foo.ch" external="true">foo</dtb:a>
       </x:context>
-      <x:expect label="braille">FOO</x:expect>
+      <x:expect label="braille">
+      <dtb:a xml:lang="de" href="www.foo.ch" external="true">FOO</dtb:a>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External email link">
       <x:context>
         <dtb:a xml:lang="de" href="mailto:info@sbs.ch" external="true">Kontakt</dtb:a>
       </x:context>
-      <x:expect label="braille">KONTAKT</x:expect>
+      <x:expect label="braille">
+	<dtb:a xml:lang="de" href="mailto:info@sbs.ch" external="true">KONTAKT</dtb:a>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External email link mixed">
       <x:context>
         <dtb:a xml:lang="de" href="mailto:info@sbs.ch" external="true">Kontakt <brl:computer>peter34@gmx.net</brl:computer></dtb:a>
       </x:context>
-      <x:expect label="braille">KONTAKT '$PETER34"@GMX.NET</x:expect>
+      <x:expect label="braille">
+	<dtb:a xml:lang="de" href="mailto:info@sbs.ch" external="true">KONTAKT <brl:computer>'$PETER34"@GMX.NET</brl:computer></dtb:a>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Internal link">
@@ -43,7 +52,12 @@
           <dtb:a href="#foo">foo</dtb:a>
 	</stub>
       </x:context>
-      <x:expect label="braille">FOO</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">
+          <dtb:a id="foo"/>
+          <dtb:a href="#foo">FOO</dtb:a>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Internal pageref link">
@@ -53,7 +67,12 @@
           <dtb:a href="#foo" class="pageref">foo</dtb:a>
 	</stub>
       </x:context>
-      <x:expect label="braille">FOO</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">
+          <dtb:a id="foo"/>
+          <dtb:a href="#foo" class="pageref">FOO</dtb:a>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External link using computer braille">
@@ -62,7 +81,11 @@
           <dtb:a href="http://www.sbs.ch"><brl:computer>www.sbs.ch</brl:computer></dtb:a>
 	</stub>
       </x:context>
-      <x:expect label="braille">'$WWW.SBS.CH</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">
+          <dtb:a href="http://www.sbs.ch"><brl:computer>'$WWW.SBS.CH</brl:computer></dtb:a>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External link using computer braille">
@@ -71,7 +94,11 @@
           <dtb:a href="http://www.e-text.ch"><brl:computer>www.e-text.ch</brl:computer></dtb:a>
 	</stub>
       </x:context>
-      <x:expect label="braille">'$WWW.E-TEXT.CH</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">
+          <dtb:a href="http://www.e-text.ch"><brl:computer>'$WWW.E-TEXT.CH</brl:computer></dtb:a>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External link with params using computer braille">
@@ -80,7 +107,11 @@
           <dtb:a href="http://www.google-test.ch/test?=:;+%#$"><brl:computer>http://www.google-test.ch/test?=:;+%#$</brl:computer></dtb:a>
 	</stub>
       </x:context>
-      <x:expect label="braille">'$HTTP://WWW.GOOGLE-TEST.CH/TEST?=:;+%#$$</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">
+          <dtb:a href="http://www.google-test.ch/test?=:;+%#$"><brl:computer>'$HTTP://WWW.GOOGLE-TEST.CH/TEST?=:;+%#$$</brl:computer></dtb:a>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External link with numbers using computer braille">
@@ -89,7 +120,11 @@
           <dtb:a href="mailto:peter34@gmx.net"><brl:computer>peter34@gmx.net</brl:computer></dtb:a>
 	</stub>
       </x:context>
-      <x:expect label="braille">'$PETER34"@GMX.NET</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">
+          <dtb:a href="mailto:peter34@gmx.net"><brl:computer>'$PETER34"@GMX.NET</brl:computer></dtb:a>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External email link using computer braille">
@@ -98,7 +133,11 @@
           <dtb:a href="mailto:info@sbs.ch"><brl:computer>mailto:info@sbs.ch</brl:computer></dtb:a>
 	</stub>
       </x:context>
-      <x:expect label="braille">'$MAILTO:INFO"@SBS.CH</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">
+          <dtb:a href="mailto:info@sbs.ch"><brl:computer>'$MAILTO:INFO"@SBS.CH</brl:computer></dtb:a>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="External email link using computer braille">
@@ -107,7 +146,11 @@
           <dtb:a href="mailto:meier_alex@ubs.com"><brl:computer>meier_alex@ubs.com</brl:computer></dtb:a>
 	</stub>
       </x:context>
-      <x:expect label="braille">'$MEIER"_ALEX"@UBS.COM</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">
+          <dtb:a href="mailto:meier_alex@ubs.com"><brl:computer>'$MEIER"_ALEX"@UBS.COM</brl:computer></dtb:a>
+	</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

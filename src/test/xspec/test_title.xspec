@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="title">
       <x:context>

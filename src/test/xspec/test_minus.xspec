@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Minus I(http://redmine.sbszh.ch/issues/1554)">
       <x:context>
         <dtb:p xml:lang="de">−10 Grad</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- "-#AJ GRAD</x:expect>
+        <dtb:p xml:lang="de">"-#AJ GRAD</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Minus II(http://redmine.sbszh.ch/issues/1554)">
@@ -22,8 +23,8 @@ y P
         <dtb:p xml:lang="de"> -10 Grad</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  "-#AJ GRAD</x:expect>
+        <dtb:p xml:lang="de"> "-#AJ GRAD</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Minus III(http://redmine.sbszh.ch/issues/1554)">
@@ -31,8 +32,8 @@ y P
         <dtb:p xml:lang="de">(-10 Grad)</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- ="-#AJ GRAD=</x:expect>
+        <dtb:p xml:lang="de">="-#AJ GRAD=</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Minus IV(http://redmine.sbszh.ch/issues/1554)">
@@ -40,8 +41,8 @@ y P
         <dtb:p xml:lang="de"> <dtb:strong>−10 Grad</dtb:strong></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  __"-#AJ GRAD'.</x:expect>
+        <dtb:p xml:lang="de"> <dtb:strong>__"-#AJ GRAD'.</dtb:strong></dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Minus V using a unicode minus">
@@ -49,8 +50,8 @@ y P
         <dtb:p xml:lang="de">−10 Grad</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- "-#AJ GRAD</x:expect>
+        <dtb:p xml:lang="de">"-#AJ GRAD</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Minus VI">
@@ -58,8 +59,8 @@ y P
         <dtb:p xml:lang="de">5-10 Grad</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- #E-#AJ GRAD</x:expect>
+        <dtb:p xml:lang="de">#E-#AJ GRAD</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

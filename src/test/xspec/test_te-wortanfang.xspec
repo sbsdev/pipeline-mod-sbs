@@ -7,12 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="TE am Wortbeginn (#1750)">
       <x:context>
         <stub xml:lang="de"> Teschke Technomusik Teplo Teaser Team Teak Teckel Teddy Tee Teen Teer Teflon Tegel Tegernsee Tektonik Tequila Tetra Texas Text Tezett </stub>
       </x:context>
-      <x:expect label="braille"> TE5KE TE4NOMK TEPLO TEAS7 TEAM TEAK TE$Y TEDD'Y TEE TEEN TEER TEFLON TEGY TEG7NSEE TEKTONIK TE'QUILA TETRA TE'XAS TE'XT TEZETT </x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de"> TE5KE TE4NOMK TEPLO TEAS7 TEAM TEAK TE$Y TEDD'Y TEE TEEN TEER TEFLON TEGY TEG7NSEE TEKTONIK TE'QUILA TETRA TE'XAS TE'XT TEZETT </stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

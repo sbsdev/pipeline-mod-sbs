@@ -7,33 +7,42 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Senkrechter Strich (#1674)">
       <x:context>
         <stub xml:lang="de">bla|blo</stub>
       </x:context>
-      <x:expect label="braille">BLA !- BLO</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">BLA !- BLO</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Spitze Klammern (#1674)">
       <x:context>
         <stub xml:lang="de">〈...〉</stub>
       </x:context>
-      <x:expect label="braille">!=...!=</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">!=...!=</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Geschweifte Klammern (#1674)">
       <x:context>
         <stub xml:lang="de">{...}</stub>
       </x:context>
-      <x:expect label="braille">![...![</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">![...![</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Rautezeichen (#1674)">
       <x:context>
         <stub xml:lang="de">Bla # Blo</stub>
       </x:context>
-      <x:expect label="braille">BLA "# BLO</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">BLA "# BLO</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

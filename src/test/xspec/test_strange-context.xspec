@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Falsches Resultat bei brl:date bei &#34;seltsamem&#34; Kontext 1">
       <x:context>
         <dtb:p xml:lang="de">(<brl:date value="2007-07-06">6.7.2007</brl:date>) ab«.</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- =#+G#BJJG'= AB).</x:expect>
+	<dtb:p xml:lang="de">=#+G#BJJG'= AB).</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Falsches Resultat bei brl:date bei &#34;seltsamem&#34; Kontext 2">
@@ -22,8 +23,8 @@ y P
         <dtb:p xml:lang="de">(<brl:date value="2007-07-06">6.7.2007</brl:date>) ab.</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- =#+G#BJJG'= AB.</x:expect>
+	<dtb:p xml:lang="de">=#+G#BJJG'= AB.</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Falsches Resultat bei brl:date bei &#34;seltsamem&#34; Kontext 3">
@@ -31,8 +32,8 @@ y P
         <dtb:p xml:lang="de">(<brl:date value="2007-07-06">6.7.2007</brl:date>) ab«</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- =#+G#BJJG'= AB)</x:expect>
+	<dtb:p xml:lang="de">=#+G#BJJG'= AB)</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Falsches Resultat bei brl:date bei &#34;seltsamem&#34; Kontext 4">
@@ -40,8 +41,8 @@ y P
         <dtb:p xml:lang="de">(<brl:date value="2007-07-06">6.7.2007</brl:date>) ab</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- =#+G#BJJG'= AB</x:expect>
+	<dtb:p xml:lang="de">=#+G#BJJG'= AB</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

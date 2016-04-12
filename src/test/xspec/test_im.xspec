@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="im">
       <x:context>
         <dtb:p xml:lang="de">Bla im Blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA - BLO</x:expect>
+	<dtb:p xml:lang="de">BLA - BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="im">
@@ -22,8 +23,7 @@ y P
         <dtb:p xml:lang="de">Heim-Kino</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- H3M-K*O</x:expect>
+	<dtb:p xml:lang="de">H3M-K*O</dtb:p></x:expect>
     </x:scenario>
 
     <x:scenario label="im">
@@ -31,8 +31,8 @@ y P
         <dtb:p xml:lang="de">Das Im-Buch-Lesen</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- D IM-BU4-L%C</x:expect>
+	<dtb:p xml:lang="de">D IM-BU4-L%C</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="im">
@@ -40,8 +40,8 @@ y P
         <dtb:p xml:lang="de">Das Konzentriert-Im-Buch-Lesen</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- D KONZCTR0RT-IM-BU4-L%C</x:expect>
+	<dtb:p xml:lang="de">D KONZCTR0RT-IM-BU4-L%C</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

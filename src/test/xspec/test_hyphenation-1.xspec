@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <!-- <x:param name="hyphenation" select="true()"/> -->
 
@@ -15,15 +16,17 @@
         <dtb:p xml:lang="de">Ba­de­ho­sen­bun­des</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BAtDEtHOtSCtB/tD%</x:expect>
+	<dtb:p xml:lang="de">BAtDEtHOtSCtB/tD%</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Test handling of pre-hyphenated text in doctitle">
       <x:context>
         <dtb:doctitle xml:lang="de">Ba­de­ho­sen­bun­des</dtb:doctitle>
       </x:context>
-      <x:expect label="braille">BAtDEtHOtSCtB/tD%</x:expect>
+      <x:expect label="braille">
+	<dtb:doctitle xml:lang="de">BAtDEtHOtSCtB/tD%</dtb:doctitle>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="falsche Trennmarke m nach Vorsilbe ver... (-...) (#1754)">
@@ -34,10 +37,11 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- -t]OPFC
-y P
- -t]OPFtBAR</x:expect>
+	<stub xml:lang="de">
+          <dtb:p>-t]OPFC</dtb:p>
+	  <dtb:p>-t]OPFtBAR</dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Bug #1731: Erneutes Auftreten von Bug #1654 (render='quote')">
       <x:context>
@@ -15,8 +16,12 @@
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- (ROSA DAMAS'CCA)</x:expect>
+	<stub xml:lang="de">
+          <dtb:p>
+	    <dtb:em brl:render="quote">(ROSA DAMAS'CCA)</dtb:em>
+	  </dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

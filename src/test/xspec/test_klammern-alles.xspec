@@ -7,33 +7,42 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Klammern">
       <x:context>
         <stub xml:lang="de">(pol)</stub>
       </x:context>
-      <x:expect label="braille">=POL=</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">=POL=</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Klammern">
       <x:context>
         <stub xml:lang="de">pil(pol)pil</stub>
       </x:context>
-      <x:expect label="braille">PIL'=POL'=PIL</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">PIL'=POL'=PIL</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Klammern">
       <x:context>
         <stub xml:lang="de">(pol)pil</stub>
       </x:context>
-      <x:expect label="braille">=POL'=PIL</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">=POL'=PIL</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Klammern">
       <x:context>
         <stub xml:lang="de">pil(pol)</stub>
       </x:context>
-      <x:expect label="braille">PIL'=POL=</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">PIL'=POL=</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Klammern">
@@ -41,8 +50,8 @@
         <dtb:p xml:lang="de">(pol)</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- =POL=</x:expect>
+	<dtb:p xml:lang="de">=POL=</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

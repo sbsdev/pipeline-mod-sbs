@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="bdo">
       <x:context>
@@ -14,7 +15,9 @@
 	  foo
 	</dtb:bdo>
       </x:context>
-      <x:expect label="braille"> FOO </x:expect>
+      <x:expect label="braille">
+	<dtb:bdo xml:lang="de"> FOO </dtb:bdo>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="kbd">
@@ -23,7 +26,9 @@
 	  foo
 	</dtb:kbd>
       </x:context>
-      <x:expect label="braille"> FOO </x:expect>
+      <x:expect label="braille">
+	<dtb:kbd xml:lang="de"> FOO </dtb:kbd>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="q">
@@ -32,7 +37,9 @@
 	  foo
 	</dtb:q>
       </x:context>
-      <x:expect label="braille"> FOO </x:expect>
+      <x:expect label="braille">
+	<dtb:q xml:lang="de"> FOO </dtb:q>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="sent">
@@ -41,7 +48,9 @@
 	  foo
 	</dtb:sent>
       </x:context>
-      <x:expect label="braille"> FOO </x:expect>
+      <x:expect label="braille">
+	<dtb:sent xml:lang="de"> FOO </dtb:sent>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="w">
@@ -50,7 +59,9 @@
 	  foo
 	</dtb:w>
       </x:context>
-      <x:expect label="braille"> FOO </x:expect>
+      <x:expect label="braille">
+	<dtb:w xml:lang="de"> FOO </dtb:w>
+      </x:expect>
     </x:scenario>
 
 </x:description>

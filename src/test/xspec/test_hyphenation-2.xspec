@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">0</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <!-- <x:param name="hyphenation" select="true()"/> -->
 
@@ -15,8 +16,8 @@
         <dtb:p>&gt;Ba­de­ho­sen­bun­des</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- "O,BAtDEtHOtSENtBUNtDES</x:expect>
+	<dtb:p>"O,BAtDEtHOtSENtBUNtDES</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="no comment">
       <x:context>
         <dtb:p xml:lang="de">bla <dtb:em brl:render="quote">ble ble 8</dtb:em>: blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA (BLE BLE #H'): BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="quote">(BLE BLE #H')</dtb:em>: BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -22,8 +23,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="quote">ble ble 8</dtb:em>! blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA (BLE BLE #H')+ BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="quote">(BLE BLE #H')</dtb:em>+ BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -31,8 +32,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="quote">ble ble 8</dtb:em>? blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA (BLE BLE #H')? BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="quote">(BLE BLE #H')</dtb:em>? BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -40,8 +41,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="quote">ble ble 8</dtb:em>; blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA (BLE BLE #H'); BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="quote">(BLE BLE #H')</dtb:em>; BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -49,8 +50,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="quote">ble ble 8</dtb:em>) blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA (BLE BLE #H')= BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="quote">(BLE BLE #H')</dtb:em>= BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -58,8 +59,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="quote">ble ble 8</dtb:em>. blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA (BLE BLE #H'). BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="quote">(BLE BLE #H')</dtb:em>. BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -67,8 +68,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="quote">ble ble 8</dtb:em>, blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA (BLE BLE #H'), BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="quote">(BLE BLE #H')</dtb:em>, BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -76,8 +77,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="singlequote">ble ble 8</dtb:em>: blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA '(BLE BLE #H'): BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="singlequote">'(BLE BLE #H')</dtb:em>: BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -85,8 +86,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="singlequote">ble ble 8</dtb:em>! blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA '(BLE BLE #H')+ BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="singlequote">'(BLE BLE #H')</dtb:em>+ BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -94,8 +95,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="singlequote">ble ble 8</dtb:em>? blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA '(BLE BLE #H')? BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="singlequote">'(BLE BLE #H')</dtb:em>? BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -103,8 +104,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="singlequote">ble ble 8</dtb:em>; blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA '(BLE BLE #H'); BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="singlequote">'(BLE BLE #H')</dtb:em>; BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -112,8 +113,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="singlequote">ble ble 8</dtb:em>) blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA '(BLE BLE #H')= BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="singlequote">'(BLE BLE #H')</dtb:em>= BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -121,8 +122,8 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="singlequote">ble ble 8</dtb:em>. blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA '(BLE BLE #H'). BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="singlequote">'(BLE BLE #H')</dtb:em>. BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
@@ -130,50 +131,62 @@ y P
         <dtb:p xml:lang="de">bla <dtb:em brl:render="singlequote">ble ble 8</dtb:em>, blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- BLA '(BLE BLE #H'), BLO</x:expect>
+	<dtb:p xml:lang="de">BLA <dtb:em brl:render="singlequote">'(BLE BLE #H')</dtb:em>, BLO</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
       <x:context>
         <stub xml:lang="de">bli 8:</stub>
       </x:context>
-      <x:expect label="braille">BLI #H':</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">BLI #H':</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
       <x:context>
         <stub xml:lang="de">bli 8!</stub>
       </x:context>
-      <x:expect label="braille">BLI #H'+</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">BLI #H'+</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
       <x:context>
         <stub xml:lang="de">bli 8?</stub>
       </x:context>
-      <x:expect label="braille">BLI #H'?</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">BLI #H'?</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
       <x:context>
         <stub xml:lang="de">bli 8;</stub>
       </x:context>
-      <x:expect label="braille">BLI #H';</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">BLI #H';</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
       <x:context>
         <stub xml:lang="de">bli 8,</stub>
       </x:context>
-      <x:expect label="braille">BLI #H,</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">BLI #H,</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="no comment">
       <x:context>
         <stub xml:lang="de">bli 8.</stub>
       </x:context>
-      <x:expect label="braille">BLI #H.</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">BLI #H.</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

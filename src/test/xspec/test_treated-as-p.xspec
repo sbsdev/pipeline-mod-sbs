@@ -7,15 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="covertitle">
       <x:context>
         <dtb:covertitle xml:lang="de">foo</dtb:covertitle>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:covertitle
-y P
- FOO</x:expect>
+	<dtb:covertitle xml:lang="de">FOO</dtb:covertitle>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="dateline">
@@ -23,9 +23,8 @@ y P
         <dtb:dateline xml:lang="de">foo</dtb:dateline>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:dateline
-y P
- FOO</x:expect>
+	<dtb:dateline xml:lang="de">FOO</dtb:dateline>
+      </x:expect>
     </x:scenario>
 
 </x:description>

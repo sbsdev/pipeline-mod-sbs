@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">1</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Bug #1520: Fehlender Pt. 6 (Apo) vor durch BRL:RENDER=&#34;QUOTE&#34; erzeugten Schlusszeichen (bei Zahlen)">
       <x:context>
@@ -15,8 +16,10 @@
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- RAKETE (ARIANE #B') UND </x:expect>
+	<stub xml:lang="de">
+	  <dtb:p>RAKETE <dtb:em brl:render="quote">(ARIANE #B')</dtb:em> UND </dtb:p>
+	</stub>
+	</x:expect>
     </x:scenario>
 
     <x:scenario label="Bug #1654: brl:render=&#34;quote&#34; erzeugt am Ende von EM IMMER Pt. 6 (Apo), nicht nur nach Zahl">
@@ -26,8 +29,10 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- RAKETE (ARIANE B) UND </x:expect>
+	<stub xml:lang="de">
+	  <dtb:p>RAKETE <dtb:em brl:render="quote">(ARIANE B)</dtb:em> UND </dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>
