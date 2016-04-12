@@ -1,3 +1,17 @@
+pipeline-mod-sbs v1.4.0
+=======================
+
+Includes
+--------
+- SBS-specific DTBook to PEF script with:
+  - an SBS-specific default CSS style sheet
+  - automatic insertion of title pages (https://github.com/snaekobbi/pipeline-mod-sbs/issues/7)
+  - an SBS-compatible default ASCII-table
+- Improved support for text-level semantics (`strong`, `em`, `dfn`, `sub`, `sup`, `code`, `abbr`,
+  `brl:computer`, `brl:emph`, `brl:num`, `brl:name`, `brl:place`, `brl:v-form`, `brl:homograph`,
+  `brl:date`, `brl:time`, ...) (https://github.com/snaekobbi/pipeline-mod-sbs/issues/2)
+- Support for `text-transform: volume` and `text-transform: volumes`
+
 pipeline-mod-sbs v1.3.1
 =======================
 Bugfix release
