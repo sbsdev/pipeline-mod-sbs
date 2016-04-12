@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="sup als Exponent (mit Komma)">
       <x:context>
         <dtb:p xml:lang="de">2<dtb:sup>23</dtb:sup>, x<dtb:sup>2</dtb:sup>, x<dtb:sup>-2</dtb:sup>, </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- #B0;:', 'X0;', 'X0-;', </x:expect>
+	<dtb:p xml:lang="de">#B0;:', 'X0;', 'X0-;', </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="sup als oberer Index (mit Komma)">
@@ -22,8 +23,8 @@ y P
         <dtb:p xml:lang="de"><dtb:abbr>Cu</dtb:abbr><dtb:sup>2+</dtb:sup>, </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $CU\#B"+', </x:expect>
+	<dtb:p xml:lang="de">$CU\#B"+', </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="sub als unterer Index (mit Komma)">
@@ -31,8 +32,8 @@ y P
         <dtb:p xml:lang="de"><dtb:abbr>CO</dtb:abbr><dtb:sub>2</dtb:sub>, </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- &gt;CO1;', </x:expect>
+	<dtb:p xml:lang="de">&gt;CO1;', </dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

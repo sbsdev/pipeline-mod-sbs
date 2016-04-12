@@ -74,56 +74,44 @@
 
   <!-- bei brl:select wird kein Zeichen gesetzt -->
   <xsl:template match="dtb:sup[descendant::brl:select]">
-    <xsl:copy>
-      <xsl:apply-templates select="@*"/>
-      <xsl:apply-templates/>
-    </xsl:copy>
+    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates/>
   </xsl:template>
 
   <!-- Ziffern bekommen das Exponentzeichen und werden tiefgestellt -->
   <xsl:template match="dtb:sup[matches(., '^[-]*\d+$')]">
-    <xsl:copy>
-      <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x257E;',string()))" />
-    </xsl:copy>
+    <xsl:apply-templates select="@*"/>
+    <xsl:value-of
+	select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x257E;',string()))" />
   </xsl:template>
 
   <!-- alles andere bekommt das Zeichen für den oberen Index -->
   <xsl:template match="dtb:sup">
-    <xsl:copy>
-      <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2580;')" />
-      <xsl:apply-templates/>
-    </xsl:copy>
+    <xsl:apply-templates select="@*"/>
+    <xsl:value-of
+	select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2580;')" />
+    <xsl:apply-templates/>
   </xsl:template>
 
   <!-- bei brl:select wird kein Zeichen gesetzt -->
   <xsl:template match="dtb:sub[descendant::brl:select]">
-    <xsl:copy>
-      <xsl:apply-templates select="@*"/>
-      <xsl:apply-templates/>
-    </xsl:copy>
+    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates/>
   </xsl:template>
 
   <!-- Ziffern bekommen das Zeichen für den unteren Index und werden tiefgestellt -->
   <xsl:template match="dtb:sub[matches(., '^[-]*\d+$')]">
-    <xsl:copy>
-      <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x2581;',string()))" />
-    </xsl:copy>
+    <xsl:apply-templates select="@*"/>
+    <xsl:value-of
+	select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x2581;',string()))" />
   </xsl:template>
 
   <!-- alles andere bekommt das Zeichen für den unteren Index -->
   <xsl:template match="dtb:sub">
-    <xsl:copy>
-      <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2581;')" />
-      <xsl:apply-templates/>
-    </xsl:copy>
+    <xsl:apply-templates select="@*"/>
+    <xsl:value-of
+	select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2581;')" />
+    <xsl:apply-templates/>
   </xsl:template>
 
   <!-- ==== -->
@@ -229,10 +217,8 @@
   </xsl:template>
   
   <xsl:template match="dtb:abbr">
-    <xsl:copy>
-      <xsl:apply-templates select="@*"/>
-      <xsl:call-template name="handle_abbr"/>
-    </xsl:copy>
+    <xsl:apply-templates select="@*"/>
+    <xsl:call-template name="handle_abbr"/>
   </xsl:template>
 
   <!-- ========================= -->

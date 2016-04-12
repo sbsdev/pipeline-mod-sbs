@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="sub als unterer Index">
       <x:context>
@@ -14,8 +15,8 @@
 	</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- &gt;CO1; &gt;H1;&gt;O =&gt;CO1;'= </x:expect>
+        <dtb:p xml:lang="de">&gt;CO1; &gt;H1;&gt;O =&gt;CO1;'= </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="sub mit select (Markierungen Chemie)">
@@ -24,8 +25,8 @@ y P
 	</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- &gt;V&lt;/ </x:expect>
+        <dtb:p xml:lang="de">&gt;V&lt;/ </dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

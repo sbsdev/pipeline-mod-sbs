@@ -94,7 +94,7 @@ mm</brl:num>
           <dtb:abbr>A. B. D. E. F. G. H. I. J.</dtb:abbr>
         </stub>
       </x:context>
-      <x:expect label="braille"><stub xml:lang="de"><dtb:abbr>A.B.D.E.F.G.H.I.J.</dtb:abbr></stub></x:expect>
+      <x:expect label="braille"><stub xml:lang="de">A.B.D.E.F.G.H.I.J.</stub></x:expect>
     </x:scenario>
 
     <x:scenario label="test 2 for Apostroph (pt. 6) erscheint zweimal bei Apostroph + Einzelbuchstabe (http://redmine.sbszh.ch/issues/show/929) ">
@@ -237,7 +237,7 @@ mm</brl:num>
       <x:context>
         <stub xml:lang="de"> (»<dtb:abbr>Bsp.</dtb:abbr>!«</stub>
       </x:context>
-      <x:expect label="braille"><stub xml:lang="de"> =(<dtb:abbr>BSP.</dtb:abbr>+)</stub></x:expect>
+      <x:expect label="braille"><stub xml:lang="de"> =(BSP.+)</stub></x:expect>
     </x:scenario>
 
     <x:scenario label="Quotes with phone number">
@@ -245,7 +245,8 @@ mm</brl:num>
         <dtb:p xml:lang="de"><brl:num role="phone">079 160 22 22</brl:num>«</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de"><brl:num role="phone">#JGI.AFJ.BB.BB')</brl:num>«</dtb:p></x:expect>
+	<dtb:p xml:lang="de">#JGI.AFJ.BB.BB')</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Leading zeros in time indication Bug #1172, Bug #969, Bug ##1292">
@@ -253,7 +254,7 @@ mm</brl:num>
         <stub xml:lang="de"><brl:time value="11:05">11:05</brl:time></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de"><brl:time value="11:05">#AA.JE</brl:time></stub>
+	<stub xml:lang="de">#AA.JE</stub>
       </x:expect>
     </x:scenario>
 
@@ -266,7 +267,7 @@ mm</brl:num>
       </x:context>
       <x:expect label="braille">
 	<stub xml:lang="de">
-	  <dtb:p>(OKA'Y. A # 8E % \ GAR N W^C; B* 7] 6 PAAR JRE * E <dtb:abbr>&gt;USA</dtb:abbr>.)</dtb:p>
+	  <dtb:p>(OKA'Y. A # 8E % \ GAR N W^C; B* 7] 6 PAAR JRE * E &gt;USA.)</dtb:p>
 	  <dtb:p>S HE V +F+G + E AKZCT ;M7KT, R E \L@ND7 -R0T, U FR(: (NA, U WOH7 KX] DU?)</dtb:p>
 	</stub>
       </x:expect>

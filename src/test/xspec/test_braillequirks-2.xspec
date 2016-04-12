@@ -33,7 +33,7 @@
     </x:context>
     <x:expect label="braille">
       <stub xml:lang="de">
-        <dtb:em>__<dtb:abbr>&gt;US</dtb:abbr>-JUSTIZMINISTERIUM'.</dtb:em>
+        <dtb:em>__&gt;US-JUSTIZMINISTERIUM'.</dtb:em>
       </stub>
     </x:expect>
   </x:scenario>

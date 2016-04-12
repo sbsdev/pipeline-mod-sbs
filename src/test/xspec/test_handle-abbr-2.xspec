@@ -7,6 +7,7 @@
 
   <x:param name="contraction-grade">1</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="Falsches Resultat bei ABBR Basisschrift/Vollschrift (CDs) (#1613)">
       <x:context>
@@ -15,8 +16,10 @@
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- &gt;CD'S</x:expect>
+	<stub xml:lang="de">
+          <dtb:p>&gt;CD'S</dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Falsches Resultat bei ABBR Basisschrift/Vollschrift (CDs) (#1613)">
@@ -26,8 +29,10 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- &gt;CDS</x:expect>
+	<stub xml:lang="de">
+          <dtb:p>&gt;CDS</dtb:p>
+	</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

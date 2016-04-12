@@ -7,14 +7,15 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="ascii-braille">yes</x:param>
 
     <x:scenario label="sup als Exponent">
       <x:context>
         <dtb:p xml:lang="de">2<dtb:sup>23</dtb:sup> x<dtb:sup>2</dtb:sup> x<dtb:sup>-2</dtb:sup> (2<dtb:sup>23</dtb:sup>) (x<dtb:sup>2</dtb:sup>) (x<dtb:sup>-2</dtb:sup>) </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- #B0;: 'X0; 'X0-; =#B0;:'= ='X0;'= ='X0-;'= </x:expect>
+        <dtb:p xml:lang="de">#B0;: 'X0; 'X0-; =#B0;:'= ='X0;'= ='X0-;'= </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="sup als oberer Index">
@@ -22,8 +23,8 @@ y P
         <dtb:p xml:lang="de"><dtb:abbr>Cu</dtb:abbr><dtb:sup>2+</dtb:sup></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- $CU\#B"+</x:expect>
+        <dtb:p xml:lang="de">$CU\#B"+</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="sup mit select (hochgestellter Text)">
@@ -31,8 +32,8 @@ y P
         <dtb:p xml:lang="de">Kapital mal Zinssatz<dtb:sup><brl:select><brl:when-braille> hoch Zeit</brl:when-braille><brl:otherwise>Zeit</brl:otherwise></brl:select></dtb:sup></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- KP MAL Z*SSZ HO4 ZT</x:expect>
+        <dtb:p xml:lang="de">KP MAL Z*SSZ HO4 ZT</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="sup mit select (Markierungen Chemie)">
@@ -40,8 +41,8 @@ y P
         <dtb:p xml:lang="de"><dtb:abbr>V</dtb:abbr><dtb:sup><brl:select><brl:when-braille><brl:literal>&gt;/</brl:literal></brl:when-braille><brl:otherwise>*</brl:otherwise></brl:select></dtb:sup></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- &gt;V&gt;/</x:expect>
+        <dtb:p xml:lang="de">&gt;V&gt;/</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>
