@@ -11,44 +11,40 @@
 
     <x:param name="toc_level" select="2"/>
 
-    <x:scenario label="Inhaltsverzeichnis">
+    <x:scenario label="Inhaltsverzeichnis" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
-        <stub xml:lang="de">        
+        <stub xml:lang="de">
           <dtb:level2>
             <dtb:h2>Inhaltsverzeichnis<brl:toc-line>Etwas ganz anderes</brl:toc-line></dtb:h2>
-            <dtb:p>Geklappert?</dtb:p> 
+            <dtb:p>Geklappert?</dtb:p>
           </dtb:level2>
         </stub>
       </x:context>
       <x:expect label="braille">
-y LEVEL2b
-.xNOPAGENUM
-
-y H2
- *H:TSV7Z34X
-HTW GZ ,7%
-
-y P
- &amp;KLAPP7T?
-y LEVEL2e
-</x:expect>
+        <stub xml:lang="de">
+          <dtb:level2>
+            <dtb:h2>*H:TSV7Z34X<brl:toc-line>HTW GZ ,7%</brl:toc-line></dtb:h2>
+            <dtb:p>&amp;KLAPP7T?</dtb:p>
+          </dtb:level2>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Nodes starting and ending with punctuation">
       <x:context>
-        <stub xml:lang="de">        
-            <dtb:p>Was?</dtb:p> 
-            <dtb:p>Als ich ...</dtb:p> 
-            <dtb:p>Nun ...</dtb:p> 
+        <stub xml:lang="de">
+            <dtb:p>Was?</dtb:p>
+            <dtb:p>Als ich ...</dtb:p>
+            <dtb:p>Nun ...</dtb:p>
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- W?
-y P
- 3 # ...
-y P
- N/ ...</x:expect>
+        <stub xml:lang="de">
+            <dtb:p>W?</dtb:p>
+            <dtb:p>3 # ...</dtb:p>
+            <dtb:p>N/ ...</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

@@ -17,8 +17,8 @@
           (oder <brl:num role="ordinal">1005.</brl:num>) Mal.</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- AM #? TAG &amp;5AH % ZM #,))/ =O #,))?'= MAL.</x:expect>
+        <dtb:p xml:lang="de">AM #? TAG &amp;5AH % ZM #,))/ =O #,))?'= MAL.</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="line break before ndash Bug#1212">
@@ -26,7 +26,9 @@ y P
         <stub xml:lang="de">word
 – word</stub>
       </x:context>
-      <x:expect label="braille">W?D'- W?D</x:expect>
+      <x:expect label="braille">
+        <stub xml:lang="de">W?D'- W?D</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>

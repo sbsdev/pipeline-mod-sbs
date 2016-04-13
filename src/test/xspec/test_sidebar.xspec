@@ -17,14 +17,11 @@
 	</dtb:sidebar>
       </x:context>
       <x:expect label="braille">
-y SIDEBARb
-
-y HD
- W#T&gt;7 M7KSZ:
-y P
- KR@HT R HAHN 1 [ MI], !7T C D WETT7 O % BBT, 2 % ].
-y SIDEBARe
-</x:expect>
+        <dtb:sidebar xml:lang="de">
+          <dtb:hd>W#T&gt;7 M7KSZ:</dtb:hd>
+          <dtb:p>KR@HT R HAHN 1 [ MI], !7T C D WETT7 O % BBT, 2 % ].</dtb:p>
+	</dtb:sidebar>
+      </x:expect>
     </x:scenario>
 
 </x:description>

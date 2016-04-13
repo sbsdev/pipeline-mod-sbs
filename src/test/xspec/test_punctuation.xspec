@@ -14,8 +14,8 @@
         <dtb:p xml:lang="de"> <dtb:em>2</dtb:em>? <dtb:em>2</dtb:em>! <dtb:em>2</dtb:em>; (<dtb:em>2</dtb:em>) »<dtb:em>2</dtb:em>« </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  _#B'? _#B'+ _#B'; =_#B'= (_#B') </x:expect>
+        <dtb:p xml:lang="de"> <dtb:em>_#B</dtb:em>'? <dtb:em>_#B</dtb:em>'+ <dtb:em>_#B</dtb:em>'; =<dtb:em>_#B</dtb:em>'= (<dtb:em>_#B</dtb:em>') </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="punctuation after numbers">
@@ -23,10 +23,9 @@ y P
         <dtb:p>»Am 10?«</dtb:p><dtb:p>»Am 10?«</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- (AM #AJ'?)
-y P
- (AM #AJ'?)</x:expect>
+        <dtb:p>(AM #AJ'?)</dtb:p>
+	<dtb:p>(AM #AJ'?)</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="punctuation after numbers in a previous paragraph">
@@ -37,10 +36,11 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- #BJ M*UTC #,+AJ#BJAB
-y P
- =BLO=</x:expect>
+        <stub xml:lang="de">
+          <dtb:p>#BJ M*UTC #,+AJ#BJAB</dtb:p>
+          <dtb:p>=BLO=</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="punctuation after ordinals">
@@ -48,19 +48,19 @@ y P
         <dtb:p xml:lang="de"> <brl:num role="ordinal">2.</brl:num>? <brl:num role="ordinal">2.</brl:num>! <brl:num role="ordinal">2.</brl:num>; (<brl:num role="ordinal">2.</brl:num>) »<brl:num role="ordinal">2.</brl:num>« </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  #;'? #;'+ #;'; =#;'= (#;') </x:expect>
+        <dtb:p xml:lang="de"> #;'? #;'+ #;'; =#;'= (#;') </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="punctuation after ordinals">
       <x:context>
-        <dtb:p>»Am <brl:num role="ordinal">10.</brl:num>?«</dtb:p><dtb:p>»Am <brl:num role="ordinal">10.</brl:num>?«</dtb:p>
+        <dtb:p>»Am <brl:num role="ordinal">10.</brl:num>?«</dtb:p>
+	<dtb:p>»Am <brl:num role="ordinal">10.</brl:num>?«</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- (AM #,)'?)
-y P
- (AM #,)'?)</x:expect>
+        <dtb:p>(AM #,)'?)</dtb:p>
+	<dtb:p>(AM #,)'?)</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

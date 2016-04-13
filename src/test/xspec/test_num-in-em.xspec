@@ -14,8 +14,8 @@
         <dtb:p><dtb:em xml:lang="de"><brl:num role="ordinal">3.</brl:num> Dezember 2010</dtb:em>,</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- __#: DEZ[B7 #BJAJ'.,</x:expect>
+        <dtb:p><dtb:em xml:lang="de">__#: DEZ[B7 #BJAJ'.</dtb:em>,</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="num und dddd in em">
@@ -23,8 +23,8 @@ y P
         <dtb:p><dtb:em xml:lang="de">blabla <brl:num role="ordinal">13.</brl:num> Dezember 2010</dtb:em>,</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- __BLABLA #,: DEZ[B7 #BJAJ'.,</x:expect>
+        <dtb:p><dtb:em xml:lang="de">__BLABLA #,: DEZ[B7 #BJAJ'.</dtb:em>,</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="dddd in em">
@@ -32,8 +32,8 @@ y P
         <dtb:p><dtb:em xml:lang="de">Dezember 2010</dtb:em>,</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- __DEZ[B7 #BJAJ'.,</x:expect>
+        <dtb:p><dtb:em xml:lang="de">__DEZ[B7 #BJAJ'.</dtb:em>,</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Ordnungszahl mit Komma">
@@ -41,8 +41,8 @@ y P
         <dtb:p><brl:num role="ordinal">3.</brl:num>,</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- #:',</x:expect>
+        <dtb:p>#:',</dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

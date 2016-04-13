@@ -11,27 +11,21 @@
 
     <x:param name="footer_level" select="2"/>
 
-    <x:scenario label="Running Line Vollschrift">
+    <x:scenario label="Running Line Vollschrift" pending="are running lines even supported?">
       <x:context>
         <stub xml:lang="de">
           <dtb:level2>
             <dtb:h2>Running <brl:running-line brl:grade="1">Index</brl:running-line><brl:running-line brl:grade="2">Laufindex</brl:running-line>line</dtb:h2>
-	    <dtb:p>Geklappert?</dtb:p> 
+	    <dtb:p>Geklappert?</dtb:p>
           </dtb:level2>
         </stub>
       </x:context>
       <x:expect label="braille">
-y LEVEL2b
-.xNOPAGENUM
-
-y H2
- RUNNING LINE
-~INDEX
-
-y P
- GEKLAPPERT?
-y LEVEL2e
-</x:expect>
+          <dtb:level2>
+            <dtb:h2>RUNNING <brl:running-line brl:grade="1">INDEX</brl:running-line>LINE</dtb:h2>
+	    <dtb:p>GEKLAPPERT?</dtb:p>
+          </dtb:level2>
+      </x:expect>
     </x:scenario>
 
 </x:description>

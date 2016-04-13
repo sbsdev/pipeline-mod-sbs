@@ -18,18 +18,12 @@
         </stub>
       </x:context>
       <x:expect label="braille">
-y PLISTb_foo
-
-y PLISTe_foo
-
-y ULISTb_foo
-
-y ULISTe_foo
-
-y OLISTb_foo
-
-y OLISTe_foo
-</x:expect>
+        <stub xml:lang="de">
+	  <dtb:list brl:class="foo" type="pl"/>
+	  <dtb:list brl:class="foo" type="ul"/>
+	  <dtb:list brl:class="foo" type="ol"/>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="li with brl:class attr">
@@ -39,9 +33,10 @@ y OLISTe_foo
         </stub>
       </x:context>
       <x:expect label="braille">
-y LI_foo
- 
-</x:expect>
+        <stub xml:lang="de">
+	  <dtb:li brl:class="foo"/>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Preformatted lists">
@@ -77,68 +72,39 @@ y LI_foo
         </stub>
       </x:context>
       <x:expect label="braille">
-y PLISTb
-
-y LI
- #A. BLA BLA
-
-y LI
- #B. BLA BLA
-
-y LI
- #C. BLA BLA 
-y PLISTb
-
-y LI
- 'A= BLO BLO 
-y PLISTb
-
-y LI
- I. BLE BLE
-
-y LI
- II. BLE BLE
-
-y PLISTe
- 
-
-y LI
- 'B= BLO BLO
-
-y PLISTe
- 
-
-y LI
- #D. BLA BLA 
-y PLISTb
-
-y LI
- 'A= BLO BLO 
-y PLISTb
-
-y LI
- I. BLE BLE
-
-y LI
- II. BLE BLE
-
-y PLISTe
- 
-
-y LI
- 'B= BLO BLO
-
-y PLISTe
- 
-
-y LI
- #E. BLA BLA
-
-y PLISTe
-</x:expect>
+        <stub xml:lang="de">
+	<dtb:list type="pl">
+          <dtb:li>#A. BLA BLA</dtb:li>
+          <dtb:li>#B. BLA BLA</dtb:li>
+          <dtb:li>#C. BLA BLA
+            <dtb:list type="pl">
+              <dtb:li>'A= BLO BLO
+                <dtb:list type="pl">
+                  <dtb:li>I. BLE BLE</dtb:li>
+                  <dtb:li>II. BLE BLE</dtb:li>
+                </dtb:list>
+              </dtb:li>
+              <dtb:li>'B= BLO BLO</dtb:li>
+            </dtb:list>
+          </dtb:li>
+          <dtb:li>#D. BLA BLA
+            <dtb:list type="pl">
+              <dtb:li>'A) BLO BLO
+                <dtb:list type="pl">
+                  <dtb:li>I. BLE BLE</dtb:li>
+                  <dtb:li>II. BLE BLE</dtb:li>
+                </dtb:list>
+              </dtb:li>
+              <dtb:li>'B) BLO BLO</dtb:li>
+            </dtb:list>
+          </dtb:li>
+          <dtb:li>#E. BLA BLA</dtb:li>
+        </dtb:list>
+        </stub>
+      </x:expect>
     </x:scenario>
 
-    <x:scenario label="Unordered lists">
+    <x:scenario label="Unordered lists" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <stub xml:lang="de">
 	<dtb:list type="ul">

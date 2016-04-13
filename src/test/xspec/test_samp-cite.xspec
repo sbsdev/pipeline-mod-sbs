@@ -16,14 +16,10 @@
 	</dtb:level1>
       </x:context>
       <x:expect label="braille">
-y LEVEL1b
-.xNOPAGENUM
-
-xxx Was originally a dtb:samp
-y P
- FOO
-y LEVEL1e
-</x:expect>
+        <dtb:level1 xml:lang="de">
+          <dtb:samp>FOO</dtb:samp>
+	</dtb:level1>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Samp block">
@@ -33,13 +29,10 @@ y LEVEL1e
 	</dtb:div>
       </x:context>
       <x:expect label="braille">
-y DIVb_foo
-
-xxx Was originally a dtb:samp
-y P
- FOO
-y DIVe_foo
-</x:expect>
+        <dtb:div brl:class="foo" xml:lang="de">
+          <dtb:samp>FOO</dtb:samp>
+	</dtb:div>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Samp inline (inside p)">
@@ -47,22 +40,26 @@ y DIVe_foo
         <dtb:p xml:lang="de">Foo <dtb:samp>Bar</dtb:samp> Baz</dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- FOO BAR BAZ</x:expect>
+        <dtb:p xml:lang="de">FOO <dtb:samp>BAR</dtb:samp> BAZ</dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Samp inline (inside th)">
       <x:context>
         <dtb:th xml:lang="de">Foo <dtb:samp>Bar</dtb:samp> Baz</dtb:th>
       </x:context>
-      <x:expect label="braille">FOO BAR BAZ</x:expect>
+      <x:expect label="braille">
+        <dtb:th xml:lang="de">FOO <dtb:samp>BAR</dtb:samp> BAZ</dtb:th>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Samp inline (inside td)">
       <x:context>
         <dtb:td xml:lang="de">Foo <dtb:samp>Bar</dtb:samp> Baz</dtb:td>
       </x:context>
-      <x:expect label="braille">FOO BAR BAZ</x:expect>
+      <x:expect label="braille">
+        <dtb:td xml:lang="de">FOO <dtb:samp>BAR</dtb:samp> BAZ</dtb:td>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Samp inline (inside li)">
@@ -70,9 +67,8 @@ y P
         <dtb:li xml:lang="de">Foo <dtb:samp>Bar</dtb:samp> Baz</dtb:li>
       </x:context>
       <x:expect label="braille">
-y LI
- FOO BAR BAZ
-</x:expect>
+        <dtb:li xml:lang="de">FOO <dtb:samp>BAR</dtb:samp> BAZ</dtb:li>
+      </x:expect>
     </x:scenario>
 
 </x:description>

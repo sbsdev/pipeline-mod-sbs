@@ -14,8 +14,8 @@
         <dtb:dfn xml:lang="de">Foo</dtb:dfn>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:dfn
- _FOO</x:expect>
+        <dtb:dfn xml:lang="de">_FOO</dtb:dfn>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Multiword dfn">
@@ -23,8 +23,8 @@ xxx Was originally a dtb:dfn
         <dtb:dfn xml:lang="de">Foo Bar</dtb:dfn>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:dfn
- __FOO BAR'.</x:expect>
+        <dtb:dfn xml:lang="de">__FOO BAR'.</dtb:dfn>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Multiword dfn">
@@ -32,8 +32,8 @@ xxx Was originally a dtb:dfn
         <dtb:dfn xml:lang="de">Foo Bar Baz</dtb:dfn>
       </x:context>
       <x:expect label="braille">
-xxx Was originally a dtb:dfn
- __FOO BAR BAZ'.</x:expect>
+        <dtb:dfn xml:lang="de">__FOO BAR BAZ'.</dtb:dfn>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="dfn with context">
@@ -41,10 +41,8 @@ xxx Was originally a dtb:dfn
         <dtb:p xml:lang="de">Haha <dtb:dfn xml:lang="de">Foo Bar Baz</dtb:dfn></dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
- HAHA 
-xxx Was originally a dtb:dfn
- __FOO BAR BAZ'.</x:expect>
+        <dtb:p xml:lang="de">HAHA <dtb:dfn xml:lang="de">__FOO BAR BAZ'.</dtb:dfn></dtb:p>
+      </x:expect>
     </x:scenario>
 
 </x:description>

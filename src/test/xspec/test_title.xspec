@@ -15,7 +15,9 @@
 	  foo
 	</dtb:title>
       </x:context>
-      <x:expect label="braille"> FOO </x:expect>
+      <x:expect label="braille">
+        <dtb:title xml:lang="de">FOO</dtb:title>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="title inside poem">
@@ -25,14 +27,10 @@
 	</dtb:poem>
       </x:context>
       <x:expect label="braille">
-y POEMb
-
-xxx Was originally a dtb:title
-
-y HD
- FOO
-y POEMe
-</x:expect>
+        <dtb:poem xml:lang="de">
+          <dtb:hd>FOO</dtb:hd>
+	</dtb:poem>
+      </x:expect>
     </x:scenario>
 
 </x:description>

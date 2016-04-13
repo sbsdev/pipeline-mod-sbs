@@ -14,8 +14,8 @@
         <dtb:p xml:lang="de"> Rakete <dtb:em brl:render="quote">Ariane 2</dtb:em> und </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  RAKETE (ARIANE #B') UND </x:expect>
+        <dtb:p xml:lang="de"> RAKETE <dtb:em brl:render="quote">(ARIANE #B')</dtb:em> UND </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Fehlender Pt. 6 (Apo) vor durch BRL:RENDER=&#34;QUOTE&#34; erzeugten Schlusszeichen (bei Zahlen) Bug #1520">
@@ -23,8 +23,8 @@ y P
         <dtb:p xml:lang="de"> Rakete <dtb:em brl:render="quote">Ariane ¾</dtb:em> und </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  RAKETE (ARIANE #C/') UND </x:expect>
+        <dtb:p xml:lang="de"> RAKETE <dtb:em brl:render="quote">(ARIANE #C/')</dtb:em> UND </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="deep last text node">
@@ -32,8 +32,8 @@ y P
         <dtb:p xml:lang="de"> Rakete <dtb:em brl:render="quote">Ariane <brl:num>2</brl:num></dtb:em> und </dtb:p>
       </x:context>
       <x:expect label="braille">
-y P
-  RAKETE (ARIANE #B') UND </x:expect>
+        <dtb:p xml:lang="de"> RAKETE <dtb:em brl:render="quote">(ARIANE #B')</dtb:em> UND </dtb:p>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="brl:volume und pagnum with other contraction">
@@ -46,12 +46,13 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- ... BLA BLA.
-j 75
- 
-y P
- BLA BLA ...</x:expect>
+        <stub xml:lang="de">        
+	  <dtb:p>... BLA BLA.</dtb:p>
+	  <brl:volume brl:grade="2"/>
+	  <dtb:pagenum>75</dtb:pagenum>
+	  <dtb:p>BLA BLA ...</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="brl:volume und levelN/pagnum with other contraction">
@@ -69,26 +70,19 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y LEVEL1b
-.xNOPAGENUM
-
-y P
- ... BLA BLA.
-y LEVEL1e
-
-y LEVEL1b
-.xNOPAGENUM
-
-j 75
- 
-y H1
- TITEL
-
-y P
- BLA BLA ...
-y LEVEL1e
-</x:expect>
-    </x:scenario>
+        <stub xml:lang="de">
+	  <dtb:level1>
+	    <dtb:p>... BLA BLA.</dtb:p>
+	  </dtb:level1>
+	  <brl:volume brl:grade="2"/>
+	  <dtb:level1>
+	    <dtb:pagenum>75</dtb:pagenum>
+	    <dtb:h1>TITEL</dtb:h1>
+	    <dtb:p>BLA BLA ...</dtb:p>
+	  </dtb:level1>
+        </stub>
+      </x:expect>
+      </x:scenario>
 
     <x:scenario label="br">
       <x:context>
@@ -97,8 +91,10 @@ y LEVEL1e
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- ... BLA uBLA.</x:expect>
+        <stub xml:lang="de">
+	  <dtb:p>... BLA <dtb:br/>BLA.</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Fehlender Pt. 6 (Apo) vor Anführungszeichen im Wortinnern (#1525)">
@@ -109,10 +105,11 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- GRUPPEN(MAHLZ3T)
-y P
- (GRUPPEN)MAHLZ3T</x:expect>
+        <stub xml:lang="de">
+          <dtb:p>GRUPPEN(MAHLZ3T)</dtb:p>
+          <dtb:p>(GRUPPEN)MAHLZ3T</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Schrägstrich zwischen ABBR wird getilgt (#1752)">
@@ -122,8 +119,10 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- &gt;A!,m&gt;Z</x:expect>
+        <stub xml:lang="de">
+          <dtb:p>&gt;A!,m&gt;Z</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Zahl nach ABBR erzeugt zwei Apostrophe (#1753)">
@@ -133,8 +132,10 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- &gt;A#D</x:expect>
+        <stub xml:lang="de">
+          <dtb:p>&gt;A#D</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Pt. 6 (Apo) nach Zahl vor A-J innerhalb A (URLs) (#1815)">
@@ -144,8 +145,10 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- '$WWW.FIT4CHAT.CH</x:expect>
+        <stub xml:lang="de">
+          <dtb:p><dtb:a href="http://www.fit4chat.ch" external="true"><brl:computer>'$WWW.FIT4CHAT.CH</brl:computer></dtb:a></dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="2a &amp; &lt;brl:num&gt;2&lt;/brl:num&gt;a" pending="&lt;brl:num&gt;2&lt;/brl:num&gt;a translates to #BA">
@@ -156,10 +159,11 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- #B'A
-y P
- #B'A</x:expect>
+        <stub xml:lang="de">
+          <dtb:p>#B'A</dtb:p>
+          <dtb:p>#B'A</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="&lt;em&gt;CD&lt;/em&gt;s">
@@ -169,15 +173,18 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- _CD'.S</x:expect>
+        <stub xml:lang="de">
+          <dtb:p><dtb:em>_CD'.</dtb:em>S</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Fehlender Pt. 6 (apo) bei Wort+Zahl-Ausdrücken (#1503)">
       <x:context>
         <stub xml:lang="de">Peter25</stub>
       </x:context>
-      <x:expect label="braille">PETER#BE</x:expect>
+      <x:expect label="braille">
+      <stub xml:lang="de">PETER#BE</stub></x:expect>
     </x:scenario>
 
     <x:scenario label="Number followed by closing quote: apo must be inserted">
@@ -187,8 +194,10 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- RAKETE (ARIANE #B') UND</x:expect>
+        <stub xml:lang="de">
+          <dtb:p>RAKETE (ARIANE #B') UND</dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="Letter followed by closing quote: no apo must be inserted">
@@ -198,15 +207,19 @@ y P
         </stub>
       </x:context>
       <x:expect label="braille">
-y P
- RAKETE (ARIANE B) UND </x:expect>
+        <stub xml:lang="de">
+          <dtb:p>RAKETE (ARIANE B) UND </dtb:p>
+        </stub>
+      </x:expect>
     </x:scenario>
 
     <x:scenario label="closing quote after number: apostrophe must be inserted">
       <x:context>
         <stub xml:lang="de">»2«</stub>
       </x:context>
-      <x:expect label="braille">(#B')</x:expect>
+      <x:expect label="braille">
+	<stub xml:lang="de">(#B')</stub>
+      </x:expect>
     </x:scenario>
 
 </x:description>
