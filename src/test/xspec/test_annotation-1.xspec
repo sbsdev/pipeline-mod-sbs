@@ -10,7 +10,7 @@
 
   <x:param name="footnote_placement" select="'standard'"/>
 
-    <x:scenario label="annotation  with standard placement and automatic numbering">
+    <x:scenario label="annotation  with standard placement and automatic numbering" pending="needs to be tested with xprocspec">
       <x:context>
         <stub xml:lang="de">Blah <dtb:annoref idref="#annotation1">hihi</dtb:annoref> <dtb:annoref idref="#annotation2">haha</dtb:annoref> blah</stub>
       </x:context>
@@ -21,7 +21,7 @@
   BLAH</x:expect>
     </x:scenario>
 
-    <x:scenario label="annotation  with standard placement and automatic numbering">
+    <x:scenario label="annotation  with standard placement and automatic numbering" pending="needs to be tested with xprocspec">
       <x:context>
         <stub xml:lang="de">
 	  <dtb:annoref idref="#annotation1">Foo</dtb:annoref> Bar
@@ -35,7 +35,7 @@
   BAZ </x:expect>
     </x:scenario>
 
-    <x:scenario label="annotation inside h1 (http://redmine.sbszh.ch/issues/1260)">
+    <x:scenario label="annotation inside h1 (http://redmine.sbszh.ch/issues/1260)" pending="needs to be tested with xprocspec">
       <x:context>
         <dtb:h1 xml:lang="de">Sein und nicht <dtb:annoref idref="#fn1">sein</dtb:annoref></dtb:h1>
       </x:context>
@@ -47,7 +47,7 @@ y H1
 </x:expect>
     </x:scenario>
 
-    <x:scenario label="annotation followed by ',' http://redmine.sbszh.ch/issues/1264">
+    <x:scenario label="annotation followed by ',' http://redmine.sbszh.ch/issues/1264" pending="needs to be tested with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">Hier die <dtb:annoref idref="#fn1">Fussnote</dtb:annoref>, vor einem Komma</dtb:p>
       </x:context>
@@ -58,7 +58,7 @@ y P
  ? 6[ KXA</x:expect>
     </x:scenario>
 
-    <x:scenario label="annotation followed by '!' http://redmine.sbszh.ch/issues/1264">
+    <x:scenario label="annotation followed by '!' http://redmine.sbszh.ch/issues/1264" pending="needs to be tested with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">Hier die <dtb:annoref idref="#fn1">Fussnote</dtb:annoref>! vor einem</dtb:p>
       </x:context>
@@ -69,7 +69,7 @@ y P
  ? 6[</x:expect>
     </x:scenario>
 
-    <x:scenario label="annotation followed by '?' http://redmine.sbszh.ch/issues/1264">
+    <x:scenario label="annotation followed by '?' http://redmine.sbszh.ch/issues/1264" pending="needs to be tested with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">Hier die <dtb:annoref idref="#fn1">Fussnote</dtb:annoref>? vor einem</dtb:p>
       </x:context>
@@ -80,7 +80,7 @@ y P
  ? 6[</x:expect>
     </x:scenario>
 
-    <x:scenario label="annotation followed by '(' http://redmine.sbszh.ch/issues/1264">
+    <x:scenario label="annotation followed by '(' http://redmine.sbszh.ch/issues/1264" pending="needs to be tested with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">Hier die <dtb:annoref idref="#fn1">Fussnote</dtb:annoref>( vor einem</dtb:p>
       </x:context>

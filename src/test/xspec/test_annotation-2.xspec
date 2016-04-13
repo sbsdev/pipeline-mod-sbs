@@ -11,7 +11,7 @@
 
     <x:param name="footnote_placement" select="'end_vol'"/>
 
-    <x:scenario label="annotation with end_vol placement">
+    <x:scenario label="annotation with end_vol placement" pending="needs to be tested with xprocspec">
       <x:context>
         <stub xml:lang="de">Hi Ha <dtb:annoref idref="#annotation1">Ho</dtb:annoref>
 	<dtb:annoref idref="#annotation2"/>
@@ -60,7 +60,7 @@ y BrlVol
 </x:expect>
     </x:scenario>
 
-    <x:scenario label="annotation in bodymatter with end_vol placement">
+    <x:scenario label="annotation in bodymatter with end_vol placement" pending="needs to be tested with xprocspec">
       <x:context>
         <dtb:bodymatter xml:lang="de">
 	  <dtb:p>Hi <dtb:annoref idref="#annotation1">Ha</dtb:annoref> 

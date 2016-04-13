@@ -11,7 +11,7 @@
 
     <x:param name="footnote_placement" select="'standard'"/>
 
-    <x:scenario label="FN ohne Satzzeichen (adjazentes EM)">
+    <x:scenario label="FN ohne Satzzeichen (adjazentes EM)" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">bla<dtb:noteref idref="#fn1">*1</dtb:noteref> <dtb:em>»Ein Mensch«</dtb:em></dtb:p>
       </x:context>
@@ -22,7 +22,7 @@ y P
   __(6 MC5)'.</x:expect>
     </x:scenario>
 
-    <x:scenario label="FN mit Satzzeichen (adjazentes EM)">
+    <x:scenario label="FN mit Satzzeichen (adjazentes EM)" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">bla<dtb:noteref idref="#fn1">*1</dtb:noteref>, <dtb:em>»Ein Mensch«</dtb:em></dtb:p>
       </x:context>
@@ -33,7 +33,7 @@ y P
  __(6 MC5)'.</x:expect>
     </x:scenario>
 
-    <x:scenario label="FN mit Satzzeichen (EM als Ancestor)">
+    <x:scenario label="FN mit Satzzeichen (EM als Ancestor)" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <dtb:p xml:lang="de"><dtb:em>bla<dtb:noteref idref="#fn1">*1</dtb:noteref>, bla bla</dtb:em></dtb:p>
       </x:context>

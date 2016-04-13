@@ -11,7 +11,7 @@
 
     <x:param name="footnote_placement" select="'standard'"/>
 
-    <x:scenario label="footnote with standard placement and automatic numbering">
+    <x:scenario label="footnote with standard placement and automatic numbering" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <stub xml:lang="de">Foo<dtb:noteref idref="#footnote1">a</dtb:noteref>	Bar<dtb:noteref idref="#footnote2">b</dtb:noteref> Baz</stub>
       </x:context>
@@ -22,7 +22,7 @@
   BAZ</x:expect>
     </x:scenario>
 
-    <x:scenario label="footnote inside h1 (http://redmine.sbszh.ch/issues/1260)">
+    <x:scenario label="footnote inside h1 (http://redmine.sbszh.ch/issues/1260)" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <dtb:h1 xml:lang="de">Sein und nicht sein<dtb:noteref idref="#fn1">1</dtb:noteref></dtb:h1>
       </x:context>
@@ -34,7 +34,7 @@ y H1
 </x:expect>
     </x:scenario>
 
-    <x:scenario label="footnote followed by ',' http://redmine.sbszh.ch/issues/1264">
+    <x:scenario label="footnote followed by ',' http://redmine.sbszh.ch/issues/1264" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">Hier die Fussnote<dtb:noteref idref="#fn1">1</dtb:noteref>, vor einem Komma</dtb:p>
       </x:context>
@@ -45,7 +45,7 @@ y P
  ? 6[ KXA</x:expect>
     </x:scenario>
 
-    <x:scenario label="footnote followed by '!' http://redmine.sbszh.ch/issues/1264">
+    <x:scenario label="footnote followed by '!' http://redmine.sbszh.ch/issues/1264" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">Hier die Fussnote<dtb:noteref idref="#fn1">1</dtb:noteref>! vor einem</dtb:p>
       </x:context>
@@ -56,7 +56,7 @@ y P
  ? 6[</x:expect>
     </x:scenario>
 
-    <x:scenario label="footnote followed by '?' http://redmine.sbszh.ch/issues/1264">
+    <x:scenario label="footnote followed by '?' http://redmine.sbszh.ch/issues/1264" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">Hier die Fussnote<dtb:noteref idref="#fn1">1</dtb:noteref>? vor einem</dtb:p>
       </x:context>
@@ -67,7 +67,7 @@ y P
  ? 6[</x:expect>
     </x:scenario>
 
-    <x:scenario label="footnote followed by '(' http://redmine.sbszh.ch/issues/1264">
+    <x:scenario label="footnote followed by '(' http://redmine.sbszh.ch/issues/1264" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <dtb:p xml:lang="de">Hier die Fussnote<dtb:noteref idref="#fn1">1</dtb:noteref>( vor einem</dtb:p>
       </x:context>

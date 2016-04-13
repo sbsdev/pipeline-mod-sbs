@@ -11,7 +11,7 @@
 
     <x:param name="footnote_placement" select="'end_vol'"/>
 
-    <x:scenario label="footnote with end_vol placement">
+    <x:scenario label="footnote with end_vol placement" pending="Needs to be tested after formatting with xprocspec">
       <x:context>
         <stub xml:lang="de">Hi Ha Ho <dtb:noteref idref="#footnote1"/>
 	<dtb:noteref idref="#footnote2"/>
