@@ -16,7 +16,7 @@
         <stub xml:space="preserve" xml:lang="de"><dtb:em>Mein Mann.</dtb:em> <brl:v-form>Ihr</brl:v-form></stub>
       </x:context>
       <x:expect label="braille">
-        <stub xml:space="preserve" xml:lang="de"><dtb:em>__M6 MN.'.</dtb:em> <brl:v-form>$I</brl:v-form></stub>
+        <stub xml:space="preserve" xml:lang="de"><dtb:em>__M6 MN.'.</dtb:em> $I</stub>
       </x:expect>
     </x:scenario>
 
@@ -188,7 +188,7 @@ mm</brl:num>
         <dtb:p xml:lang="de">Liebe<dtb:em>gang</dtb:em></dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">L0;'<dtb:em>_G+G</dtb:em></dtb:p></x:expect>
+	<dtb:p xml:lang="de">L0;<dtb:em>'_G+G</dtb:em></dtb:p></x:expect>
     </x:scenario>
 
     <x:scenario label="Single word mixed emphasis em inside">
