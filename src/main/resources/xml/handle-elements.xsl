@@ -358,6 +358,16 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- =========== -->
+  <!-- Pagenumbers -->
+  <!-- =========== -->
+
+  <xsl:template match="dtb:pagenum/text()" priority="100">
+    <!-- do not translate pagenums to braille. They will be translated
+    in their respective context by the formatter -->
+    <xsl:value-of select="."/>
+  </xsl:template>
+
   <!-- Handle extensions that are defined in the Nordic spec i.e. the
        "Requirements for Text and Image Quality and Markup with DTBook
        XML, Version: 2011-2" -->
