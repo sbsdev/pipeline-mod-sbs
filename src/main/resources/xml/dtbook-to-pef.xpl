@@ -82,24 +82,28 @@
     <p:option name="document-identifier"/>
 
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/library.xpl"/>
+    <p:import href="http://www.daisy.org/pipeline/modules/braille/xml-to-pef/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/file-utils/library.xpl"/>
     
     <p:in-scope-names name="in-scope-names"/>
-    <p:identity>
+    <px:merge-parameters>
         <p:input port="source">
             <p:pipe port="result" step="in-scope-names"/>
         </p:input>
-    </p:identity>
-    <p:delete match="c:param[@name=('stylesheet',
-                                    'contraction-grade',
-                                    'ascii-table',
-                                    'include-brf',
-                                    'include-preview',
-                                    'pef-output-dir',
-                                    'brf-output-dir',
-                                    'preview-output-dir',
-                                    'temp-dir')]"/>
+    </px:merge-parameters>
+    <px:delete-parameters parameter-names="stylesheet
+                                           contraction-grade
+                                           ascii-table
+                                           include-brf
+                                           include-preview
+                                           pef-output-dir
+                                           brf-output-dir
+                                           preview-output-dir
+                                           temp-dir"/>
+    <px:add-parameters>
+        <p:with-param name="skip-margin-top-of-page" select="'true'"/>
+    </px:add-parameters>
     <p:identity name="input-options"/>
     <p:sink/>
     
