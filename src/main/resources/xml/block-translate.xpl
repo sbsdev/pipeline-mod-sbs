@@ -15,6 +15,19 @@
 		<p:with-param name="contraction-grade" select="$contraction-grade"/>
 	</p:xslt>
 
+	<!-- ================== -->
+	<!-- HANDLE DOWNGRADING -->
+	<!-- ================== -->
+
+	<p:xslt>
+          <p:input port="stylesheet">
+            <p:document href="handle-downgrading.xsl"/>
+          </p:input>
+          <p:input port="parameters">
+            <p:empty/>
+          </p:input>
+	</p:xslt>
+
 	<!-- =============== -->
 	<!-- HANDLE PRODNOTE -->
 	<!-- =============== -->
