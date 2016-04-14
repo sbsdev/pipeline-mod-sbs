@@ -20,16 +20,22 @@
       </x:expect>
     </x:scenario>
 
-    <x:scenario label="Inline Prodnote">
+    <x:scenario label="Inline Prodnote"
+		pending="should be handled in xprocspectest as this
+			 involves two steps (adding announcments and
+			 translation">
       <x:context>
         <dtb:prodnote xml:lang="de">In der Blindenschriftausgabe wurden sämtliche Abbildungen weggelassen.</dtb:prodnote>
       </x:context>
       <x:expect label="braille">
-	<brl:literal>'&lt;=</brl:literal>In der Blindenschriftausgabe wurden sämtliche Abbildungen weggelassen.<brl:literal>'&lt;=</brl:literal>
+	<prodnote xml:lang="de">'&lt;=In der Blindenschriftausgabe wurden sämtliche Abbildungen weggelassen.'&lt;=</prodnote>
       </x:expect>
     </x:scenario>
 
-    <x:scenario label="Block Prodnote">
+    <x:scenario label="Block Prodnote"
+		pending="should be handled in xprocspectest as this
+			 involves two steps (adding announcments and
+			 translation">
       <x:context>
         <dtb:prodnote xml:lang="de">
 	  <dtb:p brl:class="ind">Anmerkung für die Blindenschriftausgabe:</dtb:p>
@@ -37,7 +43,7 @@
       </dtb:prodnote>
       </x:context>
       <x:expect label="braille">
-	<dtb:p brl:class="ind"><brl:literal>'&lt;=</brl:literal>Anmerkung für die Blindenschriftausgabe:</dtb:p><dtb:p brl:class="ind">Eine Zeichenerklärung befindet sich am Ende des Buches.<brl:literal>'&lt;=</brl:literal></dtb:p>
+	<dtb:p brl:class="ind">'&lt;=Anmerkung für die Blindenschriftausgabe:</dtb:p><dtb:p brl:class="ind">Eine Zeichenerklärung befindet sich am Ende des Buches.'&lt;=</dtb:p>
       </x:expect>
     </x:scenario>
 
