@@ -125,7 +125,9 @@
         <p:with-option name="temp-dir" select="string(/c:result)">
             <p:pipe step="temp-dir" port="result"/>
         </p:with-option>
-        <p:with-option name="stylesheet" select="$stylesheet"/>
+        <p:with-option name="stylesheet" select="string-join((
+                                                   'http://www.sbs.ch/pipeline/modules/braille/internal/handle-precedingseparator.xsl',
+                                                   $stylesheet),' ')"/>
         <p:with-option name="transform" select="concat('(formatter:dotify)(translator:sbs)(grade:',$contraction-grade,')')"/>
         <p:input port="parameters">
             <p:pipe port="result" step="input-options"/>
