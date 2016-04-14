@@ -21,9 +21,7 @@
     </x:scenario>
 
     <x:scenario label="Inline Prodnote"
-		pending="should be handled in xprocspectest as this
-			 involves two steps (adding announcments and
-			 translation">
+		pending="is now handled in xprocspectest as this involves two steps (adding announcements and translation">
       <x:context>
         <dtb:prodnote xml:lang="de">In der Blindenschriftausgabe wurden sämtliche Abbildungen weggelassen.</dtb:prodnote>
       </x:context>
@@ -33,9 +31,7 @@
     </x:scenario>
 
     <x:scenario label="Block Prodnote"
-		pending="should be handled in xprocspectest as this
-			 involves two steps (adding announcments and
-			 translation">
+		pending="is now handled in xprocspectest as this involves two steps (adding announcements and translation">
       <x:context>
         <dtb:prodnote xml:lang="de">
 	  <dtb:p brl:class="ind">Anmerkung für die Blindenschriftausgabe:</dtb:p>
