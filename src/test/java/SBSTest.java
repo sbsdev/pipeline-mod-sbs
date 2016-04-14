@@ -114,7 +114,7 @@ public class SBSTest {
 		Map<String,File> tests = new HashMap<String,File>();
 		for (String test : new String[]{
 			"test_translator",
-			"test_dtbook-to-pef_prodnote"
+			"test_dtbook-to-pef_prodnote",
 			"test_dtbook-to-pef",
 			"test_dtbook-to-pef_tables",
 			"test_dtbook-to-pef_pagination",
