@@ -3,7 +3,7 @@
                xmlns:sbs="http://www.sbs.ch"
                script="http://www.sbs.ch/pipeline/modules/braille/dtbook-to-pef.xpl">
   
-  <x:scenario label="list-numbering" pending="TODO: disable page numbers with option">
+  <x:scenario label="list-numbering">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="inline">
@@ -25,6 +25,8 @@
         </x:document>
       </x:input>
       <x:option name="contraction-grade" select="0"/>
+      <x:option name="show-print-page-numbers" select="false()"/>
+      <x:option name="show-braille-page-numbers" select="false()"/>
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/list-numbering/')"/>
       <x:option name="temp-dir" select="concat($temp-dir,'temp-dir/')"/>
     </x:call>
