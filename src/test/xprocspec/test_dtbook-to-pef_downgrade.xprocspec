@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.daisy.org/ns/xprocspec"
-               xmlns:sbs="http://www.sbs.ch"
-               script="http://www.sbs.ch/pipeline/modules/braille/dtbook-to-pef.xpl">
+	       xmlns:sbs="http://www.sbs.ch"
+	       script="http://www.sbs.ch/pipeline/modules/braille/dtbook-to-pef.xpl">
 
   <x:scenario label="Downgrading">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
-        <x:document type="inline">
+	<x:document type="inline">
 	  <dtbook version="2005-3-sbs-full"
 		  xml:lang="de"
 		  xmlns:brl="http://www.daisy.org/z3986/2009/braille/"
@@ -14,7 +14,7 @@
 	    <head/>
 	    <book>
 	      <bodymatter>
-		<level1> 
+		<level1>
 		  <p>Kurzschrift schrift schrift <span brl:grade="1">Vollschrift</span> kurz kurz kurz</p>
 		  <p>Kurzschrift schrift schrift <span brl:grade="0">Basisschrift</span> kurz kurz kurz</p>
 		  <p>Kurzschrift schrift schrift <span brl:grade="1">Vollschrift schrift schrift</span> kurz kurz kurz</p>
@@ -40,47 +40,47 @@
       <x:document type="inline">
 	<pef xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="de" version="2008-1">
 	  <head>
-            <meta>
-              <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/x-pef+xml</dc:format>
-              <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">identifier?</dc:identifier>
-              <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2016-04-14</dc:date>
+	    <meta>
+	      <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/x-pef+xml</dc:format>
+	      <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">identifier?</dc:identifier>
+	      <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2016-04-14</dc:date>
 	    </meta>
- 	  </head>
+	  </head>
 	  <body>
-            <volume cols="28" rows="28" rowgap="0" duplex="true">
-              <section>
-                <page>
-                  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠠⠄⠧⠕⠇⠇⠱⠗⠊⠋⠞⠀⠅⠵⠀</row>
-                  <row>⠅⠵⠀⠅⠵</row>
-                  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠠⠄⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠀</row>
-                  <row>⠅⠵⠀⠅⠵⠀⠅⠵</row>
-                  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠧⠕⠇⠇⠱⠗⠊⠋⠞⠀</row>
-                  <row>⠱⠗⠊⠋⠞⠀⠱⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
-                  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠀</row>
-                  <row>⠎⠉⠓⠗⠊⠋⠞⠀⠎⠉⠓⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
-                  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠧⠕⠇⠇⠱⠗⠊⠋⠞⠐⠂</row>
-                  <row>⠧⠕⠇⠇⠱⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
-                  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠃⠁⠎⠊⠎⠤</row>
-                  <row>⠎⠉⠓⠗⠊⠋⠞⠐⠂⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀</row>
-                  <row>⠅⠵⠀⠅⠵</row>
-                  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠧⠕⠇⠇⠱⠗⠊⠋⠞⠤</row>
-                  <row>⠧⠕⠇⠇⠱⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
-                  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠤</row>
-                  <row>⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row>⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-                </page>
-              </section>
-            </volume>
+	    <volume cols="28" rows="28" rowgap="0" duplex="true">
+	      <section>
+		<page>
+		  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠠⠄⠧⠕⠇⠇⠱⠗⠊⠋⠞⠀⠅⠵⠀</row>
+		  <row>⠅⠵⠀⠅⠵</row>
+		  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠠⠄⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠀</row>
+		  <row>⠅⠵⠀⠅⠵⠀⠅⠵</row>
+		  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠧⠕⠇⠇⠱⠗⠊⠋⠞⠀</row>
+		  <row>⠱⠗⠊⠋⠞⠀⠱⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
+		  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠀</row>
+		  <row>⠎⠉⠓⠗⠊⠋⠞⠀⠎⠉⠓⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
+		  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠧⠕⠇⠇⠱⠗⠊⠋⠞⠐⠂</row>
+		  <row>⠧⠕⠇⠇⠱⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
+		  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠃⠁⠎⠊⠎⠤</row>
+		  <row>⠎⠉⠓⠗⠊⠋⠞⠐⠂⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀</row>
+		  <row>⠅⠵⠀⠅⠵</row>
+		  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠧⠕⠇⠇⠱⠗⠊⠋⠞⠤</row>
+		  <row>⠧⠕⠇⠇⠱⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
+		  <row>⠀⠀⠅⠵⠱⠞⠀⠱⠞⠀⠱⠞⠀⠤⠄⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠤</row>
+		  <row>⠃⠁⠎⠊⠎⠎⠉⠓⠗⠊⠋⠞⠠⠄⠀⠅⠵⠀⠅⠵⠀⠅⠵</row>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row>⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
+		</page>
+	      </section>
+	    </volume>
 	  </body>
 	</pef>
       </x:document>
@@ -90,7 +90,7 @@
   <x:scenario label="Span inside span 2">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
-        <x:document type="inline">
+	<x:document type="inline">
 	  <dtbook version="2005-3-sbs-full"
 		  xml:lang="de"
 		  xmlns:brl="http://www.daisy.org/z3986/2009/braille/"
@@ -98,7 +98,7 @@
 	    <head/>
 	    <book>
 	      <bodymatter>
-		<level1> 
+		<level1>
 		  <p><span brl:accents="reduced">René</span></p>
 		  <p><span brl:accents="reduced">René René</span></p>
 		  <p>Kurz <span brl:grade="1" brl:accents="reduced">René René</span> René</p>
@@ -120,47 +120,47 @@
       <x:document type="inline">
 	<pef xmlns="http://www.daisy.org/ns/2008/pef" xml:lang="de" version="2008-1">
 	  <head>
-            <meta>
-              <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/x-pef+xml</dc:format>
-              <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">identifier?</dc:identifier>
-              <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2016-04-14</dc:date>
+	    <meta>
+	      <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/x-pef+xml</dc:format>
+	      <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">identifier?</dc:identifier>
+	      <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2016-04-14</dc:date>
 	    </meta>
- 	  </head>
+	  </head>
 	  <body>
-            <volume cols="28" rows="28" rowgap="0" duplex="true">
-              <section>
-                <page>
-                  <row>⠀⠀⠗⠉⠈⠑</row>
-                  <row>⠀⠀⠗⠉⠈⠑⠀⠗⠉⠈⠑</row>
-                  <row>⠀⠀⠅⠵⠀⠤⠄⠗⠑⠝⠈⠑⠀⠗⠑⠝⠈⠑⠠⠄⠀⠗⠉⠈⠿</row>
-                  <row>⠀⠀⠤⠄⠗⠑⠝⠈⠿⠀⠗⠑⠝⠈⠑⠀⠗⠑⠝⠈⠿⠠⠄</row>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row>⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-                </page>
-              </section>
-            </volume>
+	    <volume cols="28" rows="28" rowgap="0" duplex="true">
+	      <section>
+		<page>
+		  <row>⠀⠀⠗⠉⠈⠑</row>
+		  <row>⠀⠀⠗⠉⠈⠑⠀⠗⠉⠈⠑</row>
+		  <row>⠀⠀⠅⠵⠀⠤⠄⠗⠑⠝⠈⠑⠀⠗⠑⠝⠈⠑⠠⠄⠀⠗⠉⠈⠿</row>
+		  <row>⠀⠀⠤⠄⠗⠑⠝⠈⠿⠀⠗⠑⠝⠈⠑⠀⠗⠑⠝⠈⠿⠠⠄</row>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row/>
+		  <row>⠸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
+		</page>
+	      </section>
+	    </volume>
 	  </body>
 	</pef>
       </x:document>
