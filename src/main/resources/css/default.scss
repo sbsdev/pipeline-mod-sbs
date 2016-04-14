@@ -20,11 +20,6 @@
  * A page contains 28 columns by 28 rows of braille (configurable with
  * options, defaults in script). */
 
-// FIXME: move defaults from CSS to script
-@page {
-    size: 28 28;
-}
-
 @page frontmatter:right {
     margin-bottom: 1;
     @bottom-center {
