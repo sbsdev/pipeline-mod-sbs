@@ -8,12 +8,12 @@
 	<p:option name="virtual.dis-uri" required="true"/>
 	<p:option name="hyphenator" required="true"/>
 
-	<p:xslt>
-		<p:input port="stylesheet">
-			<p:document href="insert-boilerplate.xsl"/>
-		</p:input>
-		<p:with-param name="contraction-grade" select="$contraction-grade"/>
-	</p:xslt>
+	<!-- <p:xslt> -->
+	<!-- 	<p:input port="stylesheet"> -->
+	<!-- 		<p:document href="insert-boilerplate.xsl"/> -->
+	<!-- 	</p:input> -->
+	<!-- 	<p:with-param name="contraction-grade" select="$contraction-grade"/> -->
+	<!-- </p:xslt> -->
 
 	<!-- ================== -->
 	<!-- HANDLE DOWNGRADING -->
