@@ -630,6 +630,19 @@
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($time))"/>
   </xsl:template>
 
+  <!-- ======= -->
+  <!-- ACRONYM -->
+  <!-- ======= -->
+
+  <xsl:template match="dtb:acronym">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:call-template name="handle_abbr">
+	<xsl:with-param name="context" select="'abbr'"/>
+      </xsl:call-template>
+    </xsl:copy>
+  </xsl:template>
+
   <!-- ================= -->
   <!-- Content selection -->
   <!-- ================= -->
