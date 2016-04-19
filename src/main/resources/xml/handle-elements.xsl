@@ -149,7 +149,7 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="brl:computer/text()">
+  <xsl:template match="brl:computer/text()" priority="100">
     <xsl:value-of select="my:louis-translate(.,string($computer_braille_tables), string())"/>
   </xsl:template>
 
