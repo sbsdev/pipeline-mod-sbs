@@ -237,15 +237,6 @@ p {
     text-indent: 0;
 }
 
-.precedingseparator::before {
-    display: block;
-    text-indent: 0;
-    text-align: center;
-    content:"⠒⠒⠒⠒⠒⠒";
-    margin-top: 1;
-    margin-bottom: 1;
-}
-
 pagenum {
     display: none;
     string-set: print-page content();

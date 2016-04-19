@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE catalog
-  PUBLIC "-//OASIS/DTD Entity Resolution XML Catalog V1.0//EN" "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
-	 xmlns:px="http://www.daisy.org/ns/pipeline">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:px="http://www.daisy.org/ns/pipeline">
   <!-- scripts -->
   <uri name="http://www.sbs.ch/pipeline/modules/braille/dtbook-to-pef.xpl"
        uri="../xml/dtbook-to-pef.xpl"
@@ -13,6 +10,11 @@
   <uri name="http://www.sbs.ch/pipeline/modules/braille/default.scss"
        uri="../css/default.scss"/>
 
+  <!-- internal resources added to the catalog for now until we find a proper solution for
+       https://github.com/daisy/pipeline-mod-braille/pull/79#discussion-diff-54276962 -->
+  <uri name="http://www.sbs.ch/pipeline/modules/braille/internal/handle-precedingseparator.xsl"
+       uri="../xml/handle-precedingseparator.xsl"/>
+  
   <!-- dependencies -->
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:liblouis-utils"/>
