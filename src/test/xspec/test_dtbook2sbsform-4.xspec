@@ -17,7 +17,7 @@
           (oder <brl:num role="ordinal">1005.</brl:num>) Mal.</dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">AM #? TAG &amp;5AH % ZM #,))/ =O #,))?'= MAL.</dtb:p>
+        <dtb:p xml:lang="de">AM <brl:num role="ordinal">#?</brl:num> TAG &amp;5AH % ZM <brl:num role="ordinal">#,))/</brl:num> =O <brl:num role="ordinal">#,))?</brl:num>'= MAL.</dtb:p>
       </x:expect>
     </x:scenario>
 

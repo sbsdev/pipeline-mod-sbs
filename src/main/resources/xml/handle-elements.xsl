@@ -395,19 +395,19 @@
   <!-- Contraction hints -->
   <!-- ================= -->
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:num[@role='ordinal']">
-    <xsl:choose>
-      <xsl:when test="$downshift_ordinals = true()">
-        <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'num_ordinal'), string(translate(.,'.','')))"
-        />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:choose>
+	<xsl:when test="$downshift_ordinals = true()">
+          <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'num_ordinal'), string(translate(.,'.','')))"
+			/>
+	</xsl:when>
+	<xsl:otherwise>
+          <xsl:apply-templates/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:copy>
   </xsl:template>
 
   <!--

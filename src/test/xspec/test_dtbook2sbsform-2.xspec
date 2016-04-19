@@ -455,7 +455,7 @@
       </x:context>
       <x:expect label="braille">
         <stub xml:lang="de">
-          <dtb:p>BLE #:: BLO</dtb:p>
+          <dtb:p>BLE <brl:num role="ordinal">#::</brl:num> BLO</dtb:p>
           <dtb:p>=BLA=</dtb:p>
         </stub>
       </x:expect>

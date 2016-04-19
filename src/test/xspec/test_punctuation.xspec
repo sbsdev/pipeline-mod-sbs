@@ -48,7 +48,7 @@
         <dtb:p xml:lang="de"> <brl:num role="ordinal">2.</brl:num>? <brl:num role="ordinal">2.</brl:num>! <brl:num role="ordinal">2.</brl:num>; (<brl:num role="ordinal">2.</brl:num>) »<brl:num role="ordinal">2.</brl:num>« </dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de"> #;'? #;'+ #;'; =#;'= (#;') </dtb:p>
+        <dtb:p xml:lang="de"> <brl:num role="ordinal">#;</brl:num>'? <brl:num role="ordinal">#;</brl:num>'+ <brl:num role="ordinal">#;</brl:num>'; =<brl:num role="ordinal">#;</brl:num>'= (<brl:num role="ordinal">#;</brl:num>') </dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -58,8 +58,8 @@
 	<dtb:p>»Am <brl:num role="ordinal">10.</brl:num>?«</dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p>(AM #,)'?)</dtb:p>
-	<dtb:p>(AM #,)'?)</dtb:p>
+        <dtb:p>(AM <brl:num role="ordinal">#,)</brl:num>'?)</dtb:p>
+	<dtb:p>(AM <brl:num role="ordinal">#,)</brl:num>'?)</dtb:p>
       </x:expect>
     </x:scenario>
 
