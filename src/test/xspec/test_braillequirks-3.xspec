@@ -245,7 +245,7 @@ mm</brl:num>
         <dtb:p xml:lang="de"><brl:num role="phone">079 160 22 22</brl:num>«</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">#JGI.AFJ.BB.BB')</dtb:p>
+	<dtb:p xml:lang="de"><brl:num role="phone">#JGI.AFJ.BB.BB</brl:num>')</dtb:p>
       </x:expect>
     </x:scenario>
 

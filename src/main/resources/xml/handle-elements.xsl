@@ -429,9 +429,6 @@
     </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:num[@role='phone']">
     <!-- Replace ' ' and '/' with '.' -->
     <xsl:variable name="clean_number">
@@ -440,7 +437,10 @@
         <xsl:if test="not(position() = last())">.</xsl:if>
       </xsl:for-each>
     </xsl:variable>
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()),string($clean_number))"/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()),string($clean_number))"/>
+    </xsl:copy>
   </xsl:template>
 
   <!--

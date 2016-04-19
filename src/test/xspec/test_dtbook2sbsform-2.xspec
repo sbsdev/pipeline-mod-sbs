@@ -114,7 +114,7 @@
         <dtb:p xml:lang="de">Telefon <brl:num role="phone">041 / 123 45 67</brl:num>? Telefon <brl:num role="phone">041/123'45'67</brl:num>!</dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">TYEFON #JDA.ABC.DE.FG'? TYEFON #JDA.ABC.DE.FG'+</dtb:p>
+        <dtb:p xml:lang="de">TYEFON <brl:num role="phone">#JDA.ABC.DE.FG</brl:num>'? TYEFON <brl:num role="phone">#JDA.ABC.DE.FG</brl:num>'+</dtb:p>
       </x:expect>
     </x:scenario>
 
