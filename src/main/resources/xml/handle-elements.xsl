@@ -42,32 +42,6 @@
   </xsl:function>
   -->
   
-  <!--
-      Use the following to produce ASCII braille (SBSForm, no CSS support)
-  -->
-  <!--
-  <xsl:function name="my:louis-translate" as="xs:string">
-    <xsl:param name="table" as="xs:string"/>
-    <xsl:param name="text" as="xs:string"/>
-    <xsl:param name="content" as="element()?"/>
-    <xsl:variable name="unicode-braille"
-                  select="pf:text-transform(
-                            concat('(liblouis-table:&quot;',$table,'&quot;)'),
-                            replace($text, '(\p{Z}|\s)+', ' '))"/>
-    <xsl:variable name="ascii-braille" as="xs:string*">
-      <xsl:analyze-string regex="[\s&#x00A0;&#x00AD;&#x200B;]+" select="$unicode-braille">
-        <xsl:matching-substring>
-          <xsl:sequence select="translate(.,'&#x00AD;&#x200B;','tm')"/>
-        </xsl:matching-substring>
-        <xsl:non-matching-substring>
-          <xsl:sequence select="pef:encode('(liblouis-table:&quot;sbs.dis&quot;)', .)"/>
-        </xsl:non-matching-substring>
-      </xsl:analyze-string>
-    </xsl:variable>
-    <xsl:sequence select="string-join($ascii-braille,'')"/>
-  </xsl:function>
-  -->
-  
   <!-- ======= -->
   <!-- SUB/SUP -->
   <!-- ======= -->
