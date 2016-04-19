@@ -26,7 +26,7 @@
       </x:context>
       <x:expect label="braille">
         <dtb:poem xml:lang="de">
-          <dtb:hd>FOO</dtb:hd>
+          <dtb:title>FOO</dtb:title>
 	</dtb:poem>
       </x:expect>
     </x:scenario>
