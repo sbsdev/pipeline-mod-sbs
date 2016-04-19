@@ -679,7 +679,7 @@
   <!-- ========================================== -->
   <xsl:template
       match="text()[(preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:num[@role=('ordinal','fraction','mixed')]|ancestor::dtb:sub|ancestor::dtb:sup)) and matches(string(), '^,')]"
-      priority="60">
+      priority="61">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x256C;',string()))"/>
   </xsl:template>
 
@@ -698,7 +698,7 @@
   <!-- ========================================== -->
   <xsl:template
       match="text()[(preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:v-form|ancestor::brl:homograph)) and matches(string(), '^''')]"
-      priority="60">
+      priority="61">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250A;',string()))"/>
   </xsl:template>
 
@@ -734,7 +734,7 @@
   <!-- ============================================================================= -->
   <xsl:template
       match="text()[(matches(string(), '^ich$', 'i') or matches(string(), '\Wich$', 'i')) and matches(string(following::text()[1]), '^[,;:?!)&#x00bb;&#x00ab;]')]"
-      priority="60">
+      priority="61">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat(string(),'&#x250A;'))"/>
   </xsl:template>
 
