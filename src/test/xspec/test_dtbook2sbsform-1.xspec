@@ -255,8 +255,8 @@
         <stub xml:lang="de">
           <dtb:p><dtb:span brl:accents="reduced">RC"E</dtb:span></dtb:p>
           <dtb:p><dtb:span brl:accents="reduced">RC"E RC"E</dtb:span></dtb:p>
-          <dtb:p>KZ <dtb:span>-.</dtb:span><dtb:span brl:grade="1" brl:accents="reduced">-.REN"E REN"E'.</dtb:span><dtb:span>'.</dtb:span> RC"%</dtb:p>
-          <dtb:p><dtb:span>-.</dtb:span><dtb:span brl:grade="1">-.REN"% <dtb:span brl:accents="reduced">REN"E</dtb:span> REN"%'.</dtb:span><dtb:span>'.</dtb:span></dtb:p>
+          <dtb:p>KZ <dtb:span>-.</dtb:span><dtb:span brl:grade="1" brl:accents="reduced">REN"E REN"E</dtb:span><dtb:span>'.</dtb:span> RC"%</dtb:p>
+          <dtb:p><dtb:span>-.</dtb:span><dtb:span brl:grade="1">REN"% <dtb:span brl:accents="reduced">REN"E</dtb:span> REN"%</dtb:span><dtb:span>'.</dtb:span></dtb:p>
         </stub>
       </x:expect>
     </x:scenario>

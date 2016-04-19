@@ -196,7 +196,7 @@ mm</brl:num>
         <dtb:p xml:lang="de">Liebe<dtb:em>Menschen</dtb:em>versuch</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">L0;'<dtb:em>_MC5C'.</dtb:em>V7SU4</dtb:p>
+	<dtb:p xml:lang="de">L0;<dtb:em>'_MC5C'.</dtb:em>V7SU4</dtb:p>
       </x:expect>
     </x:scenario>
 
