@@ -11,9 +11,7 @@
 
     <x:scenario label="title">
       <x:context>
-        <dtb:title xml:lang="de">
-	  foo
-	</dtb:title>
+        <dtb:title xml:lang="de">foo</dtb:title>
       </x:context>
       <x:expect label="braille">
         <dtb:title xml:lang="de">FOO</dtb:title>
