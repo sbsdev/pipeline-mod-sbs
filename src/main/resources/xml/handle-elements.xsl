@@ -443,83 +443,80 @@
     </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:num[@role='fraction']">
     <xsl:variable name="numerator" select="(tokenize(string(.), '(\s|/)+'))[position()=1]"/>
     <xsl:variable name="denominator" select="(tokenize(string(.), '(\s|/)+'))[position()=2]"/>
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($numerator))"/>
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'denominator'), string($denominator))"
-    />
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($numerator))"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'denominator'), string($denominator))"/>
+    </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:num[@role='mixed']">
     <xsl:variable name="braille_tables" select="my:get-tables(.,local-name())"/>
     <xsl:variable name="number" select="(tokenize(string(.), '(\s|/)+'))[position()=1]"/>
     <xsl:variable name="numerator" select="(tokenize(string(.), '(\s|/)+'))[position()=2]"/>
     <xsl:variable name="denominator" select="(tokenize(string(.), '(\s|/)+'))[position()=3]"/>
-    <xsl:value-of select="my:louis-translate(.,$braille_tables, string($number))"/>
-    <xsl:value-of select="my:louis-translate(.,$braille_tables, string($numerator))"/>
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'denominator'), string($denominator))"
-    />
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,$braille_tables, string($number))"/>
+      <xsl:value-of select="my:louis-translate(.,$braille_tables, string($numerator))"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'denominator'), string($denominator))"/>
+    </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:num[@role='measure']">
     <!-- For all number-unit combinations, e.g. 1 kg, 10 km, etc. drop the space -->
     <xsl:variable name="tokens" select="tokenize(normalize-space(string(.)), '\s+')"/>
     <xsl:variable name="number" select="$tokens[1]"/>
     <xsl:variable name="measure" select="$tokens[position()=last()]"/>
-
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($number))"/>
-    <xsl:call-template name="handle_abbr">
-      <xsl:with-param name="context" select="'abbr'"/>
-      <xsl:with-param name="content" as="text()">
-        <xsl:value-of select="$measure"/>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($number))"/>
+      <xsl:call-template name="handle_abbr">
+	<xsl:with-param name="context" select="'abbr'"/>
+	<xsl:with-param name="content" as="text()">
+          <xsl:value-of select="$measure"/>
+	</xsl:with-param>
+      </xsl:call-template>
+    </xsl:copy>
   </xsl:template>
   
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:num[@role='isbn']">
     <xsl:variable name="braille_tables" select="my:get-tables(.,local-name())"/>
     <xsl:variable name="lastChar" select="substring(.,string-length(.),1)"/>
     <xsl:variable name="secondToLastChar" select="substring(.,string-length(.)-1,1)"/>
-    <xsl:choose>
-      <!-- If the isbn number ends in a capital letter then keep the
-           dash, mark the letter with &#x2566; and translate the
-           letter with abbr -->
-      <xsl:when
-        test="$secondToLastChar='-' and string(number($lastChar))='NaN' and my:isUpper($lastChar)">
-        <xsl:variable name="clean_number">
-          <xsl:for-each select="tokenize(substring(.,1,string-length(.)-2), '(\s|-)+')">
-            <xsl:value-of select="string(.)"/>
-            <xsl:if test="not(position() = last())">.</xsl:if>
-          </xsl:for-each>
-        </xsl:variable>
-        <xsl:value-of select="my:louis-translate(.,$braille_tables,string($clean_number))"/>
-        <xsl:value-of select="my:louis-translate(.,$braille_tables,$secondToLastChar)"/>
-        <xsl:value-of
-          select="my:louis-translate(.,my:get-tables(.,'abbr'),concat('&#x2566;',$lastChar))"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="clean_number">
-          <xsl:for-each select="tokenize(string(.), '(\s|-)+')">
-            <xsl:value-of select="string(.)"/>
-            <xsl:if test="not(position() = last())">.</xsl:if>
-          </xsl:for-each>
-        </xsl:variable>
-        <xsl:value-of select="my:louis-translate(.,$braille_tables,string($clean_number))"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:choose>
+	<!-- If the isbn number ends in a capital letter then keep the
+             dash, mark the letter with &#x2566; and translate the
+             letter with abbr -->
+	<xsl:when
+            test="$secondToLastChar='-' and string(number($lastChar))='NaN' and my:isUpper($lastChar)">
+          <xsl:variable name="clean_number">
+            <xsl:for-each select="tokenize(substring(.,1,string-length(.)-2), '(\s|-)+')">
+              <xsl:value-of select="string(.)"/>
+              <xsl:if test="not(position() = last())">.</xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
+          <xsl:value-of select="my:louis-translate(.,$braille_tables,string($clean_number))"/>
+          <xsl:value-of select="my:louis-translate(.,$braille_tables,$secondToLastChar)"/>
+          <xsl:value-of
+              select="my:louis-translate(.,my:get-tables(.,'abbr'),concat('&#x2566;',$lastChar))"/>
+	</xsl:when>
+	<xsl:otherwise>
+          <xsl:variable name="clean_number">
+            <xsl:for-each select="tokenize(string(.), '(\s|-)+')">
+              <xsl:value-of select="string(.)"/>
+              <xsl:if test="not(position() = last())">.</xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
+          <xsl:value-of select="my:louis-translate(.,$braille_tables,string($clean_number))"/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:copy>
   </xsl:template>
 
   <!--
