@@ -410,23 +410,23 @@
     </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:num[@role='roman']">
     <xsl:variable name="braille_tables" select="my:get-tables(.,'num_roman')"/>
-    <xsl:choose>
-      <xsl:when test="my:isUpper(substring(.,1,1))">
-        <!-- we assume that if the first char is uppercase the rest is also uppercase -->
-        <xsl:value-of select="my:louis-translate(.,$braille_tables,concat('&#x2566;',string()))"
-        />
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- presumably the roman number is in lower case -->
-        <xsl:value-of select="my:louis-translate(.,$braille_tables,concat('&#x2569;',string()))"
-        />
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:choose>
+	<xsl:when test="my:isUpper(substring(.,1,1))">
+          <!-- we assume that if the first char is uppercase the rest is also uppercase -->
+          <xsl:value-of select="my:louis-translate(.,$braille_tables,concat('&#x2566;',string()))"
+			/>
+	</xsl:when>
+	<xsl:otherwise>
+          <!-- presumably the roman number is in lower case -->
+          <xsl:value-of select="my:louis-translate(.,$braille_tables,concat('&#x2569;',string()))"
+			/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:copy>
   </xsl:template>
 
   <!--

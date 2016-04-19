@@ -105,7 +105,7 @@
           Auf Seite <brl:num role="roman">iii</brl:num> beginnt das Vorwort.</dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">HCR'Y &gt;IV. 1 S3( 'III ;G*NT D ,?W?T.</dtb:p>
+        <dtb:p xml:lang="de">HCR'Y <brl:num role="roman">&gt;IV</brl:num>. 1 S3( <brl:num role="roman">'III</brl:num> ;G*NT D ,?W?T.</dtb:p>
       </x:expect>
     </x:scenario>
 
