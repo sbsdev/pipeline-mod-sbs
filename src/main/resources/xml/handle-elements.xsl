@@ -681,7 +681,8 @@
   <!-- Comma after ordinals, fraction and sub/sup -->
   <!-- ========================================== -->
   <xsl:template
-    match="text()[(preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:num[@role=('ordinal','fraction','mixed')]|ancestor::dtb:sub|ancestor::dtb:sup)) and matches(string(), '^,')]" priority="100">
+      match="text()[(preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:num[@role=('ordinal','fraction','mixed')]|ancestor::dtb:sub|ancestor::dtb:sup)) and matches(string(), '^,')]"
+      priority="60">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x256C;',string()))"/>
   </xsl:template>
 
@@ -690,7 +691,8 @@
   <!-- ============================================= -->
   <xsl:template
     match="text()[my:starts-with-punctuation(string()) and not(preceding::* intersect my:preceding-textnode-within-block(.)/ancestor::*[@brl:render=('quote','singlequote')])
-    and (my:ends-with-number(string(my:preceding-textnode-within-block(.))) or (preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:num[@role='ordinal']|ancestor::brl:date)))]">
+	   and (my:ends-with-number(string(my:preceding-textnode-within-block(.))) or (preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:num[@role='ordinal']|ancestor::brl:date)))]"
+    priority="60">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250B;',string()))"/>
   </xsl:template>
 
@@ -698,7 +700,8 @@
   <!-- Apostrophe after v-form or after homograph -->
   <!-- ========================================== -->
   <xsl:template
-    match="text()[(preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:v-form|ancestor::brl:homograph)) and matches(string(), '^''')]" priority="100">
+      match="text()[(preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:v-form|ancestor::brl:homograph)) and matches(string(), '^''')]"
+      priority="60">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250A;',string()))"/>
   </xsl:template>
 
@@ -706,7 +709,8 @@
   <!-- Single word mixed emphasis, mixed emphasis before-->
   <!-- ================================================= -->
   <xsl:template
-    match="text()[my:starts-with-word(string()) and my:ends-with-word(string(my:preceding-textnode-within-block(.)[ancestor::dtb:em]))]">
+      match="text()[my:starts-with-word(string()) and my:ends-with-word(string(my:preceding-textnode-within-block(.)[ancestor::dtb:em]))]"
+      priority="60">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250A;',string()))"/>
   </xsl:template>
 
@@ -714,7 +718,8 @@
   <!-- Single word mixed emphasis, mixed emphasis after -->
   <!-- ================================================ -->
   <xsl:template
-    match="text()[my:ends-with-word(string()) and my:starts-with-word(string(my:following-textnode-within-block(.)[ancestor::dtb:em]))]">
+      match="text()[my:ends-with-word(string()) and my:starts-with-word(string(my:following-textnode-within-block(.)[ancestor::dtb:em]))]"
+      priority="60">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat(string(),'&#x250A;'))"/>
   </xsl:template>
   
@@ -722,7 +727,8 @@
   <!-- Single word mixed abbr -->
   <!-- ====================== -->
   <xsl:template
-    match="text()[my:starts-with-word(string()) and not(my:starts-with-number(string())) and my:ends-with-word(string(my:preceding-textnode-within-block(.)[ancestor::dtb:abbr]))]">
+      match="text()[my:starts-with-word(string()) and not(my:starts-with-number(string())) and my:ends-with-word(string(my:preceding-textnode-within-block(.)[ancestor::dtb:abbr]))]"
+      priority="60">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250A;',string()))"/>
   </xsl:template>
 
@@ -730,7 +736,8 @@
   <!-- 'ich' inside text node followed by chars that could be interpreted as numbers -->
   <!-- ============================================================================= -->
   <xsl:template
-    match="text()[(matches(string(), '^ich$', 'i') or matches(string(), '\Wich$', 'i')) and matches(string(following::text()[1]), '^[,;:?!)&#x00bb;&#x00ab;]')]" priority="100">
+      match="text()[(matches(string(), '^ich$', 'i') or matches(string(), '\Wich$', 'i')) and matches(string(following::text()[1]), '^[,;:?!)&#x00bb;&#x00ab;]')]"
+      priority="60">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat(string(),'&#x250A;'))"/>
   </xsl:template>
 
