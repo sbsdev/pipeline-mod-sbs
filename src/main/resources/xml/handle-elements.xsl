@@ -188,8 +188,10 @@
   </xsl:template>
   
   <xsl:template match="dtb:abbr">
-    <xsl:apply-templates select="@*"/>
-    <xsl:call-template name="handle_abbr"/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:call-template name="handle_abbr"/>
+    </xsl:copy>
   </xsl:template>
 
   <!-- ========================= -->

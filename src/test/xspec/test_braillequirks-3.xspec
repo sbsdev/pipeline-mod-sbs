@@ -94,7 +94,7 @@ mm</brl:num>
           <dtb:abbr>A. B. D. E. F. G. H. I. J.</dtb:abbr>
         </stub>
       </x:context>
-      <x:expect label="braille"><stub xml:lang="de">A.B.D.E.F.G.H.I.J.</stub></x:expect>
+      <x:expect label="braille"><stub xml:lang="de"><dtb:abbr>A.B.D.E.F.G.H.I.J.</dtb:abbr></stub></x:expect>
     </x:scenario>
 
     <x:scenario label="test 2 for Apostroph (pt. 6) erscheint zweimal bei Apostroph + Einzelbuchstabe (http://redmine.sbszh.ch/issues/show/929) ">
@@ -237,7 +237,7 @@ mm</brl:num>
       <x:context>
         <stub xml:lang="de"> (»<dtb:abbr>Bsp.</dtb:abbr>!«</stub>
       </x:context>
-      <x:expect label="braille"><stub xml:lang="de"> =(BSP.+)</stub></x:expect>
+      <x:expect label="braille"><stub xml:lang="de"> =(<dtb:abbr>BSP.</dtb:abbr>+)</stub></x:expect>
     </x:scenario>
 
     <x:scenario label="Quotes with phone number">
@@ -267,7 +267,7 @@ mm</brl:num>
       </x:context>
       <x:expect label="braille">
 	<stub xml:lang="de">
-	  <dtb:p>(OKA'Y. A # 8E % \ GAR N W^C; B* 7] 6 PAAR JRE * E &gt;USA.)</dtb:p>
+	  <dtb:p>(OKA'Y. A # 8E % \ GAR N W^C; B* 7] 6 PAAR JRE * E <dtb:abbr>&gt;USA</dtb:abbr>.)</dtb:p>
 	  <dtb:p>S HE V +F+G + E AKZCT ;M7KT, R E \L@ND7 -R0T, U FR(: (NA, U WOH7 KX] DU?)</dtb:p>
 	</stub>
       </x:expect>

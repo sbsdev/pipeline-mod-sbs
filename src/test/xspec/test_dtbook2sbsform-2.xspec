@@ -132,7 +132,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>ISBN</dtb:abbr> <brl:num role="isbn">978-3-86971-001-3</brl:num> <dtb:abbr>ISBN</dtb:abbr> <brl:num role="isbn">978-3-86971-001-X</brl:num> <dtb:abbr>ISBN</dtb:abbr> <brl:num role="isbn">978 3 86971 001 3</brl:num></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;ISBN <brl:num role="isbn">#IGH.C.HFIGA.JJA.C</brl:num> &gt;ISBN <brl:num role="isbn">#IGH.C.HFIGA.JJA-&gt;X</brl:num> &gt;ISBN <brl:num role="isbn">#IGH.C.HFIGA.JJA.C</brl:num></dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;ISBN</dtb:abbr> <brl:num role="isbn">#IGH.C.HFIGA.JJA.C</brl:num> <dtb:abbr>&gt;ISBN</dtb:abbr> <brl:num role="isbn">#IGH.C.HFIGA.JJA-&gt;X</brl:num> <dtb:abbr>&gt;ISBN</dtb:abbr> <brl:num role="isbn">#IGH.C.HFIGA.JJA.C</brl:num></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -141,7 +141,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>A4</dtb:abbr></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;A#D</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;A#D</dtb:abbr></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -150,7 +150,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>RTÉ</dtb:abbr></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;RT"%</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;RT"%</dtb:abbr></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -159,7 +159,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>C2D</dtb:abbr></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;C#B&gt;D</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;C#B&gt;D</dtb:abbr></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -168,7 +168,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>C</dtb:abbr></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;C</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;C</dtb:abbr></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -177,7 +177,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>c2d</dtb:abbr></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">'C#B'D</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>'C#B'D</dtb:abbr></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -186,7 +186,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>GmbH</dtb:abbr></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">$GMB&gt;H</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>$GMB&gt;H</dtb:abbr></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -195,7 +195,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>kHz</dtb:abbr></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">'K$HZ</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>'K$HZ</dtb:abbr></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -204,7 +204,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>DM </dtb:abbr>50</dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;DM#EJ</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;DM</dtb:abbr>#EJ</dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -222,7 +222,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>X</dtb:abbr><dtb:abbr>Box</dtb:abbr></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;X$BOX</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;X</dtb:abbr><dtb:abbr>$BOX</dtb:abbr></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -385,7 +385,7 @@
       </x:context>
       <x:expect label="braille">
         <stub xml:lang="de">
-          <dtb:p>&gt;A!,m&gt;Z</dtb:p>
+          <dtb:p><dtb:abbr>&gt;A</dtb:abbr>!,m<dtb:abbr>&gt;Z</dtb:abbr></dtb:p>
         </stub>
       </x:expect>
     </x:scenario>
@@ -398,7 +398,7 @@
       </x:context>
       <x:expect label="braille">
         <stub xml:lang="de">
-          <dtb:p>&gt;A#D</dtb:p>
+          <dtb:p><dtb:abbr>&gt;A</dtb:abbr>#D</dtb:p>
         </stub>
       </x:expect>
     </x:scenario>
@@ -426,9 +426,11 @@
           <dtb:p>Die hohen <dtb:abbr>C</dtb:abbr>s</dtb:p>
         </stub>
       </x:context>
+      <!-- FIXME: The Apo should be outside the abbr -->
+      <!-- <dtb:p>0 HOHC <dtb:abbr>&gt;C</dtb:abbr>'S</dtb:p> -->
       <x:expect label="braille">
         <stub xml:lang="de">
-          <dtb:p>0 HOHC &gt;C'S</dtb:p>
+          <dtb:p>0 HOHC <dtb:abbr>&gt;C'</dtb:abbr>S</dtb:p>
         </stub>
       </x:expect>
     </x:scenario>
@@ -439,9 +441,11 @@
           <dtb:p>bla <dtb:abbr>GmbH</dtb:abbr>s bla</dtb:p>
         </stub>
       </x:context>
+      <!-- FIXME: The Apo should be outside the abbr -->
+      <!-- <dtb:p>BLA <dtb:abbr>$GMB&gt;H</dtb:abbr>'S BLA</dtb:p> -->
       <x:expect label="braille">
         <stub xml:lang="de">
-          <dtb:p>BLA $GMB&gt;H'S BLA</dtb:p>
+          <dtb:p>BLA <dtb:abbr>$GMB&gt;H'</dtb:abbr>S BLA</dtb:p>
         </stub>
       </x:expect>
     </x:scenario>

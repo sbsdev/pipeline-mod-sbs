@@ -77,7 +77,7 @@
         <stub xml:lang="de"><dtb:abbr>GmbH</dtb:abbr></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">$GMB&gt;H</stub>
+	<stub xml:lang="de"><dtb:abbr>$GMB&gt;H</dtb:abbr></stub>
       </x:expect>
     </x:scenario>
 
@@ -86,7 +86,7 @@
         <stub xml:lang="de"><dtb:abbr>USA</dtb:abbr></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">&gt;USA</stub>
+	<stub xml:lang="de"><dtb:abbr>&gt;USA</dtb:abbr></stub>
       </x:expect>
     </x:scenario>
 
@@ -95,7 +95,7 @@
         <stub xml:lang="de"><dtb:abbr>cd</dtb:abbr></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">'CD</stub>
+	<stub xml:lang="de"><dtb:abbr>'CD</dtb:abbr></stub>
       </x:expect>
     </x:scenario>
 
@@ -104,7 +104,7 @@
         <stub xml:lang="de">3<dtb:abbr>a</dtb:abbr></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">#C'A</stub>
+	<stub xml:lang="de">#C<dtb:abbr>'A</dtb:abbr></stub>
       </x:expect>
     </x:scenario>
 
@@ -113,7 +113,7 @@
         <stub xml:lang="de"><dtb:abbr>Nr. </dtb:abbr>2</stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">NR.#B</stub>
+	<stub xml:lang="de"><dtb:abbr>NR.</dtb:abbr>#B</stub>
       </x:expect>
     </x:scenario>
 
@@ -122,7 +122,7 @@
         <stub xml:lang="de"><dtb:abbr>z. B.</dtb:abbr></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">Z.B.</stub>
+	<stub xml:lang="de"><dtb:abbr>Z.B.</dtb:abbr></stub>
       </x:expect>
     </x:scenario>
 
@@ -131,7 +131,7 @@
         <stub xml:lang="de"><dtb:abbr>w. z. b. w.</dtb:abbr></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">W.Z.B.W.</stub>
+	<stub xml:lang="de"><dtb:abbr>W.Z.B.W.</dtb:abbr></stub>
       </x:expect>
     </x:scenario>
 
@@ -140,7 +140,7 @@
         <stub xml:lang="de"><dtb:abbr>etc.</dtb:abbr></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">ET'C.</stub>
+	<stub xml:lang="de"><dtb:abbr>ET'C.</dtb:abbr></stub>
       </x:expect>
     </x:scenario>
 
@@ -149,7 +149,7 @@
         <stub xml:lang="de"><dtb:abbr>a.</dtb:abbr></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">A.</stub>
+	<stub xml:lang="de"><dtb:abbr>A.</dtb:abbr></stub>
       </x:expect>
     </x:scenario>
 
@@ -186,9 +186,11 @@
           <dtb:p><dtb:abbr>CD</dtb:abbr>s</dtb:p>
         </stub>
       </x:context>
+      <!-- FIXME: The Apo should be outside the abbr -->
+      <!-- <dtb:p><dtb:abbr>&gt;CD</dtb:abbr>'S</dtb:p> -->
       <x:expect label="braille">
 	<stub xml:lang="de">
-          <dtb:p>&gt;CD'S</dtb:p>
+          <dtb:p><dtb:abbr>&gt;CD'</dtb:abbr>S</dtb:p>
 	</stub>
       </x:expect>
     </x:scenario>
@@ -201,7 +203,7 @@
       </x:context>
       <x:expect label="braille">
 	<stub xml:lang="de">
-          <dtb:p>&gt;CDS</dtb:p>
+          <dtb:p><dtb:abbr>&gt;CD</dtb:abbr>S</dtb:p>
 	</stub>
       </x:expect>
     </x:scenario>

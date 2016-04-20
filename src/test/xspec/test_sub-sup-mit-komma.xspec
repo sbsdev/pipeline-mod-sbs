@@ -23,7 +23,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>Cu</dtb:abbr><dtb:sup>2+</dtb:sup>, </dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">$CU\#B"+', </dtb:p>
+	<dtb:p xml:lang="de"><dtb:abbr>$CU</dtb:abbr>\#B"+', </dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -32,7 +32,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>CO</dtb:abbr><dtb:sub>2</dtb:sub>, </dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">&gt;CO1;', </dtb:p>
+	<dtb:p xml:lang="de"><dtb:abbr>&gt;CO</dtb:abbr>1;', </dtb:p>
       </x:expect>
     </x:scenario>
 

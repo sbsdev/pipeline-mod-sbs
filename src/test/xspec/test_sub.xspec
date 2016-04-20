@@ -15,7 +15,7 @@
 	</dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;CO1; &gt;H1;&gt;O =&gt;CO1;'= </dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;CO</dtb:abbr>1; <dtb:abbr>&gt;H</dtb:abbr>1;<dtb:abbr>&gt;O</dtb:abbr> =<dtb:abbr>&gt;CO</dtb:abbr>1;'= </dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -25,7 +25,7 @@
 	</dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;V&lt;/ </dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;V</dtb:abbr>&lt;/ </dtb:p>
       </x:expect>
     </x:scenario>
 

@@ -23,7 +23,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>Cu</dtb:abbr><dtb:sup>2+</dtb:sup></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">$CU\#B"+</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>$CU</dtb:abbr>\#B"+</dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -41,7 +41,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>V</dtb:abbr><dtb:sup><brl:select><brl:when-braille><brl:literal>&gt;/</brl:literal></brl:when-braille><brl:otherwise>*</brl:otherwise></brl:select></dtb:sup></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">&gt;V&gt;/</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;V</dtb:abbr>&gt;/</dtb:p>
       </x:expect>
     </x:scenario>
 

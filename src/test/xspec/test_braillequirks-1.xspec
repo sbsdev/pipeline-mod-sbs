@@ -54,7 +54,7 @@
       <x:context>
         <stub xml:lang="de"><dtb:abbr>AM</dtb:abbr>- und der <dtb:abbr>FM</dtb:abbr>-Skala,</stub>
       </x:context>
-      <x:expect label="braille"><stub xml:lang="de">&gt;AM- U R &gt;FM-SK:A,</stub></x:expect>
+      <x:expect label="braille"><stub xml:lang="de"><dtb:abbr>&gt;AM</dtb:abbr>- U R <dtb:abbr>&gt;FM</dtb:abbr>-SK:A,</stub></x:expect>
     </x:scenario>
 
 </x:description>
