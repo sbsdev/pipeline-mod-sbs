@@ -177,6 +177,8 @@
           </xsl:for-each>
         </xsl:otherwise>
       </xsl:choose>
+      <!-- FIXME: The following code should be replaced with the according text matcher below
+           (lowercase letter after abbr ending with capital) -->
       <!-- If the last letter was a capital and the following letter is small, insert a KLEINBUCHSTABE -->
       <xsl:if test="matches(string($content), '.*\p{Lu}$') and
                     $content/following-sibling::node()[1][self::text()] and
@@ -665,6 +667,19 @@
     priority="60">
     <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250B;',string()))"/>
   </xsl:template>
+
+  <!-- =============================================== -->
+  <!-- lowercase letter after abbr ending with capital -->
+  <!-- =============================================== -->
+  <!-- FIXME: This doesn't work at the moment because it inserts two apostrophes. It works if this
+       code is inside the abbr generating code but has the drawback that the apostrophe is generated
+       within the abbr element. It would be better to make the code below work and drop the code in
+       the abbr handling code -->
+  <!-- <xsl:template -->
+  <!--   match="text()[matches(string(.), '^\p{Ll}.*') and (preceding::* intersect my:preceding-textnode-within-block(.)/ancestor::dtb:abbr)[matches(string(.), '.*\p{Lu}$')]]" -->
+  <!--   priority="61"> -->
+  <!--   <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat($KLEINBUCHSTABE,string()))"/> -->
+  <!-- </xsl:template> -->
 
   <!-- ========================================== -->
   <!-- Apostrophe after v-form or after homograph -->
