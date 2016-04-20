@@ -112,9 +112,6 @@
   <!-- Computer Braille -->
   <!-- ================ -->
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:computer">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
