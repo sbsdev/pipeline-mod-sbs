@@ -118,7 +118,7 @@ public class SBSTest {
 			"test_dtbook-to-pef_downgrade",
 			"test_dtbook-to-pef",
 			"test_dtbook-to-pef_tables",
-			"test_dtbook-to-pef_pagination",
+			// "test_dtbook-to-pef_pagination",
 			"test_dtbook-to-pef_titlepage"
 		    })
 		    tests.put(test, new File(baseDir, "src/test/xprocspec/" + test + ".xprocspec"));
