@@ -8,11 +8,10 @@
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
   <x:param name="ascii-braille">yes</x:param>
-
-    <!-- <x:param name="hyphenation" select="true()"/> -->
+  <x:param name="hyphenation">true</x:param>
 
     <x:scenario label="Test handling of pre-hyphenated text"
-		pending="ignore hyphenation tests for now">
+		>
       <x:context>
         <dtb:p xml:lang="de">Ba­de­ho­sen­bun­des</dtb:p>
       </x:context>
@@ -22,7 +21,7 @@
     </x:scenario>
 
     <x:scenario label="Test handling of pre-hyphenated text in doctitle"
-		pending="ignore hyphenation tests for now">
+		>
       <x:context>
         <dtb:doctitle xml:lang="de">Ba­de­ho­sen­bun­des</dtb:doctitle>
       </x:context>

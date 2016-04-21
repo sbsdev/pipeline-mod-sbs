@@ -7,8 +7,7 @@
 
   <x:param name="contraction-grade">1</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
-
-    <!-- <x:param name="hyphenation" select="true()"/> -->
+  <x:param name="hyphenation">true</x:param>
 
     <x:scenario label="getTable for de-1901 and contraction = 2 with hyphenation"
 		pending="getTable template is not implemented">
