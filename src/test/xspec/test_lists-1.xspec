@@ -76,27 +76,23 @@
 	<dtb:list type="pl">
           <dtb:li>#A. BLA BLA</dtb:li>
           <dtb:li>#B. BLA BLA</dtb:li>
-          <dtb:li>#C. BLA BLA
-            <dtb:list type="pl">
-              <dtb:li>'A= BLO BLO
-                <dtb:list type="pl">
-                  <dtb:li>I. BLE BLE</dtb:li>
-                  <dtb:li>II. BLE BLE</dtb:li>
-                </dtb:list>
-              </dtb:li>
-              <dtb:li>'B= BLO BLO</dtb:li>
-            </dtb:list>
+          <dtb:li>#C. BLA BLA <dtb:list type="pl">
+          <dtb:li>'A= BLO BLO <dtb:list type="pl">
+          <dtb:li>I. BLE BLE</dtb:li>
+          <dtb:li>II. BLE BLE</dtb:li>
+        </dtb:list>
           </dtb:li>
-          <dtb:li>#D. BLA BLA
-            <dtb:list type="pl">
-              <dtb:li>'A) BLO BLO
-                <dtb:list type="pl">
-                  <dtb:li>I. BLE BLE</dtb:li>
-                  <dtb:li>II. BLE BLE</dtb:li>
-                </dtb:list>
-              </dtb:li>
-              <dtb:li>'B) BLO BLO</dtb:li>
-            </dtb:list>
+          <dtb:li>'B= BLO BLO</dtb:li>
+        </dtb:list>
+          </dtb:li>
+          <dtb:li>#D. BLA BLA <dtb:list type="pl">
+          <dtb:li>'A= BLO BLO <dtb:list type="pl">
+          <dtb:li>I. BLE BLE</dtb:li>
+          <dtb:li>II. BLE BLE</dtb:li>
+        </dtb:list>
+          </dtb:li>
+          <dtb:li>'B= BLO BLO</dtb:li>
+        </dtb:list>
           </dtb:li>
           <dtb:li>#E. BLA BLA</dtb:li>
         </dtb:list>
