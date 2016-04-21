@@ -11,7 +11,7 @@
 
     <x:param name="downshift_ordinals" select="true()"/>
 
-    <x:scenario label="Ordered lists (downshift ordinals)">
+    <x:scenario label="Ordered lists (downshift ordinals)" pending="has not been ported yet">
       <x:context>
         <stub xml:lang="de">
 	<dtb:list type="ol">
