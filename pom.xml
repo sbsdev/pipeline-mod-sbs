@@ -6,10 +6,7 @@
   <parent>
     <groupId>org.daisy.pipeline.modules.braille</groupId>
     <artifactId>braille-modules-parent</artifactId>
-    <!--
-        depends on master
-    -->
-    <version>1.9.11-SNAPSHOT</version>
+    <version>1.9.11</version>
     <relativePath />
   </parent>
 
@@ -21,10 +18,7 @@
 
   <properties>
     <sbs-hyphenation-tables.version>1.17</sbs-hyphenation-tables.version>
-    <!--
-        depends on branch pipeline2 (https://github.com/sbsdev/sbs-braille-tables/issues/1)
-    -->
-    <sbs-braille-tables.version>2.1-SNAPSHOT</sbs-braille-tables.version>
+    <sbs-braille-tables.version>2.1</sbs-braille-tables.version>
   </properties>
   
   <dependencies>
