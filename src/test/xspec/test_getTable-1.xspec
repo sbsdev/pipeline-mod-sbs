@@ -8,42 +8,46 @@
 
   <x:param name="contraction-grade">2</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
+  <x:param name="virtual.dis-uri" select="'virtual.dis'"/>
 
     <x:scenario label="getTable for fr and contraction = 2">
       <x:call function="my:get-tables">
-        <x:param name="context" select="''"/>
-        <x:param name="ctx" as="element()" select=".">
+        <x:param>
           <dtb:p xml:lang="fr"/>
         </x:param>
+        <x:param select="''"/>
       </x:call>
-      <x:expect label="braille">sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod</x:expect>
+      <x:expect label="braille" select="'virtual.dis,http://www.sbs.ch/pipeline/liblouis/tables/sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod'"/>
     </x:scenario>
 
-    <x:scenario label="getTable for de and contraction = 2"
-		pending="getTable template is not implemented">
-      <x:call template="getTable"/>
-      <x:context>
-        <p xml:lang="de"/>
-      </x:context>
-      <x:expect label="braille">sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod</x:expect>
+    <x:scenario label="getTable for de and contraction = 2">
+      <x:call function="my:get-tables">
+        <x:param>
+          <dtb:p xml:lang="de"/>
+	</x:param>
+        <x:param select="''"/>
+      </x:call>
+      <x:expect label="braille" select="'virtual.dis,http://www.sbs.ch/pipeline/liblouis/tables/sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod'"/>
     </x:scenario>
 
-    <x:scenario label="getTable for de-1901 and contraction = 2"
-		pending="getTable template is not implemented">
-      <x:call template="getTable"/>
-      <x:context>
-        <p xml:lang="de-1901"/>
-      </x:context>
-      <x:expect label="braille">sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod</x:expect>
+    <x:scenario label="getTable for de-1901 and contraction = 2">
+      <x:call function="my:get-tables">
+        <x:param>
+          <dtb:p xml:lang="de-1901"/>
+	</x:param>
+        <x:param select="''"/>
+      </x:call>
+      <x:expect label="braille" select="'virtual.dis,http://www.sbs.ch/pipeline/liblouis/tables/sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-de-letsign.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g2-white.mod,sbs-de-g2-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod'"/>
     </x:scenario>
 
-    <x:scenario label="getTable for abbr (de) and contraction = 2"
-		pending="getTable template is not implemented">
-      <x:call template="getTable"/>
-      <x:context>
-        <dtb:abbr xml:lang="de"/>
-      </x:context>
-      <x:expect label="braille">sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod</x:expect>
+    <x:scenario label="getTable for abbr (de) and contraction = 2">
+      <x:call function="my:get-tables">
+        <x:param>
+          <dtb:abbr xml:lang="de"/>
+	</x:param>
+        <x:param select="'abbr'"/>
+      </x:call>
+      <x:expect label="braille" select="'virtual.dis,http://www.sbs.ch/pipeline/liblouis/tables/sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod,sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod,sbs-special.mod'"/>
     </x:scenario>
 
 </x:description>
