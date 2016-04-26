@@ -5,9 +5,7 @@
   <x:param name="contraction-grade">0</x:param>
   <x:param name="hyphenator">(locale:de)</x:param>
   
-  <x:scenario label="simple test"
-	      pending="whitespace is collapsed at the moment where it
-		       shouldn't be. This is a known bug and will be fixed">
+  <x:scenario label="simple test">
     <x:context>
       <_ xmlns="http://www.daisy.org/z3986/2005/dtbook/" style="display:block"> foo
         <span style="hyphens: auto">foobar</span>

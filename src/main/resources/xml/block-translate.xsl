@@ -31,7 +31,7 @@
 		<xsl:variable name="unicode-braille"
 			      select="pf:text-transform(
 		                      concat('(liblouis-table:&quot;',$table,'&quot;)',$hyphenator),
-		                      replace($text, '(\p{Z}|\s)+', ' '),
+		                      $text,
 		                      my:get-style($context))"/>
 		<xsl:choose>
 		  <xsl:when test="$ascii-braille = 'yes'">
