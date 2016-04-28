@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:dtb="http://www.daisy.org/z3986/2005/dtbook/"
+<xsl:stylesheet version="2.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    exclude-result-prefixes="xs dtb" version="2.0"
+    exclude-result-prefixes="xs"
     xpath-default-namespace="http://www.daisy.org/z3986/2005/dtbook/"
     xmlns="http://www.daisy.org/z3986/2005/dtbook/">
 
@@ -11,7 +11,7 @@
   <xsl:param name="contraction-grade" select="'0'"/>
   <xsl:param name="volumes" select="1" as="xs:integer"/>
 
-  <xsl:template match="dtb:frontmatter/dtb:docauthor">
+  <xsl:template match="frontmatter/docauthor">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:apply-templates/>
@@ -27,75 +27,49 @@
   </xsl:template>
 
   <xsl:template name="add-information-based-from-metadata">
-    <level1 class="first-page" style="text-align: center; page-break-inside:avoid ; ">
+    <level1 id="cover-recto" style="text-align: center; page-break-inside:avoid ; ">
 
       <!-- Authors -->
-      <xsl:variable name="author" select="//meta[@name = 'dc:Creator']/@content"/>
-      <xsl:for-each select="$author[position() &lt;= 3]">
-        <xsl:choose>
-          <xsl:when test="position() = 1">
-            <p class="author" style="display: block;  margin-top: 4; ">
-              <xsl:value-of select="."/>
-            </p>
-          </xsl:when>
-          <xsl:otherwise>
-            <p class="author" style="display: block;">
-              <xsl:value-of select="."/>
-            </p>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:for-each>
+      <p class="author" style="display: block;  margin-top: 4; ">
+        <xsl:value-of select="//docauthor"/>
+      </p>
 
       <!-- Title -->
-      <p class="title" style="display: block; margin-top: 1;">
-        <xsl:value-of select="//meta[@name = 'dc:Title']/@content"/>
+      <p class="title" style="display: block; margin-top: 1; border-bottom: ⠤; ">
+        <xsl:value-of select="//doctitle"/>
       </p>
 
       <!-- Volumes -->
-      <xsl:variable name="volumes-count"
-		    select="if ($volumes lt 13) then
-			    ('einem','zwei','drei','vier','fünf','sechs','sieben','acht','neun','zehn','elf','zwölf')[$volumes]
-			    else string($volumes)"/>
-      <xsl:variable name="volume-name"
-		    select="if ($volumes lt 13) then
-			    ('Erster','Zweiter','Dritter','Vierter','Fünfter','Sechster','Siebter','Achter','Neunter','Zehnter','Elfter','Zwölfter')[$volumes]
-			    else string($volumes)"/>
-      <p style="display: block; margin-top: 4;">
-	<xsl:value-of select="concat('In ', $volumes-count, ' ', if
-			      ($volumes eq 1) then 'Brailleband' else
-			      'Braillebänden')"/>
-      </p>
+      <p class="how-many-volumes" style="display: block; margin-top: 4;">In <span style="text-transform:volume; "/> Braillebänden</p>
+
+      <!-- <frees> 1. (if (> $volumes 1) "Volume " "In one volume") -->
+      <!-- <frees> 2. (if (> $volumes 1) $volume) => put style "text-transform:volume" on this part -->
+      <!-- <frees> 3. (if (> $volumes 1) " of ") -->
+      <!-- <frees> 4. (if (> $volumes 1) $volumes) => put style "text-transform:volumes" on this part -->
       
-      <p style="display: block; margin-top: 4;">
+      <p class="which-volume" style="display: block; margin-top: 4;">
 	<!-- FIXME: if there are more than 12 volumes we want just the -->
 	<!-- number but downshifted as with ordinals -->
-	<xsl:value-of select="concat(if ($volumes lt 13) then $volume-name else string($volumes), ' Band')"/>
+	<span style="text-transform:volumes; "/> Band
       </p>
       
       <!-- Publisher -->
       <p style="display: block;">SBS Schweiz. Bibliothek Für Blinde, Seh- und Lesebehinderte</p>
     </level1>
-    <level1 class="second-page">
-      <p>Dieses Braillebuch ist die ausschliesslich für die Nutzung
+    <level1 class="cover-verso">
+      <p id="copyright-blurb">Dieses Braillebuch ist die ausschliesslich für die Nutzung
       durch Seh- und Lesebehinderte Menschen bestimmte zugängliche
       Version eines urheberrechtlich geschützten Werks. Sie können es
       im Rahmen des Urheberrechts persönlich nutzen, dürfen es aber
       nicht weiter verbreiten oder öffentlich zugänglich machen</p>
 
-      <p>Verlag, Satz und Druck<br/>
+      <p id="publisher-blurb">Verlag, Satz und Druck<br/>
       SBS Schweiz. Bibliothek für Blinde, Seh- und Lesebehinderte, Zürich<br/>
       www.sbs.ch</p>
 
-      <p class="year" style="display: block; margin-bottom: 2;">
-	<xsl:value-of select="concat('SBS ', format-dateTime(current-dateTime(), '[Y]'))"/>
+      <xsl:variable name="date" select="//meta[@name = 'dc:Date']/@content"/>
+      <p id="cover-year" style="display: block; margin-bottom: 2;">SBS <xsl:value-of select="format-date($date, '[Y]')"/>
       </p>
-      <p>SBS</p>
-   </level1>
-   <level1 class="third-page">
-     <xsl:apply-templates select="//level1[@class='titlepage']/*"/>
-   </level1>
-   <level1 class="fourth-page">
-     <xsl:apply-templates select="//level1[not(@class='titlepage' or @class='toc')]/*"/>
    </level1>
   </xsl:template>
 
