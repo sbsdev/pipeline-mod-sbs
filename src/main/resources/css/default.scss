@@ -13,6 +13,7 @@
 
 /* Namespaces */
 
+@namespace xml "http://www.w3.org/XML/1998/namespace";
 @namespace brl url(http://www.daisy.org/z3986/2009/braille/);
 
 /* Page layout
@@ -20,29 +21,53 @@
  * A page contains 28 columns by 28 rows of braille (configurable with
  * options, defaults in script). */
 
-@page frontmatter:right {
-    margin-bottom: 1;
-    @bottom-center {
-        content: string(running-footer);
+@page {
+    @footnotes {
+	border-top: ⠒;
+	content: flow(footnotes);
     }
 }
 
-@page bodymatter:right {
+@page frontmatter:right {
     margin-bottom: 1;
     @bottom-center {
-        content: string(running-footer);
+	content: string(running-footer-front);
+    }
+}
+
+@page toc:right {
+    margin-bottom: 1;
+    @bottom-center {
+	content: "Inhaltsverzeichnis";
+    }
+    @bottom-right {
+	content: counter(tocpage);
     }
 }
 
 @if $show-print-page-numbers {
     @page bodymatter:right {
+        margin-bottom: 1;
         @bottom-left {
-            content: "⠸" string(print-page);
-            /* change to the following when string() supports it: */
-            /* content: "_" string(print-page, start-spread) "/" string(print-page, last-on-spread); */
-            /* this translates _x/ (single print page) as _x and _x/y (range) as a fraction: */
-            /* text-transform: print-page; */
+	    content: string(print-page, spread-start) string(slash-print-page, spread-last-except-start);
+	    text-transform: print-page;
         }
+        @bottom-center {
+            content: string(running-footer-body);
+	}
+    }
+}
+@else {
+    @if $levels-in-footer >= 1 {
+	@page bodymatter:right {
+            margin-bottom: 1;
+            @bottom-left {
+		content: "⠒⠒⠒ " string(running-footer-body);
+	    }
+	}
+    }
+    @else {
+	/* TODO: insert code for flow-into-footer style (not yet implemented) */
     }
 }
 
@@ -54,8 +79,102 @@
     }
 }
 
+
+@for $level from 1 through 6 {
+    @if $levels-in-footer >= $level {
+	bodymatter h#{$level} {
+        string-set: running-footer-body content();
+        &:has(> brl|running-line) {
+            string-set: none;
+        }
+        > brl|running-line {
+            string-set: running-footer-body content();
+        }
+    }
+    }
+}
+
+/* uncomment once contraction-grade is supported
+brl|volume[brl|grade='#{dollar-contraction-grade}'] {
+   volume-break-before:always;
+} */
+
+
+@volume {
+    @begin {
+	content: flow(wholetp) flow(volume-toc);
+    }
+}
+
+@volume:first {
+    @begin {
+	content: flow(wholetp) flow(wholefm) flow(document-toc);
+    }
+}
+
+#generated-document-toc,
+#generated-volume-toc {
+    counter-reset: tocpage 1;
+}
+
+#generated-document-toc::-obfl-on-toc-start,
+#generated-volume-toc::-obfl-on-toc-start {
+    display: block;
+    content: 'Inhaltsverzeichnis';
+    text-align: center;
+    text-indent:0;
+    margin-top:1;
+    margin-left:4;
+    margin-right:4;
+    margin-bottom:1;
+    border-bottom:⠤;
+    page-break-before: always;
+}
+
+#generated-document-toc::-obfl-on-volume-start,
+#generated-volume-toc::-obfl-on-volume-start {
+    display: block;
+    content: 'Band ' -obfl-evaluate('(round $started-volume-number)');
+    text-align: center;
+    text-indent:0;
+    margin-top:1;
+    margin-bottom:1;
+}
+
+#generated-document-toc::-obfl-on-volume-end,
+#generated-volume-toc::-obfl-on-volume-end {
+    display: block;
+    text-align: center;
+    text-indent:0;
+    margin-top:1;
+    margin-bottom:1;
+}
+
+#generated-document-toc::-obfl-on-toc-end,
+#generated-volume-toc::-obfl-on-toc-end {
+    display: block;
+    text-align: center;
+    text-indent:0;
+    content: '⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒';
+    margin-top:1;
+    margin-bottom:1;
+}
+
+#generated-volume-toc li,
+#generated-document-toc li {
+    display: block;
+}
+
+#generated-volume-toc li a::after,
+#generated-document-toc li a::after {
+    /* TODO: target-string(attr(href), print-page) should be downshifted and preceded by a number sign
+           target-counter(attr(href), page) should be regular (upshifted) and not preceded by a number sign */
+    content: " " leader('⠄') " " target-string(attr(href), print-page) target-counter(attr(href), page);
+}
+
 dtbook {
     hyphens: auto;
+    counter-reset: footnote 0;
 }
 
 /* Hidden elements
@@ -77,6 +196,51 @@ docauthor {
 }
 
 
+noteref {
+    counter-increment: footnote;
+}
+
+noteref::after {
+    display: inline;
+    content: counter(footnote);
+}
+
+noteref::alternate {
+    flow: footnotes;
+    display: block;
+    content: '⠠⠔' counter(footnote) ' ' target-content(attr(idref));
+    text-indent: -2;
+    margin-left: 2
+}
+
+note {
+    display: none;
+}
+
+note p {
+    display: inline;
+}
+
+
+.pageref {
+    flow: null;
+}
+
+.pageref::alternate {
+    display: inline;
+    content: target-counter(attr(href), page);
+}
+
+brl|select,
+brl|when-braille,
+brl|literal{
+    display: inline;
+}
+
+brl|otherwise{
+    display: none;
+}
+
 /* Headings */
 
 h1 {
@@ -88,7 +252,7 @@ h1 {
     border-bottom: ⠤;
     margin-bottom: 1;
     page-break-after: avoid;
-    string-set: running-footer content();
+    hyphens: none;
 }
 
 h2 {
@@ -97,7 +261,7 @@ h2 {
     text-align: left;
     border-bottom: ⠒;
     page-break-after: avoid;
-    string-set: running-footer content();
+    hyphens: none;
 }
 
 h3 {
@@ -106,7 +270,7 @@ h3 {
     text-align: left;
     border-bottom: ⠂;
     page-break-after: avoid;
-    string-set: running-footer content();
+    hyphens: none;
 }
 
 h4, h5, h6 {
@@ -114,7 +278,7 @@ h4, h5, h6 {
     margin-right: 4;
     text-align: left;
     page-break-after: avoid;
-    string-set: running-footer content();
+    hyphens: none;
 }
 
 hd, bridgehead {
@@ -123,14 +287,38 @@ hd, bridgehead {
     text-align: left;
     margin-top: 1;
     page-break-after: avoid;
+    hyphens: none;
+}
+
+brl|running-line, brl|toc-line, brl|otherwise {
+    display:none;
+}
+
+sidebar > hd {
+    display: block;
+    margin-top:0;
+    page-break-after: avoid;
 }
 
 /* Divisions */
 
-level1 {
+frontmatter > level1 {
     display: block;
     page-break-before:right;
+    string-set: running-footer-front "Klappentexte";
 }
+
+bodymatter > level1:not(:nth-child(1)),
+rearmatter > level1:not(:nth-child(1)) {
+    display: block;
+    page-break-before:always;
+}
+
+
+level1 {
+    display: block;
+}
+
 
 level2 {
     display:block;
@@ -150,20 +338,13 @@ level4, level5, level6 {
     orphans:4;
 }
 
-/* Front matter, body matter and rear matter
- *
- * These elements always start on a new page. The print page number is
- * reset on the start of these elements.
- *
- * If any of these consist of only content that is not rendered, then
- * that element as a whole is not rendered. */
-
 frontmatter, bodymatter, rearmatter {
     display: block;
 }
 
 frontmatter {
     page: frontmatter;
+    flow: wholefm;
 }
 
 frontmatter level2 {
@@ -172,13 +353,10 @@ frontmatter level2 {
     orphans:4;
 }
 
-frontmatter > level1 {
-    string-set: running-footer "Klappentexte";
-}
-
 frontmatter > .titlepage {
     display: block;
-    string-set: running-footer "";
+    /*string-set: running-footer-front "";*/
+    flow: wholetp;
 }
 
 frontmatter > .titlepage > level2:nth-child(1) > p {
@@ -195,7 +373,7 @@ frontmatter > .titlepage > level2:nth-child(2) > p {
 .sourcePublisher {
     display: block;
     text-align:center;
-    -obfl-vertical-position:27;
+    -obfl-vertical-position:26;
     page-break-after:always;
 }
 
@@ -208,7 +386,7 @@ frontmatter > .titlepage > level2:nth-child(1)::before {
     margin-left:4;
     margin-right:4;
     border-bottom: ⠤;
-    content:string(docauthor) "\A\A\A" string(doctitle);
+    content: string(docauthor) "\A\A\A" string(doctitle);
 }
 
 bodymatter {
@@ -225,21 +403,18 @@ p {
     text-indent: 2;
 }
 
-/* Preceding empty line
- *
- * Adds a blank line before the element. */
-
-.precedingemptyline {
-    margin-top: 1;
+.precedingemptyline{
+    margin-top:1;
 }
 
 .noindent {
+    display: block;
     text-indent: 0;
 }
 
 pagenum {
     display: none;
-    string-set: print-page content();
+    string-set: print-page content(), slash-print-page '/' content();
 }
 
 blockquote {
@@ -256,7 +431,7 @@ poem {
 }
 
 linegroup {
-	display: block;
+    display: block;
 }
 
 linegroup + linegroup {
@@ -276,7 +451,7 @@ author, byline {
     text-align: right;
 }
 
-table{
+table {
     display:block;
     margin-top:1;
     margin-bottom:1;
@@ -295,11 +470,25 @@ tbody, tfoot {
 
 td + td::before, th + th::before {
 		     content:" ⠒⠒ ";
-		 }
+}
 
-caption {
+caption{
     display:block;
     margin-bottom:1;
+}
+
+imggroup > caption, imggroup > img {
+    display:block;
+    text-indent:-2;
+    margin-left:2;
+}
+
+imggroup > prodnote {
+    display:block;
+}
+
+prodnote {
+    display:inline;
 }
 
 epigraph {
@@ -309,8 +498,17 @@ epigraph {
     orphans:2;
 }
 
+imggroup {
+    display:block;
+    margin-top:1;
+    margin-bottom:1;
+    orphans:2;
+}
+
 /* Lists */
 
+
+/* dl, dt, dd not working with css, according to BF we need a pre-processing step to implement that */
 dl {
     display:block;
 }
@@ -323,7 +521,7 @@ dd {
     display:inline;
 }
 
-dt + dd{
+dt + dd {
     padding-left:1;
 }
 
@@ -348,7 +546,7 @@ li {
     display:list-item;
 }
 
-list[type=ul], list list list[type=ul]{
+list[type=ul], list list list[type=ul] {
     list-style-type: '⠠⠤';
 }
 
@@ -357,15 +555,18 @@ list list[type=ul] {
 }
 
 list[type=ol] {
-    list-style-type: symbols(numeric "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔");
-    /*
-     * A slightly nicer solution would be "list-style-type: downshifted", where "downshifted" is defined as:
-     *    @counter-style downshifted {
-     *      system: numeric;
-     *      symbols: "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔";
-     *    }
-     * but this is not supported yet.
-     */
+    list-style-type: symbols(numeric "⠼⠴" "⠼⠂" "⠼⠆" "⠼⠒" "⠼⠲" "⠼⠢" "⠼⠖" "⠼⠶" "⠼⠦" "⠼⠔");
+/* A number sign is also needed here. I added it before each number being aware
+       this will cause errors for numbers higher than 9. It's only a temporary fix until
+       the below mentioned type "downshifted" will be supported (mk) */
+/*
+ * A slightly nicer solution would be "list-style-type: downshifted", where "downshifted" is defined as:
+ *    @counter-style downshifted {
+ *      system: numeric;
+ *      symbols: "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔";
+ *    }
+ * but this is not supported yet.
+ */
 }
 
 list[type=ol][enum="1"] {
@@ -392,3 +593,28 @@ br::before {
     white-space: pre-line;
     content: '\A';
 }
+
+sidebar {
+    display:block;
+    margin-left:1;
+    orphans:2;
+}
+
+sidebar::before {
+    display:block;
+    margin-top:1;
+    margin-left:-1;
+    content:"⠏⠉⠉⠉";
+}
+
+sidebar::after {
+    display:block;
+    margin-bottom:1;
+    margin-left:-1;
+    content:"⠧⠤⠤⠤";
+}
+
+div {
+    display: block;
+}
+
