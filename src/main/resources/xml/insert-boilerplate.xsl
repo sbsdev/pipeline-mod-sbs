@@ -11,6 +11,17 @@
   <xsl:param name="contraction-grade" select="'0'"/>
   <xsl:param name="volumes" select="1" as="xs:integer"/>
 
+  <xsl:variable name="series">
+    <xsl:choose>
+      <xsl:when test="//meta[@name='prod:series']/@content='PPP'">rucksack</xsl:when>
+      <xsl:when test="//meta[@name='prod:series']/@content='SJW'">sjw</xsl:when>
+      <xsl:otherwise>standard</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="series-number"
+		select="//meta[@name='prod:seriesNumberprod:series']/@content"/>
+
   <xsl:template match="frontmatter/docauthor">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
@@ -39,6 +50,11 @@
         <xsl:value-of select="//doctitle"/>
       </p>
 
+      <!-- Series -->
+      <xsl:if test="$series = 'sjw'">
+	<p class="series">SJW-Heft NR. <xsl:value-of select="$series-number"/></p>
+      </xsl:if>
+
       <!-- Volumes -->
       <p class="how-many-volumes" style="display: block; margin-top: 4;">In <span style="text-transform:volume; "/> Braillebänden</p>
 
@@ -53,6 +69,11 @@
 	<span style="text-transform:volumes; "/> Band
       </p>
       
+      <!-- Series -->
+      <xsl:if test="$series = 'rucksack'">
+	    <p class="series">Rucksackbuch Nr. <xsl:value-of select="$series-number"/></p>
+      </xsl:if>
+
       <!-- Publisher -->
       <p style="display: block;">SBS Schweiz. Bibliothek Für Blinde, Seh- und Lesebehinderte</p>
     </level1>
@@ -62,6 +83,26 @@
       Version eines urheberrechtlich geschützten Werks. Sie können es
       im Rahmen des Urheberrechts persönlich nutzen, dürfen es aber
       nicht weiter verbreiten oder öffentlich zugänglich machen</p>
+      <xsl:choose>
+	<xsl:when test="$series = 'sjw'">
+	  <p id="sjw-blurb">Brailleausgabe mit freundlicher Genehmigung des
+	  <abbr>SJW</abbr> Schweizerischen Jugend-Schriftenwerks, Zürich. Wir
+	  danken dem <abbr>SJW</abbr>-Verlag für die Bereitstellung der
+	  Daten.</p>
+	</xsl:when>
+	<xsl:otherwise>
+	  <p id="copyright-blurb">Dieses Braillebuch ist die ausschliesslich für
+	  die Nutzung durch Seh- und Lesebehinderte Menschen bestimmte
+	  zugängliche Version eines urheberrechtlich geschützten Werks. Sie
+	  können es im Rahmen des Urheberrechts persönlich nutzen, dürfen es
+	  aber nicht weiter verbreiten oder öffentlich zugänglich machen</p>
+	</xsl:otherwise>
+      </xsl:choose>
+
+      <!-- Series -->
+      <xsl:if test="$series = 'rucksack'">
+	    <p class="series">Rucksackbuch Nr. <xsl:value-of select="$series-number"/></p>
+      </xsl:if>
 
       <p id="publisher-blurb">Verlag, Satz und Druck<br/>
       SBS Schweiz. Bibliothek für Blinde, Seh- und Lesebehinderte, Zürich<br/>
