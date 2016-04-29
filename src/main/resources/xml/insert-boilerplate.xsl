@@ -8,9 +8,6 @@
 
   <xsl:output indent="yes"/>
 
-  <xsl:param name="contraction-grade" select="'0'"/>
-  <xsl:param name="volumes" select="1" as="xs:integer"/>
-
   <xsl:variable name="series">
     <xsl:choose>
       <xsl:when test="//meta[@name='prod:series']/@content='PPP'">rucksack</xsl:when>
