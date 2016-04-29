@@ -102,13 +102,13 @@ brl|volume[brl|grade='#{dollar-contraction-grade}'] {
 
 @volume {
     @begin {
-	content: flow(cover) flow(wholetp) flow(volume-toc);
+	content: flow(cover) flow(volume-toc);
     }
 }
 
 @volume:first {
     @begin {
-	content: flow(cover) flow(wholetp) flow(wholefm) flow(document-toc);
+	content: flow(frontmatter) flow(document-toc);
     }
 }
 
@@ -344,7 +344,7 @@ frontmatter, bodymatter, rearmatter {
 
 frontmatter {
     page: frontmatter;
-    flow: wholefm;
+    flow: frontmatter;
 }
 
 frontmatter level2 {
@@ -366,7 +366,7 @@ frontmatter > .cover-verso {
 frontmatter > .titlepage {
     display: block;
     /*string-set: running-footer-front "";*/
-    flow: wholetp;
+    flow: cover;
 }
 
 frontmatter > .titlepage > level2:nth-child(1) > p {
