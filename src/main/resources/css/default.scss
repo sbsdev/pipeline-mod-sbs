@@ -353,14 +353,54 @@ frontmatter level2 {
     orphans:4;
 }
 
-frontmatter > .cover-recto {
+/* Cover Page */
+
+#cover-recto {
+    display: block;
+    flow: cover;
+    text-align: center;
+    page-break-inside:avoid;
+}
+
+#cover-author {
+    display: block;
+    margin-top: 4;
+}
+
+#cover-title {
+    display: block;
+    margin-top: 1;
+    border-bottom: ⠤;
+}
+
+frontmatter > level1 > .how-many-volumes {
+    display: block;
+    margin-top: 4;
+}
+
+frontmatter > level1 > .which-volume {
+    display: block;
+}
+
+frontmatter > level1 > .publisher {
+    display: block;
+}
+
+#cover-verso {
     display: block;
     flow: cover;
 }
 
-frontmatter > .cover-verso {
+#copyright-blurb {
     display: block;
-    flow: cover;
+}
+
+#publisher-blurb {
+    display: block;
+}
+
+#cover-year {
+    display: block;
 }
 
 frontmatter > .titlepage {

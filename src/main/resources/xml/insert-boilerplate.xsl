@@ -38,15 +38,15 @@
   </xsl:template>
 
   <xsl:template name="add-information-based-from-metadata">
-    <level1 id="cover-recto" style="text-align: center; page-break-inside:avoid ; ">
+    <level1 id="cover-recto">
 
       <!-- Authors -->
-      <p class="author" style="display: block;  margin-top: 4; ">
+      <p id="cover-author">
         <xsl:value-of select="//docauthor"/>
       </p>
 
       <!-- Title -->
-      <p class="title" style="display: block; margin-top: 1; border-bottom: ⠤; ">
+      <p id="cover-title">
         <xsl:value-of select="//doctitle"/>
       </p>
 
@@ -56,17 +56,19 @@
       </xsl:if>
 
       <!-- Volumes -->
-      <p class="how-many-volumes" style="display: block; margin-top: 4;">In <span style="text-transform:volume; "/> Braillebänden</p>
+      <!-- How many Volumes -->
+      <p class="how-many-volumes">In <span id="number-of-volumes"/> Braillebänden</p>
 
       <!-- <frees> 1. (if (> $volumes 1) "Volume " "In one volume") -->
       <!-- <frees> 2. (if (> $volumes 1) $volume) => put style "text-transform:volume" on this part -->
       <!-- <frees> 3. (if (> $volumes 1) " of ") -->
       <!-- <frees> 4. (if (> $volumes 1) $volumes) => put style "text-transform:volumes" on this part -->
       
-      <p class="which-volume" style="display: block; margin-top: 4;">
+      <!-- Current Volume -->
+      <p class="which-volume">
 	<!-- FIXME: if there are more than 12 volumes we want just the -->
 	<!-- number but downshifted as with ordinals -->
-	<span style="text-transform:volumes; "/> Band
+	<span id="current-volume"/> Band
       </p>
       
       <!-- Series -->
@@ -75,14 +77,10 @@
       </xsl:if>
 
       <!-- Publisher -->
-      <p style="display: block;">SBS Schweiz. Bibliothek Für Blinde, Seh- und Lesebehinderte</p>
+      <p class="publisher">SBS Schweiz. Bibliothek Für Blinde, Seh- und Lesebehinderte</p>
+
     </level1>
-    <level1 class="cover-verso">
-      <p id="copyright-blurb">Dieses Braillebuch ist die ausschliesslich für die Nutzung
-      durch Seh- und Lesebehinderte Menschen bestimmte zugängliche
-      Version eines urheberrechtlich geschützten Werks. Sie können es
-      im Rahmen des Urheberrechts persönlich nutzen, dürfen es aber
-      nicht weiter verbreiten oder öffentlich zugänglich machen</p>
+    <level1 id="cover-verso">
       <xsl:choose>
 	<xsl:when test="$series = 'sjw'">
 	  <p id="sjw-blurb">Brailleausgabe mit freundlicher Genehmigung des
@@ -104,12 +102,13 @@
 	    <p class="series">Rucksackbuch Nr. <xsl:value-of select="$series-number"/></p>
       </xsl:if>
 
+      <!-- Publisher long -->
       <p id="publisher-blurb">Verlag, Satz und Druck<br/>
       SBS Schweiz. Bibliothek für Blinde, Seh- und Lesebehinderte, Zürich<br/>
       www.sbs.ch</p>
 
       <xsl:variable name="date" select="//meta[@name = 'dc:Date']/@content"/>
-      <p id="cover-year" style="display: block; margin-bottom: 2;">SBS <xsl:value-of select="format-date($date, '[Y]')"/>
+      <p id="cover-year">SBS <xsl:value-of select="format-date($date, '[Y]')"/>
       </p>
    </level1>
   </xsl:template>
