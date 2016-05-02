@@ -2,11 +2,14 @@
 <xsl:stylesheet version="2.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:brl="http://www.daisy.org/z3986/2009/braille/"
     exclude-result-prefixes="xs"
     xpath-default-namespace="http://www.daisy.org/z3986/2005/dtbook/"
     xmlns="http://www.daisy.org/z3986/2005/dtbook/">
 
   <xsl:output indent="yes"/>
+
+  <xsl:param name="contraction-grade" select="'0'"/>
 
   <xsl:variable name="series">
     <xsl:choose>
@@ -74,7 +77,17 @@
       </xsl:if>
 
       <!-- Publisher -->
-      <p class="publisher">SBS Schweiz. Bibliothek Für Blinde, Seh- und Lesebehinderte</p>
+      <xsl:choose>
+	<xsl:when test="$contraction-grade = '0'">
+	  <p class="publisher"><abbr>SBS</abbr> Schweiz. Bibliothek<br/> Für Blinde, Seh- und<br/> Lesebehinderte</p>
+	</xsl:when>
+	<xsl:when test="$contraction-grade = '1'">
+	  <p class="publisher"><abbr>SBS</abbr> Schweizerische Bibliothek<br/> Für Blinde, Seh- und<br/> Lesebehinderte</p>
+	</xsl:when>
+	<xsl:otherwise>
+	  <p class="publisher"><abbr>SBS</abbr> Schweizerische Bibliothek<br/> Für Blinde, Seh- und Lesebehinderte</p>
+	</xsl:otherwise>
+      </xsl:choose>
 
     </level1>
     <level1 id="cover-verso">
@@ -100,9 +113,23 @@
       </xsl:if>
 
       <!-- Publisher long -->
-      <p id="publisher-blurb">Verlag, Satz und Druck<br/>
-      SBS Schweiz. Bibliothek für Blinde, Seh- und Lesebehinderte, Zürich<br/>
-      www.sbs.ch</p>
+      <xsl:choose>
+	<xsl:when test="$contraction-grade = '0'">
+	  <p id="publisher-blurb">Verlag, Satz und Druck<br/>
+	  <abbr>SBS</abbr> Schweiz. Bibliothek<br/> für Blinde, Seh- und<br/> Lesebehinderte, Zürich<br/>
+	  <brl:computer>www.sbs.ch</brl:computer></p>
+	</xsl:when>
+	<xsl:when test="$contraction-grade = '1'">
+	  <p id="publisher-blurb">Verlag, Satz und Druck<br/>
+	  <abbr>SBS</abbr> Schweizerische Bibliothek<br/> für Blinde, Seh- und<br/> Lesebehinderte, Zürich<br/>
+	  <brl:computer>www.sbs.ch</brl:computer></p>
+	</xsl:when>
+	<xsl:otherwise>
+	  <p id="publisher-blurb"> <br/>Verlag, Satz und Druck<br/>
+	  <abbr>SBS</abbr> Schweizerische Bibliothek<br/> für Blinde, Seh- und Lesebehinderte, Zürich<br/>
+	  <brl:computer>www.sbs.ch</brl:computer></p>
+	</xsl:otherwise>
+      </xsl:choose>
 
       <xsl:variable name="date" select="//meta[@name = 'dc:Date']/@content"/>
       <p id="cover-year">SBS <xsl:value-of select="format-date($date, '[Y]')"/>
