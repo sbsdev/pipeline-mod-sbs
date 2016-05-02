@@ -1,3 +1,23 @@
+pipeline-mod-sbs v1.5.0
+=======================
+
+Includes
+--------
+- Improved default CSS style sheet with support for:
+  - footnotes
+  - images
+  - lists
+  - table of contents
+  - print page number ranges
+  - `sidebar`
+  - `prodnote`
+  - `brl:running-line`
+  - `brl:select`
+  - class `pageref` links
+- Automatic insertion of title pages (https://github.com/snaekobbi/pipeline-mod-sbs/issues/7)
+- Fixes related to white space (https://github.com/snaekobbi/pipeline-mod-sbs/issues/11,
+  https://github.com/sbsdev/sbs-braille-tables/issues/1)
+
 pipeline-mod-sbs v1.4.0
 =======================
 
