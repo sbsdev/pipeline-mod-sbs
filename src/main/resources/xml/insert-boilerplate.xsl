@@ -132,7 +132,7 @@
       </xsl:choose>
 
       <xsl:variable name="date" select="//meta[@name = 'dc:Date']/@content"/>
-      <p id="cover-year">SBS <xsl:value-of select="format-date($date, '[Y]')"/>
+      <p id="cover-year"><abbr>SBS</abbr> <xsl:value-of select="format-date($date, '[Y]')"/>
       </p>
    </level1>
   </xsl:template>
