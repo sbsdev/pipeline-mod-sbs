@@ -108,7 +108,7 @@ brl|volume[brl|grade='#{dollar-contraction-grade}'] {
 
 @volume:first {
     @begin {
-	content: flow(frontmatter) flow(document-toc);
+	content: flow(cover) flow(frontmatter) flow(document-toc);
     }
 }
 
