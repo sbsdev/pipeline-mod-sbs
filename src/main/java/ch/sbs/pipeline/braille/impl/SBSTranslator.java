@@ -3,6 +3,7 @@ package ch.sbs.pipeline.braille.impl;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.net.URI;
@@ -17,6 +18,14 @@ import com.google.common.collect.ImmutableMap;
 import static com.google.common.collect.Iterables.size;
 import static com.google.common.collect.Lists.newArrayList;
 
+import cz.vutbr.web.css.CSSProperty;
+import cz.vutbr.web.css.Term;
+import cz.vutbr.web.css.TermIdent;
+import cz.vutbr.web.css.TermList;
+
+import org.daisy.braille.css.BrailleCSSProperty.TextTransform;
+import org.daisy.braille.css.SimpleInlineStyle;
+
 import org.daisy.pipeline.braille.common.AbstractBrailleTranslator;
 import org.daisy.pipeline.braille.common.AbstractTransformProvider;
 import org.daisy.pipeline.braille.common.AbstractTransformProvider.util.Function;
@@ -27,6 +36,7 @@ import static org.daisy.pipeline.braille.common.AbstractTransformProvider.util.l
 import static org.daisy.pipeline.braille.common.AbstractTransformProvider.util.logSelect;
 import org.daisy.pipeline.braille.common.BrailleTranslator;
 import org.daisy.pipeline.braille.common.BrailleTranslatorProvider;
+import org.daisy.pipeline.braille.common.CSSStyledText;
 import org.daisy.pipeline.braille.common.Query;
 import org.daisy.pipeline.braille.common.Query.Feature;
 import org.daisy.pipeline.braille.common.Query.MutableQuery;
@@ -144,9 +154,6 @@ public interface SBSTranslator {
 			return empty;
 		}
 		
-		private final static Splitter.MapSplitter CSS_PARSER
-		= Splitter.on(';').omitEmptyStrings().withKeyValueSeparator(Splitter.on(':').limit(2).trimResults());
-		private final static Splitter TEXT_TRANSFORM_PARSER = Splitter.on(' ').omitEmptyStrings().trimResults();
 		private final static Pattern PRINT_PAGE_NUMBER = Pattern.compile("(?<first>[0-9]+)?(?:/(?<last>[0-9]+))?");
 		private final static Pattern NUMBER = Pattern.compile("[0-9]+");
 		private final static String PRINT_PAGE_NUMBER_SIGN = "\u2838\u283c";
@@ -185,22 +192,26 @@ public interface SBSTranslator {
 				public java.lang.Iterable<String> transform(java.lang.Iterable<CSSStyledText> styledText) {
 					if (size(styledText) == 1) {
 						CSSStyledText s = styledText.iterator().next();
-						Map<String,String> style = new HashMap<String,String>(CSS_PARSER.split(s.getStyle()));
-						String t = style.remove("text-transform");
-						if (t != null) {
-							List<String> textTransform = newArrayList(TEXT_TRANSFORM_PARSER.split(t));
-							if (textTransform.remove("print-page")) {
-								if (!style.isEmpty() || !textTransform.isEmpty())
-									throw new RuntimeException("Translator does not support '" + s.getStyle() +"'");
-								return Optional.of(translatePrintPageNumber(s.getText())).asSet(); }
-							else if (textTransform.remove("volume")) {
-								if (!style.isEmpty() || !textTransform.isEmpty())
-									throw new RuntimeException("Translator does not support '" + s.getStyle() +"'");
-								return Optional.of(translateVolumeNumber(s.getText())).asSet(); }
-							else if (textTransform.remove("volumes")) {
-								if (!style.isEmpty() || !textTransform.isEmpty())
-									throw new RuntimeException("Translator does not support '" + s.getStyle() +"'");
-								return Optional.of(translateVolumesCount(s.getText())).asSet(); }}}
+						SimpleInlineStyle style = s.getStyle();
+						if (style != null) {
+							CSSProperty val = style.getProperty("text-transform");
+							if (val != null) {
+								if (val == TextTransform.list_values) {
+									TermList values = style.getValue(TermList.class, "text-transform");
+									for (Term<?> t: values) {
+										String tt = ((TermIdent)t).getValue();
+										if (tt.equals("print-page")) {
+											if (values.size() > 1 || style.size() > 1)
+												throw new RuntimeException("Translator does not support '" + style +"'");
+											return Optional.of(translatePrintPageNumber(s.getText())).asSet(); }
+										else if (tt.equals("volume")) {
+											if (values.size() > 1 || style.size() > 1)
+												throw new RuntimeException("Translator does not support '" + style +"'");
+											return Optional.of(translateVolumeNumber(s.getText())).asSet(); }
+										else if (tt.equals("volumes")) {
+											if (values.size() > 1 || style.size() > 1)
+												throw new RuntimeException("Translator does not support '" + style +"'");
+											return Optional.of(translateVolumesCount(s.getText())).asSet(); }}}}}}
 					return translator.transform(styledText);
 				}
 			};

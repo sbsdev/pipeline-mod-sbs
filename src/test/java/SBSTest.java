@@ -13,8 +13,8 @@ import org.daisy.maven.xproc.xprocspec.XProcSpecRunner;
 import org.daisy.maven.xspec.TestResults;
 import org.daisy.maven.xspec.XSpecRunner;
 
-import org.daisy.pipeline.braille.common.BrailleTranslator.CSSStyledText;
 import org.daisy.pipeline.braille.common.BrailleTranslator.FromStyledTextToBraille;
+import org.daisy.pipeline.braille.common.CSSStyledText;
 import static org.daisy.pipeline.braille.common.Query.util.query;
 import org.daisy.pipeline.braille.liblouis.LiblouisTranslator;
 
@@ -53,36 +53,6 @@ public class SBSTest {
 	
 	@Inject
 	private LiblouisTranslator.Provider provider;
-	
-	@Test(expected = AssertionError.class) // XFAIL
-	public void testWhiteSpaceSegmentsLost() {
-		FromStyledTextToBraille translator = provider
-			.get(query("(liblouis-table:'http://www.sbs.ch/pipeline/liblouis/tables/" +
-			           "sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-whitespace.mod,sbs-numsign.mod," +
-			           "sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
-			           "sbs-special.mod')"))
-			.iterator().next()
-			.fromStyledTextToBraille();
-		
-		// with sbs-whitespace.mod included, fails when "foo" and "bar" have 5 or more white space segments in between them
-		assertEquals(braille("⠋⠕⠕"," ","","","","","⠃⠁⠗"),
-		             translator.transform(text("foo"," "," "," "," "," ","bar")));
-	}
-	
-	@Test
-	public void testWhiteSpaceSegmentsPreserved() {
-		FromStyledTextToBraille translator = provider
-			.get(query("(liblouis-table:'http://www.sbs.ch/pipeline/liblouis/tables/" +
-			           "sbs.dis,sbs-de-core6.cti,sbs-de-accents.cti,sbs-special.cti,sbs-numsign.mod," +
-			           "sbs-litdigit-upper.mod,sbs-de-core.mod,sbs-de-g0-core.mod,sbs-de-hyph-none.mod,sbs-de-accents-ch.mod," +
-			           "sbs-special.mod')"))
-			.iterator().next()
-			.fromStyledTextToBraille();
-		
-		// without sbs-whitespace.mod included, works fine
-		assertEquals(braille("⠋⠕⠕"," "," "," "," "," ","⠃⠁⠗"),
-		             translator.transform(text("foo"," "," "," "," "," ","bar")));
-	}
 	
 	@Inject
 	private XSpecRunner xspecRunner;
