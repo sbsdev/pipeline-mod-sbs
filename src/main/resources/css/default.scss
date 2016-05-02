@@ -625,19 +625,13 @@ list list[type=ul] {
     list-style-type: '⠐⠤';
 }
 
-list[type=ol] {
-    list-style-type: symbols(numeric "⠼⠴" "⠼⠂" "⠼⠆" "⠼⠒" "⠼⠲" "⠼⠢" "⠼⠖" "⠼⠶" "⠼⠦" "⠼⠔");
-/* A number sign is also needed here. I added it before each number being aware
-       this will cause errors for numbers higher than 9. It's only a temporary fix until
-       the below mentioned type "downshifted" will be supported (mk) */
-/*
- * A slightly nicer solution would be "list-style-type: downshifted", where "downshifted" is defined as:
- *    @counter-style downshifted {
- *      system: numeric;
- *      symbols: "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔";
- *    }
- * but this is not supported yet.
- */
+list[type=ol] > li {
+    display: block;
+    counter-increment: list-item;
+    &::before {
+        display: inline;
+        content: "⠼" counter(list-item, symbols(numeric "⠴" "⠂" "⠆" "⠒" "⠲" "⠢" "⠖" "⠶" "⠦" "⠔")) " ";
+    }
 }
 
 list[type=ol][enum="1"] {
