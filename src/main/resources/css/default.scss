@@ -364,13 +364,21 @@ frontmatter level2 {
 
 #cover-author {
     display: block;
-    margin-top: 4;
+    -obfl-vertical-position:5;
 }
 
 #cover-title {
     display: block;
-    margin-top: 1;
+    margin-top: 2;
     border-bottom: ⠤;
+}
+
+#number-of-volumes {
+    content: -obfl-evaluate('(round $volume)'); /* FIXME: Put the actual number of volumes here */
+}
+
+#current-volume {
+    content: 'Erster'; /* FIXME: make this dynamic */
 }
 
 frontmatter > level1 > .how-many-volumes {
@@ -384,6 +392,7 @@ frontmatter > level1 > .which-volume {
 
 frontmatter > level1 > .publisher {
     display: block;
+    -obfl-vertical-position:23;
 }
 
 #cover-verso {
@@ -393,14 +402,26 @@ frontmatter > level1 > .publisher {
 
 #copyright-blurb {
     display: block;
+    text-indent: 0;
+    -obfl-vertical-position:1;
+}
+
+#sjw-blurb {
+    display: block;
+    text-indent: 0;
+    -obfl-vertical-position:1;
 }
 
 #publisher-blurb {
     display: block;
+    text-indent: 0;
+    -obfl-vertical-position:21;
 }
 
 #cover-year {
     display: block;
+    text-indent: 0;
+    margin-top: 2;
 }
 
 frontmatter > .titlepage {
