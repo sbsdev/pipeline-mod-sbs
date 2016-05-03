@@ -11,16 +11,13 @@
   </parent>
 
   <artifactId>mod-sbs</artifactId>
-  <version>1.4.1-SNAPSHOT</version>
+  <version>1.5.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>DP2 Braille Modules :: mod-sbs</name>
 
   <properties>
     <sbs-hyphenation-tables.version>1.17</sbs-hyphenation-tables.version>
-    <!--
-        depends on branch pipeline2 (https://github.com/sbsdev/sbs-braille-tables/issues/1)
-    -->
     <sbs-braille-tables.version>2.2</sbs-braille-tables.version>
   </properties>
   
