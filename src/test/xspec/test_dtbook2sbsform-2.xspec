@@ -30,7 +30,7 @@
       </x:context>
       <x:expect label="braille">
         <stub xml:lang="de">
-	  <dtb:p><dtb:em>__U $S $IC'.</dtb:em></dtb:p>
+	  <dtb:p><dtb:em>__U <brl:v-form>$S</brl:v-form> <brl:v-form>$IC</brl:v-form>'.</dtb:em></dtb:p>
 	</stub>
       </x:expect>
     </x:scenario>
@@ -85,7 +85,7 @@
         <stub xml:lang="de"><brl:homograph>testor<brl:separator/>test</brl:homograph></stub>
       </x:context>
       <x:expect label="braille">
-        <stub xml:lang="de">TE]?(]</stub>
+        <stub xml:lang="de"><brl:homograph>TE]?(]</brl:homograph></stub>
       </x:expect>
     </x:scenario>
 
@@ -213,7 +213,7 @@
         <dtb:p xml:lang="de"><brl:name>McCartney</brl:name></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">$MC$CARTNEY</dtb:p>
+        <dtb:p xml:lang="de"><brl:name>$MC$CARTNEY</brl:name></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -415,7 +415,7 @@
       </x:context>
       <x:expect label="braille">
         <stub xml:lang="de">
-          <dtb:p> $MC$DONALD $MC$B8NZLI $MC$K8NZLI </dtb:p>
+          <dtb:p> <brl:name>$MC$DONALD</brl:name> <brl:name>$MC$B8NZLI</brl:name> <brl:name>$MC$K8NZLI</brl:name> </dtb:p>
         </stub>
       </x:expect>
     </x:scenario>

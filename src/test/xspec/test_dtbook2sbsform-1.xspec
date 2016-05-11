@@ -32,7 +32,7 @@
         <dtb:h1 xml:lang="de"> foo <brl:v-form>Bar</brl:v-form> </dtb:h1>
       </x:context>
       <x:expect label="braille">
-	<dtb:h1 xml:lang="de"> FOO $BAR </dtb:h1> 
+	<dtb:h1 xml:lang="de"> FOO <brl:v-form>$BAR</brl:v-form> </dtb:h1>
       </x:expect>
     </x:scenario>
 
@@ -211,7 +211,7 @@
         <stub xml:lang="de"><brl:date value="2011-01-01">1.1.2011</brl:date></stub>
       </x:context>
       <x:expect label="braille">
-        <stub xml:lang="de">#,A#BJAA</stub>
+        <stub xml:lang="de"><brl:date value="2011-01-01">#,A#BJAA</brl:date></stub>
       </x:expect>
     </x:scenario>
 
@@ -220,7 +220,7 @@
         <stub xml:lang="de"><brl:date value="--01-01">1.1.</brl:date></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">#,A</stub>
+	<stub xml:lang="de"><brl:date value="--01-01">#,A</brl:date></stub>
       </x:expect>
     </x:scenario>
 
@@ -229,7 +229,7 @@
         <stub xml:lang="de"><brl:time value="10:30">10:30</brl:time></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">#AJ.CJ</stub>
+	<stub xml:lang="de"><brl:time value="10:30">#AJ.CJ</brl:time></stub>
       </x:expect>
     </x:scenario>
 
@@ -238,7 +238,7 @@
         <stub xml:lang="de"><brl:time value="10:05">10:05</brl:time></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">#AJ.JE</stub>
+	<stub xml:lang="de"><brl:time value="10:05">#AJ.JE</brl:time></stub>
       </x:expect>
     </x:scenario>
 

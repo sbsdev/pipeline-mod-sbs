@@ -14,7 +14,7 @@
         <dtb:p xml:lang="de">2<dtb:sup>23</dtb:sup> x<dtb:sup>2</dtb:sup> x<dtb:sup>-2</dtb:sup> (2<dtb:sup>23</dtb:sup>) (x<dtb:sup>2</dtb:sup>) (x<dtb:sup>-2</dtb:sup>) </dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">#B0;: 'X0; 'X0-; =#B0;:'= ='X0;'= ='X0-;'= </dtb:p>
+        <dtb:p xml:lang="de">#B<dtb:sup>0;:</dtb:sup> 'X<dtb:sup>0;</dtb:sup> 'X<dtb:sup>0-;</dtb:sup> =#B<dtb:sup>0;:</dtb:sup>'= ='X<dtb:sup>0;</dtb:sup>'= ='X<dtb:sup>0-;</dtb:sup>'= </dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -23,7 +23,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>Cu</dtb:abbr><dtb:sup>2+</dtb:sup></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de"><dtb:abbr>$CU</dtb:abbr>\#B"+</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>$CU</dtb:abbr><dtb:sup>\#B"+</dtb:sup></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -32,7 +32,7 @@
         <dtb:p xml:lang="de">Kapital mal Zinssatz<dtb:sup><brl:select><brl:when-braille> hoch Zeit</brl:when-braille><brl:otherwise>Zeit</brl:otherwise></brl:select></dtb:sup></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de">KP MAL Z*SSZ HO4 ZT</dtb:p>
+        <dtb:p xml:lang="de">KP MAL Z*SSZ<dtb:sup> HO4 ZT</dtb:sup></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -41,7 +41,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>V</dtb:abbr><dtb:sup><brl:select><brl:when-braille><brl:literal>&gt;/</brl:literal></brl:when-braille><brl:otherwise>*</brl:otherwise></brl:select></dtb:sup></dtb:p>
       </x:context>
       <x:expect label="braille">
-        <dtb:p xml:lang="de"><dtb:abbr>&gt;V</dtb:abbr>&gt;/</dtb:p>
+        <dtb:p xml:lang="de"><dtb:abbr>&gt;V</dtb:abbr><dtb:sup>&gt;/</dtb:sup></dtb:p>
       </x:expect>
     </x:scenario>
 

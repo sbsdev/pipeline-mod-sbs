@@ -48,44 +48,56 @@
 
   <!-- bei brl:select wird kein Zeichen gesetzt -->
   <xsl:template match="dtb:sup[descendant::brl:select]">
-    <xsl:apply-templates select="@*"/>
-    <xsl:apply-templates/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
   </xsl:template>
 
   <!-- Ziffern bekommen das Exponentzeichen und werden tiefgestellt -->
   <xsl:template match="dtb:sup[matches(., '^[-]*\d+$')]">
-    <xsl:apply-templates select="@*"/>
-    <xsl:value-of
-	select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x257E;',string()))" />
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of
+	  select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x257E;',string()))" />
+    </xsl:copy>
   </xsl:template>
 
   <!-- alles andere bekommt das Zeichen für den oberen Index -->
   <xsl:template match="dtb:sup">
-    <xsl:apply-templates select="@*"/>
-    <xsl:value-of
-	select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2580;')" />
-    <xsl:apply-templates/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of
+	  select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2580;')" />
+      <xsl:apply-templates/>
+    </xsl:copy>
   </xsl:template>
 
   <!-- bei brl:select wird kein Zeichen gesetzt -->
   <xsl:template match="dtb:sub[descendant::brl:select]">
-    <xsl:apply-templates select="@*"/>
-    <xsl:apply-templates/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
   </xsl:template>
 
   <!-- Ziffern bekommen das Zeichen für den unteren Index und werden tiefgestellt -->
   <xsl:template match="dtb:sub[matches(., '^[-]*\d+$')]">
-    <xsl:apply-templates select="@*"/>
-    <xsl:value-of
-	select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x2581;',string()))" />
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of
+	  select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x2581;',string()))" />
+    </xsl:copy>
   </xsl:template>
 
   <!-- alles andere bekommt das Zeichen für den unteren Index -->
   <xsl:template match="dtb:sub">
-    <xsl:apply-templates select="@*"/>
-    <xsl:value-of
-	select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2581;')" />
-    <xsl:apply-templates/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of
+	  select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2581;')" />
+      <xsl:apply-templates/>
+    </xsl:copy>
   </xsl:template>
 
   <!-- ==== -->
@@ -494,48 +506,42 @@
     </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:name">
     <xsl:variable name="braille_tables"
 		  select="if (matches(., '\p{Ll}&#x00AD;?\p{Lu}'))
 			  then my:get-tables(.,'name_capitalized')
 			  else my:get-tables(.,local-name())"/>
-    <xsl:value-of select="my:louis-translate(.,$braille_tables, string())"/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,$braille_tables, string())"/>
+    </xsl:copy>
   </xsl:template>
   
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:place">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()),string())"/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()),string())"/>
+    </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:v-form">
-    <xsl:choose>
-      <xsl:when test="$show_v_forms = true()">
-        <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat(upper-case(substring(string(),1,1)),lower-case(substring(string(),2))))"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:choose>
+	<xsl:when test="$show_v_forms = true()">
+          <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat(upper-case(substring(string(),1,1)),lower-case(substring(string(),2))))"/>
+	</xsl:when>
+	<xsl:otherwise>
+          <xsl:apply-templates/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy?
-  -->
   <xsl:template match="brl:separator">
     <!-- ignore -->
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:homograph">
     <!-- Join all text elements with a special marker and send the
          whole string to liblouis -->
@@ -546,44 +552,42 @@
         <xsl:if test="not(position() = last())">&#x250A;</xsl:if>
       </xsl:for-each>
     </xsl:variable>
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($text))"/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($text))"/>
+    </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:date">
     <xsl:variable name="this" select="."/>
     <xsl:variable name="braille_tables" select="my:get-tables(.,local-name())"/>
     <xsl:variable name="day_braille_tables" select="my:get-tables(.,'date_day')"/>
     <xsl:variable name="month_braille_tables" select="my:get-tables(.,'date_month')"/>
-    <xsl:for-each select="tokenize(string(@value), '-')">
-      <!-- reverse the order, so we have day, month, year -->
-      <xsl:sort select="position()" order="descending" data-type="number"/>
-      <xsl:choose>
-        <xsl:when test="position() = 1">
-          <xsl:value-of
-            select="my:louis-translate($this,$day_braille_tables, format-number(. cast as xs:integer,'#'))"
-          />
-        </xsl:when>
-        <xsl:when test="position() = 2">
-          <xsl:value-of
-            select="my:louis-translate($this,$month_braille_tables, format-number(. cast as xs:integer,'#'))"
-          />
-        </xsl:when>
-        <xsl:otherwise>
-	  <xsl:if test="matches(string(.), '\d+')">
-	    <xsl:value-of
-		select="my:louis-translate($this,$braille_tables, format-number(. cast as xs:integer,'#'))"/>
-	  </xsl:if>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:for-each select="tokenize(string(@value), '-')">
+	<!-- reverse the order, so we have day, month, year -->
+	<xsl:sort select="position()" order="descending" data-type="number"/>
+	<xsl:choose>
+          <xsl:when test="position() = 1">
+            <xsl:value-of
+		select="my:louis-translate($this,$day_braille_tables, format-number(. cast as xs:integer,'#'))"/>
+          </xsl:when>
+          <xsl:when test="position() = 2">
+            <xsl:value-of
+		select="my:louis-translate($this,$month_braille_tables, format-number(. cast as xs:integer,'#'))"/>
+          </xsl:when>
+          <xsl:otherwise>
+	    <xsl:if test="matches(string(.), '\d+')">
+	      <xsl:value-of
+		  select="my:louis-translate($this,$braille_tables, format-number(. cast as xs:integer,'#'))"/>
+	    </xsl:if>
+          </xsl:otherwise>
+	</xsl:choose>
+      </xsl:for-each>
+    </xsl:copy>
   </xsl:template>
 
-  <!--
-      FIXME: also copy
-  -->
   <xsl:template match="brl:time">
     <xsl:variable name="time">
       <xsl:for-each select="tokenize(string(@value), ':')">
@@ -599,7 +603,10 @@
 	</xsl:choose>
       </xsl:for-each>
     </xsl:variable>
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($time))"/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($time))"/>
+    </xsl:copy>
   </xsl:template>
 
   <!-- ======= -->

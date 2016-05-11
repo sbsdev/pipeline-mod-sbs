@@ -16,7 +16,7 @@
         <stub xml:space="preserve" xml:lang="de"><dtb:em>Mein Mann.</dtb:em> <brl:v-form>Ihr</brl:v-form></stub>
       </x:context>
       <x:expect label="braille">
-        <stub xml:space="preserve" xml:lang="de"><dtb:em>__M6 MN.'.</dtb:em> $I</stub>
+        <stub xml:space="preserve" xml:lang="de"><dtb:em>__M6 MN.'.</dtb:em> <brl:v-form>$I</brl:v-form></stub>
       </x:expect>
     </x:scenario>
 
@@ -70,7 +70,7 @@ mm</brl:num>
       <x:context>
         <stub xml:lang="de">Iron <brl:homograph>M<brl:separator/>an</brl:homograph></stub>
       </x:context>
-      <x:expect label="braille"><stub xml:lang="de">IRON MAN</stub></x:expect>
+      <x:expect label="braille"><stub xml:lang="de">IRON <brl:homograph>MAN</brl:homograph></stub></x:expect>
     </x:scenario>
 
     <x:scenario label="test 2 for brl:homograph (http://redmine.sbszh.ch/issues/show/925) ">
@@ -78,7 +78,7 @@ mm</brl:num>
         <stub xml:lang="de">Iron <brl:homograph>Ma<brl:separator/>n</brl:homograph>
         </stub>
       </x:context>
-      <x:expect label="braille"><stub xml:lang="de">IRON MAN</stub></x:expect>
+      <x:expect label="braille"><stub xml:lang="de">IRON <brl:homograph>MAN</brl:homograph></stub></x:expect>
     </x:scenario>
 
     <x:scenario label="test für Einzelbuchstaben mit Punkt">
@@ -254,7 +254,7 @@ mm</brl:num>
         <stub xml:lang="de"><brl:time value="11:05">11:05</brl:time></stub>
       </x:context>
       <x:expect label="braille">
-	<stub xml:lang="de">#AA.JE</stub>
+	<stub xml:lang="de"><brl:time value="11:05">#AA.JE</brl:time></stub>
       </x:expect>
     </x:scenario>
 

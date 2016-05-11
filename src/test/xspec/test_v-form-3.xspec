@@ -14,7 +14,7 @@
         <dtb:p xml:lang="de"><brl:v-form>Sie</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">$SIE</dtb:p>
+	<dtb:p xml:lang="de"><brl:v-form>$SIE</brl:v-form></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -23,7 +23,7 @@
         <dtb:p xml:lang="de"><brl:v-form>SIE</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">$SIE</dtb:p>
+	<dtb:p xml:lang="de"><brl:v-form>$SIE</brl:v-form></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -32,7 +32,7 @@
         <dtb:p xml:lang="de"><brl:v-form>Euerem</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">$EUEREM</dtb:p>
+	<dtb:p xml:lang="de"><brl:v-form>$EUEREM</brl:v-form></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -41,7 +41,7 @@
         <dtb:p xml:lang="de"><brl:v-form>EUEREM</brl:v-form></dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">$EUEREM</dtb:p>
+	<dtb:p xml:lang="de"><brl:v-form>$EUEREM</brl:v-form></dtb:p>
       </x:expect>
     </x:scenario>
 

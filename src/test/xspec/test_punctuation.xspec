@@ -37,7 +37,7 @@
       </x:context>
       <x:expect label="braille">
         <stub xml:lang="de">
-          <dtb:p>#BJ M*UTC #,+AJ#BJAB</dtb:p>
+          <dtb:p>#BJ M*UTC <brl:date value="2012-10-16">#,+AJ#BJAB</brl:date></dtb:p>
           <dtb:p>=BLO=</dtb:p>
         </stub>
       </x:expect>

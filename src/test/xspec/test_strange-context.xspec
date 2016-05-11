@@ -14,7 +14,7 @@
         <dtb:p xml:lang="de">(<brl:date value="2007-07-06">6.7.2007</brl:date>) ab«.</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">=#+G#BJJG'= AB).</dtb:p>
+	<dtb:p xml:lang="de">=<brl:date value="2007-07-06">#+G#BJJG</brl:date>'= AB).</dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -23,7 +23,7 @@
         <dtb:p xml:lang="de">(<brl:date value="2007-07-06">6.7.2007</brl:date>) ab.</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">=#+G#BJJG'= AB.</dtb:p>
+	<dtb:p xml:lang="de">=<brl:date value="2007-07-06">#+G#BJJG</brl:date>'= AB.</dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -32,7 +32,7 @@
         <dtb:p xml:lang="de">(<brl:date value="2007-07-06">6.7.2007</brl:date>) ab«</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">=#+G#BJJG'= AB)</dtb:p>
+	<dtb:p xml:lang="de">=<brl:date value="2007-07-06">#+G#BJJG</brl:date>'= AB)</dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -41,7 +41,7 @@
         <dtb:p xml:lang="de">(<brl:date value="2007-07-06">6.7.2007</brl:date>) ab</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">=#+G#BJJG'= AB</dtb:p>
+	<dtb:p xml:lang="de">=<brl:date value="2007-07-06">#+G#BJJG</brl:date>'= AB</dtb:p>
       </x:expect>
     </x:scenario>
 

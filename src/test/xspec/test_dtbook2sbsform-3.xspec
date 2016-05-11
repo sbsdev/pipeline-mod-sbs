@@ -58,7 +58,7 @@
       </x:context>
       <x:expect label="braille">
         <stub xml:lang="de">
-	  <dtb:p> $MCt$DOtNALD $MCt$B8NZtLI $MCt$K8NZtLI </dtb:p>
+	  <dtb:p> <brl:name>$MCt$DOtNALD</brl:name> <brl:name>$MCt$B8NZtLI</brl:name> <brl:name>$MCt$K8NZtLI</brl:name> </dtb:p>
 	</stub>
       </x:expect>
     </x:scenario>

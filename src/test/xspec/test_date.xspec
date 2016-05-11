@@ -14,7 +14,7 @@
         <dtb:p xml:lang="de"><brl:date value="1911-11-11">11.11.1911</brl:date></dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">#,,AA#AIAA</dtb:p>
+	<dtb:p xml:lang="de"><brl:date value="1911-11-11">#,,AA#AIAA</brl:date></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -23,7 +23,7 @@
         <dtb:p xml:lang="de">(<brl:date value="1911-11-11">11.11.1911</brl:date>)</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">=#,,AA#AIAA'=</dtb:p>
+	<dtb:p xml:lang="de">=<brl:date value="1911-11-11">#,,AA#AIAA</brl:date>'=</dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -32,7 +32,7 @@
         <dtb:p xml:lang="de"><brl:date value="1911-11-11">11.11.1911</brl:date>;</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">#,,AA#AIAA';</dtb:p>
+	<dtb:p xml:lang="de"><brl:date value="1911-11-11">#,,AA#AIAA</brl:date>';</dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -41,7 +41,7 @@
         <dtb:p xml:lang="de"><brl:date value="--11-11">11.11.</brl:date></dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">#,,AA</dtb:p>
+	<dtb:p xml:lang="de"><brl:date value="--11-11">#,,AA</brl:date></dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -50,7 +50,7 @@
         <dtb:p xml:lang="de">(<brl:date value="--11-11">11.11.</brl:date>)</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">=#,,AA'=</dtb:p>
+	<dtb:p xml:lang="de">=<brl:date value="--11-11">#,,AA</brl:date>'=</dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -59,7 +59,7 @@
         <dtb:p xml:lang="de"><brl:date value="--11-11">11.11.</brl:date>;</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">#,,AA';</dtb:p>
+	<dtb:p xml:lang="de"><brl:date value="--11-11">#,,AA</brl:date>';</dtb:p>
       </x:expect>
     </x:scenario>
 

@@ -14,7 +14,7 @@
         <dtb:p xml:lang="de">2<dtb:sup>23</dtb:sup>, x<dtb:sup>2</dtb:sup>, x<dtb:sup>-2</dtb:sup>, </dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de">#B0;:', 'X0;', 'X0-;', </dtb:p>
+	<dtb:p xml:lang="de">#B<dtb:sup>0;:</dtb:sup>', 'X<dtb:sup>0;</dtb:sup>', 'X<dtb:sup>0-;</dtb:sup>', </dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -23,7 +23,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>Cu</dtb:abbr><dtb:sup>2+</dtb:sup>, </dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de"><dtb:abbr>$CU</dtb:abbr>\#B"+', </dtb:p>
+	<dtb:p xml:lang="de"><dtb:abbr>$CU</dtb:abbr><dtb:sup>\#B"+</dtb:sup>', </dtb:p>
       </x:expect>
     </x:scenario>
 
@@ -32,7 +32,7 @@
         <dtb:p xml:lang="de"><dtb:abbr>CO</dtb:abbr><dtb:sub>2</dtb:sub>, </dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de"><dtb:abbr>&gt;CO</dtb:abbr>1;', </dtb:p>
+	<dtb:p xml:lang="de"><dtb:abbr>&gt;CO</dtb:abbr><dtb:sub>1;</dtb:sub>', </dtb:p>
       </x:expect>
     </x:scenario>
 

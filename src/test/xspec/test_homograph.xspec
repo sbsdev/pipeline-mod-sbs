@@ -14,7 +14,7 @@
         <dtb:p xml:lang="de"> bla <brl:homograph>wachs<brl:separator/>tube</brl:homograph>'s blo</dtb:p>
       </x:context>
       <x:expect label="braille">
-	<dtb:p xml:lang="de"> BLA W&lt;STUBE'S BLO</dtb:p></x:expect>
+	<dtb:p xml:lang="de"> BLA <brl:homograph>W&lt;STUBE</brl:homograph>'S BLO</dtb:p></x:expect>
     </x:scenario>
 
 </x:description>
