@@ -57,13 +57,8 @@
 
       <!-- Volumes -->
       <!-- How many Volumes -->
-      <p class="how-many-volumes">In <span id="number-of-volumes"/> Braillebänden</p>
+      <p class="how-many-volumes">In <span id="number-of-volumes"/> <span id="number-of-volumes-label"/></p>
 
-      <!-- <frees> 1. (if (> $volumes 1) "Volume " "In one volume") -->
-      <!-- <frees> 2. (if (> $volumes 1) $volume) => put style "text-transform:volume" on this part -->
-      <!-- <frees> 3. (if (> $volumes 1) " of ") -->
-      <!-- <frees> 4. (if (> $volumes 1) $volumes) => put style "text-transform:volumes" on this part -->
-      
       <!-- Current Volume -->
       <p class="which-volume">
 	<!-- FIXME: if there are more than 12 volumes we want just the -->

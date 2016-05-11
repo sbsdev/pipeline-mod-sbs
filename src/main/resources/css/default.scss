@@ -374,11 +374,17 @@ frontmatter level2 {
 }
 
 #number-of-volumes {
-    content: -obfl-evaluate('(round $volume)'); /* FIXME: Put the actual number of volumes here */
+    content: -obfl-evaluate('(round $volumes)');
+    text-transform: volumes;
+}
+
+#number-of-volumes-label {
+    content: -obfl-evaluate('(if (> $volumes 1) "Braillebänden" "Brailleband")');
 }
 
 #current-volume {
-    content: 'Erster'; /* FIXME: make this dynamic */
+    content: -obfl-evaluate('(round $volume)');
+    text-transform: volume;
 }
 
 frontmatter > level1 > .how-many-volumes {
