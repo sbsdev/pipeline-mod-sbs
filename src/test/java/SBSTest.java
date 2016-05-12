@@ -89,7 +89,8 @@ public class SBSTest {
 			"test_dtbook-to-pef",
 			"test_dtbook-to-pef_tables",
 			// "test_dtbook-to-pef_pagination",
-			"test_dtbook-to-pef_titlepage"
+			"test_dtbook-to-pef_titlepage",
+			"test_dtbook-to-pef_print_page_numbers"
 		    })
 		    tests.put(test, new File(baseDir, "src/test/xprocspec/" + test + ".xprocspec"));
 		boolean success = xprocspecRunner.run(tests,
