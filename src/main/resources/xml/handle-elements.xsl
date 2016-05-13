@@ -31,13 +31,12 @@
   <!-- ======================= -->
 
   <!--
-      Implement the function my:louis-translate with the following signature
+      Implement the template translate with the following signature
   -->
   <!--
-  <xsl:function name="my:louis-translate" as="xs:string">
-    <xsl:param name="context" as="node()"/>
-    <xsl:param name="table" as="xs:string"/>
-    <xsl:param name="text" as="xs:string"/>
+  <xsl:template name="translate" as="text()">
+    <xsl:param name="table" as="xs:string" required="yes"/>
+    <xsl:param name="text" as="xs:string" required="yes"/>
     ...
   </xsl:function>
   -->
@@ -58,8 +57,10 @@
   <xsl:template match="dtb:sup[matches(., '^[-]*\d+$')]">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x257E;',string()))" />
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,'index')"/>
+        <xsl:with-param name="text" select="concat('&#x257E;',string())"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -67,8 +68,10 @@
   <xsl:template match="dtb:sup">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2580;')" />
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="'&#x2580;'"/>
+      </xsl:call-template>
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
@@ -85,8 +88,10 @@
   <xsl:template match="dtb:sub[matches(., '^[-]*\d+$')]">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,my:get-tables(.,'index'),concat('&#x2581;',string()))" />
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,'index')"/>
+        <xsl:with-param name="text" select="concat('&#x2581;',string())"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -94,8 +99,10 @@
   <xsl:template match="dtb:sub">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,my:get-tables(.,local-name()),'&#x2581;')" />
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="'&#x2581;'"/>
+      </xsl:call-template>
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
@@ -108,15 +115,20 @@
     <!-- Multi-word code -->
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of
-	  select="my:louis-translate(.,'sbs.dis,sbs-special.cti,sbs-code.cti',concat('&#x2588;',string(),'&#x2589;'))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="'sbs.dis,sbs-special.cti,sbs-code.cti'"/>
+        <xsl:with-param name="text" select="concat('&#x2588;',string(),'&#x2589;')"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
   <xsl:template match="dtb:code">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,'sbs.dis,sbs-special.cti,sbs-code.cti', concat('&#x257C;',string()))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="'sbs.dis,sbs-special.cti,sbs-code.cti'"/>
+        <xsl:with-param name="text" select="concat('&#x257C;',string())"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -127,13 +139,19 @@
   <xsl:template match="brl:computer">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,string($computer_braille_tables), '&#x257C;')"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="string($computer_braille_tables)"/>
+        <xsl:with-param name="text" select="'&#x257C;'"/>
+      </xsl:call-template>
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
 
   <xsl:template match="brl:computer/text()" priority="100">
-    <xsl:value-of select="my:louis-translate(.,string($computer_braille_tables), string())"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="string($computer_braille_tables)"/>
+      <xsl:with-param name="text" select="string()"/>
+    </xsl:call-template>
   </xsl:template>
 
   <!-- ======= -->
@@ -198,7 +216,10 @@
         <xsl:value-of select="$KLEINBUCHSTABE"/>
       </xsl:if>
     </xsl:variable>
-    <xsl:value-of select="my:louis-translate(.,string($braille_tables), string($temp))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="string($braille_tables)"/>
+        <xsl:with-param name="text" select="string($temp)"/>
+      </xsl:call-template>
   </xsl:template>
   
   <xsl:template match="dtb:abbr">
@@ -237,27 +258,42 @@
 	<xsl:when test="@brl:render = 'singlequote'">
           <!-- render the emphasis using singlequotes -->
           <xsl:if test="$isFirst">
-            <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#8250;')"/>
+            <xsl:call-template name="translate">
+              <xsl:with-param name="table" select="$braille_tables"/>
+              <xsl:with-param name="text" select="'&#8250;'"/>
+            </xsl:call-template>
           </xsl:if>
           <xsl:apply-templates/>
           <xsl:if test="$isLast">
-            <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#8249;')"/>
+            <xsl:call-template name="translate">
+              <xsl:with-param name="table" select="$braille_tables"/>
+              <xsl:with-param name="text" select="'&#8249;'"/>
+            </xsl:call-template>
           </xsl:if>
 	</xsl:when>
 	<xsl:when test="@brl:render = 'quote'">
           <!-- render the emphasis using quotes -->
           <xsl:if test="$isFirst">
-            <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x00BB;')"/>
+            <xsl:call-template name="translate">
+              <xsl:with-param name="table" select="$braille_tables"/>
+              <xsl:with-param name="text" select="'&#x00BB;'"/>
+            </xsl:call-template>
           </xsl:if>
           <xsl:apply-templates/>
           <xsl:if test="$isLast">
             <xsl:variable name="last_text_node" select="string((.//text())[position()=last()])"/>
             <xsl:choose>
               <xsl:when test="my:isNumberLike(substring($last_text_node, string-length($last_text_node), 1))">
-		<xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x2039;')"/>
+                <xsl:call-template name="translate">
+                  <xsl:with-param name="table" select="$braille_tables"/>
+                  <xsl:with-param name="text" select="'&#x2039;'"/>
+                </xsl:call-template>
               </xsl:when>
               <xsl:otherwise>
-		<xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x00AB;')"/>
+                <xsl:call-template name="translate">
+                  <xsl:with-param name="table" select="$braille_tables"/>
+                  <xsl:with-param name="text" select="'&#x00AB;'"/>
+                </xsl:call-template>
               </xsl:otherwise>
             </xsl:choose>
           </xsl:if>
@@ -278,12 +314,18 @@
               <!-- There are multiple words. -->
               <xsl:if test="$isFirst">
 		<!-- Insert a multiple word announcement -->
-		<xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x2560;')"/>
+                <xsl:call-template name="translate">
+                  <xsl:with-param name="table" select="$braille_tables"/>
+                  <xsl:with-param name="text" select="'&#x2560;'"/>
+                </xsl:call-template>
               </xsl:if>
               <xsl:apply-templates/>
               <xsl:if test="$isLast">
 		<!-- Announce the end of emphasis -->
-		<xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x2563;')"/>
+                <xsl:call-template name="translate">
+                  <xsl:with-param name="table" select="$braille_tables"/>
+                  <xsl:with-param name="text" select="'&#x2563;'"/>
+                </xsl:call-template>
               </xsl:if>
             </xsl:when>
             <xsl:otherwise>
@@ -292,25 +334,43 @@
 		<!-- emph is at the beginning of the word -->
 		<xsl:when
                     test="my:ends-with-non-word(preceding-sibling::text()[1]) and my:starts-with-word(following-sibling::text()[1])">
-                  <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x255F;')"/>
+                  <xsl:call-template name="translate">
+                    <xsl:with-param name="table" select="$braille_tables"/>
+                    <xsl:with-param name="text" select="'&#x255F;'"/>
+                  </xsl:call-template>
                   <xsl:apply-templates/>
-                  <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x2561;')"/>
+                  <xsl:call-template name="translate">
+                    <xsl:with-param name="table" select="$braille_tables"/>
+                    <xsl:with-param name="text" select="'&#x2561;'"/>
+                  </xsl:call-template>
 		</xsl:when>
 		<!-- emph is at the end of the word -->
 		<xsl:when
                     test="my:ends-with-word(preceding-sibling::text()[1]) and my:starts-with-non-word(following-sibling::text()[1])">
-                  <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x255E;')"/>
+                  <xsl:call-template name="translate">
+                    <xsl:with-param name="table" select="$braille_tables"/>
+                    <xsl:with-param name="text" select="'&#x255E;'"/>
+                  </xsl:call-template>
                   <xsl:apply-templates/>
 		</xsl:when>
 		<!-- emph is inside the word -->
 		<xsl:when
                     test="my:ends-with-word(preceding-sibling::text()[1]) and my:starts-with-word(following-sibling::text()[1])">
-                  <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x255E;')"/>
+                  <xsl:call-template name="translate">
+                    <xsl:with-param name="table" select="$braille_tables"/>
+                    <xsl:with-param name="text" select="'&#x255E;'"/>
+                  </xsl:call-template>
                   <xsl:apply-templates/>
-                  <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x2561;')"/>
+                  <xsl:call-template name="translate">
+                    <xsl:with-param name="table" select="$braille_tables"/>
+                    <xsl:with-param name="text" select="'&#x2561;'"/>
+                  </xsl:call-template>
 		</xsl:when>
 		<xsl:otherwise>
-                  <xsl:value-of select="my:louis-translate(.,$braille_tables, '&#x255F;')"/>
+                  <xsl:call-template name="translate">
+                    <xsl:with-param name="table" select="$braille_tables"/>
+                    <xsl:with-param name="text" select="'&#x255F;'"/>
+                  </xsl:call-template>
                   <xsl:apply-templates/>
 		</xsl:otherwise>
               </xsl:choose>
@@ -334,14 +394,20 @@
   <xsl:template match="dtb:img">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string(@alt))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="string(@alt)"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
   <xsl:template match="dtb:caption">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string())"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="string()"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -387,8 +453,10 @@
       <xsl:apply-templates select="@*"/>
       <xsl:choose>
 	<xsl:when test="$downshift_ordinals = true()">
-          <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'num_ordinal'), string(translate(.,'.','')))"
-			/>
+          <xsl:call-template name="translate">
+            <xsl:with-param name="table" select="my:get-tables(.,'num_ordinal')"/>
+            <xsl:with-param name="text" select="string(translate(.,'.',''))"/>
+          </xsl:call-template>
 	</xsl:when>
 	<xsl:otherwise>
           <xsl:apply-templates/>
@@ -404,13 +472,17 @@
       <xsl:choose>
 	<xsl:when test="my:isUpper(substring(.,1,1))">
           <!-- we assume that if the first char is uppercase the rest is also uppercase -->
-          <xsl:value-of select="my:louis-translate(.,$braille_tables,concat('&#x2566;',string()))"
-			/>
+          <xsl:call-template name="translate">
+            <xsl:with-param name="table" select="$braille_tables"/>
+            <xsl:with-param name="text" select="concat('&#x2566;',string())"/>
+          </xsl:call-template>
 	</xsl:when>
 	<xsl:otherwise>
           <!-- presumably the roman number is in lower case -->
-          <xsl:value-of select="my:louis-translate(.,$braille_tables,concat('&#x2569;',string()))"
-			/>
+          <xsl:call-template name="translate">
+            <xsl:with-param name="table" select="$braille_tables"/>
+            <xsl:with-param name="text" select="concat('&#x2569;',string())"/>
+          </xsl:call-template>
 	</xsl:otherwise>
       </xsl:choose>
     </xsl:copy>
@@ -426,7 +498,10 @@
     </xsl:variable>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()),string($clean_number))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="string($clean_number)"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -435,8 +510,14 @@
     <xsl:variable name="denominator" select="(tokenize(string(.), '(\s|/)+'))[position()=2]"/>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($numerator))"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'denominator'), string($denominator))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="string($numerator)"/>
+      </xsl:call-template>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,'denominator')"/>
+        <xsl:with-param name="text" select="string($denominator)"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -447,9 +528,18 @@
     <xsl:variable name="denominator" select="(tokenize(string(.), '(\s|/)+'))[position()=3]"/>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,$braille_tables, string($number))"/>
-      <xsl:value-of select="my:louis-translate(.,$braille_tables, string($numerator))"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,'denominator'), string($denominator))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="$braille_tables"/>
+        <xsl:with-param name="text" select="string($number)"/>
+      </xsl:call-template>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="$braille_tables"/>
+        <xsl:with-param name="text" select="string($numerator)"/>
+      </xsl:call-template>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,'denominator')"/>
+        <xsl:with-param name="text" select="string($denominator)"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -460,7 +550,10 @@
     <xsl:variable name="measure" select="$tokens[position()=last()]"/>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($number))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="string($number)"/>
+      </xsl:call-template>
       <xsl:call-template name="handle_abbr">
 	<xsl:with-param name="context" select="'abbr'"/>
 	<xsl:with-param name="content" as="text()">
@@ -488,10 +581,18 @@
               <xsl:if test="not(position() = last())">.</xsl:if>
             </xsl:for-each>
           </xsl:variable>
-          <xsl:value-of select="my:louis-translate(.,$braille_tables,string($clean_number))"/>
-          <xsl:value-of select="my:louis-translate(.,$braille_tables,$secondToLastChar)"/>
-          <xsl:value-of
-              select="my:louis-translate(.,my:get-tables(.,'abbr'),concat('&#x2566;',$lastChar))"/>
+          <xsl:call-template name="translate">
+            <xsl:with-param name="table" select="$braille_tables"/>
+            <xsl:with-param name="text" select="string($clean_number)"/>
+          </xsl:call-template>
+          <xsl:call-template name="translate">
+            <xsl:with-param name="table" select="$braille_tables"/>
+            <xsl:with-param name="text" select="$secondToLastChar"/>
+          </xsl:call-template>
+          <xsl:call-template name="translate">
+            <xsl:with-param name="table" select="my:get-tables(.,'abbr')"/>
+            <xsl:with-param name="text" select="concat('&#x2566;',$lastChar)"/>
+          </xsl:call-template>
 	</xsl:when>
 	<xsl:otherwise>
           <xsl:variable name="clean_number">
@@ -500,7 +601,10 @@
               <xsl:if test="not(position() = last())">.</xsl:if>
             </xsl:for-each>
           </xsl:variable>
-          <xsl:value-of select="my:louis-translate(.,$braille_tables,string($clean_number))"/>
+          <xsl:call-template name="translate">
+            <xsl:with-param name="table" select="$braille_tables"/>
+            <xsl:with-param name="text" select="string($clean_number)"/>
+          </xsl:call-template>
 	</xsl:otherwise>
       </xsl:choose>
     </xsl:copy>
@@ -513,14 +617,20 @@
 			  else my:get-tables(.,local-name())"/>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,$braille_tables, string())"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="$braille_tables"/>
+        <xsl:with-param name="text" select="string()"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
   
   <xsl:template match="brl:place">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()),string())"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="string()"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -529,7 +639,10 @@
       <xsl:apply-templates select="@*"/>
       <xsl:choose>
 	<xsl:when test="$show_v_forms = true()">
-          <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat(upper-case(substring(string(),1,1)),lower-case(substring(string(),2))))"/>
+          <xsl:call-template name="translate">
+            <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+            <xsl:with-param name="text" select="concat(upper-case(substring(string(),1,1)),lower-case(substring(string(),2)))"/>
+          </xsl:call-template>
 	</xsl:when>
 	<xsl:otherwise>
           <xsl:apply-templates/>
@@ -554,12 +667,14 @@
     </xsl:variable>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($text))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="string($text)"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
   <xsl:template match="brl:date">
-    <xsl:variable name="this" select="."/>
     <xsl:variable name="braille_tables" select="my:get-tables(.,local-name())"/>
     <xsl:variable name="day_braille_tables" select="my:get-tables(.,'date_day')"/>
     <xsl:variable name="month_braille_tables" select="my:get-tables(.,'date_month')"/>
@@ -570,17 +685,23 @@
 	<xsl:sort select="position()" order="descending" data-type="number"/>
 	<xsl:choose>
           <xsl:when test="position() = 1">
-            <xsl:value-of
-		select="my:louis-translate($this,$day_braille_tables, format-number(. cast as xs:integer,'#'))"/>
+            <xsl:call-template name="translate">
+              <xsl:with-param name="table" select="$day_braille_tables"/>
+              <xsl:with-param name="text" select="format-number(. cast as xs:integer,'#')"/>
+            </xsl:call-template>
           </xsl:when>
           <xsl:when test="position() = 2">
-            <xsl:value-of
-		select="my:louis-translate($this,$month_braille_tables, format-number(. cast as xs:integer,'#'))"/>
+            <xsl:call-template name="translate">
+              <xsl:with-param name="table" select="$month_braille_tables"/>
+              <xsl:with-param name="text" select="format-number(. cast as xs:integer,'#')"/>
+            </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
 	    <xsl:if test="matches(string(.), '\d+')">
-	      <xsl:value-of
-		  select="my:louis-translate($this,$braille_tables, format-number(. cast as xs:integer,'#'))"/>
+              <xsl:call-template name="translate">
+                <xsl:with-param name="table" select="$braille_tables"/>
+                <xsl:with-param name="text" select="format-number(. cast as xs:integer,'#')"/>
+              </xsl:call-template>
 	    </xsl:if>
           </xsl:otherwise>
 	</xsl:choose>
@@ -605,7 +726,10 @@
     </xsl:variable>
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string($time))"/>
+      <xsl:call-template name="translate">
+        <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+        <xsl:with-param name="text" select="string($time)"/>
+      </xsl:call-template>
     </xsl:copy>
   </xsl:template>
 
@@ -662,7 +786,10 @@
   <xsl:template
       match="text()[(preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:num[@role=('ordinal','fraction','mixed')]|ancestor::dtb:sub|ancestor::dtb:sup)) and matches(string(), '^,')]"
       priority="61">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x256C;',string()))"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+      <xsl:with-param name="text" select="concat('&#x256C;',string())"/>
+    </xsl:call-template>
   </xsl:template>
 
   <!-- ============================================= -->
@@ -672,7 +799,10 @@
     match="text()[my:starts-with-punctuation(string()) and not(preceding::* intersect my:preceding-textnode-within-block(.)/ancestor::*[@brl:render=('quote','singlequote')])
 	   and (my:ends-with-number(string(my:preceding-textnode-within-block(.))) or (preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:num[@role='ordinal']|ancestor::brl:date)))]"
     priority="60">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250B;',string()))"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+      <xsl:with-param name="text" select="concat('&#x250B;',string())"/>
+    </xsl:call-template>
   </xsl:template>
 
   <!-- =============================================== -->
@@ -685,7 +815,10 @@
   <!-- <xsl:template -->
   <!--   match="text()[matches(string(.), '^\p{Ll}.*') and (preceding::* intersect my:preceding-textnode-within-block(.)/ancestor::dtb:abbr)[matches(string(.), '.*\p{Lu}$')]]" -->
   <!--   priority="61"> -->
-  <!--   <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat($KLEINBUCHSTABE,string()))"/> -->
+  <!--     <xsl:call-template name="translate"> -->
+  <!--       <xsl:with-param name="table" select="my:get-tables(.,local-name())"/> -->
+  <!--       <xsl:with-param name="text" select="concat($KLEINBUCHSTABE,string())"/> -->
+  <!--     </xsl:call-template> -->
   <!-- </xsl:template> -->
 
   <!-- ========================================== -->
@@ -694,7 +827,10 @@
   <xsl:template
       match="text()[(preceding::* intersect my:preceding-textnode-within-block(.)/(ancestor::brl:v-form|ancestor::brl:homograph)) and matches(string(), '^''')]"
       priority="61">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250A;',string()))"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+      <xsl:with-param name="text" select="concat('&#x250A;',string())"/>
+    </xsl:call-template>
   </xsl:template>
 
   <!-- ================================================= -->
@@ -703,7 +839,10 @@
   <xsl:template
       match="text()[my:starts-with-word(string()) and my:ends-with-word(string(my:preceding-textnode-within-block(.)[ancestor::dtb:em]))]"
       priority="60">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250A;',string()))"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+      <xsl:with-param name="text" select="concat('&#x250A;',string())"/>
+    </xsl:call-template>
   </xsl:template>
 
   <!-- ================================================ -->
@@ -712,7 +851,10 @@
   <xsl:template
       match="text()[my:ends-with-word(string()) and my:starts-with-word(string(my:following-textnode-within-block(.)[ancestor::dtb:em]))]"
       priority="60">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat(string(),'&#x250A;'))"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+      <xsl:with-param name="text" select="concat(string(),'&#x250A;')"/>
+    </xsl:call-template>
   </xsl:template>
   
   <!-- ====================== -->
@@ -721,7 +863,10 @@
   <xsl:template
       match="text()[my:starts-with-word(string()) and not(my:starts-with-number(string())) and my:ends-with-word(string(my:preceding-textnode-within-block(.)[ancestor::dtb:abbr]))]"
       priority="60">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat('&#x250A;',string()))"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+      <xsl:with-param name="text" select="concat('&#x250A;',string())"/>
+    </xsl:call-template>
   </xsl:template>
 
   <!-- ============================================================================= -->
@@ -730,11 +875,17 @@
   <xsl:template
       match="text()[(matches(string(), '^ich$', 'i') or matches(string(), '\Wich$', 'i')) and matches(string(following::text()[1]), '^[,;:?!)&#x00bb;&#x00ab;]')]"
       priority="61">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), concat(string(),'&#x250A;'))"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+      <xsl:with-param name="text" select="concat(string(),'&#x250A;')"/>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="text()" priority="50">
-    <xsl:value-of select="my:louis-translate(.,my:get-tables(.,local-name()), string())"/>
+    <xsl:call-template name="translate">
+      <xsl:with-param name="table" select="my:get-tables(.,local-name())"/>
+      <xsl:with-param name="text" select="string()"/>
+    </xsl:call-template>
   </xsl:template>
 
   <!-- Copy all the rest -->

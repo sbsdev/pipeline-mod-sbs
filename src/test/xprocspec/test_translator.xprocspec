@@ -3,6 +3,7 @@
                xmlns:p="http://www.w3.org/ns/xproc"
                xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
                xmlns:html="http://www.w3.org/1999/xhtml"
+               xmlns:css="http://www.daisy.org/ns/pipeline/braille-css"
                xmlns:pxi="http://www.daisy.org/ns/pipeline/xproc/internal">
   
   <x:script>
@@ -16,7 +17,7 @@
       <px:transform>
         <p:with-option name="query" select="concat('(input:html)(input:css)(output:css)(translator:sbs)(locale:de)(grade:',$grade,')')"/>
       </px:transform>
-      <p:delete match="@style"/>
+      <p:delete match="@style|@css:*"/>
     </p:declare-step>
   </x:script>
   
@@ -36,7 +37,7 @@
         <x:option name="grade" select="'0'"/>
       </x:call>
       <x:context label="result">
-        <x:document type="port" port="result"/>
+        <x:document type="port" port="result" select="/_/*"/>
       </x:context>
       <x:expect label="result" type="compare">
         <x:document type="inline">
@@ -52,7 +53,7 @@
         <x:option name="grade" select="'1'"/>
       </x:call>
       <x:context label="result">
-        <x:document type="port" port="result"/>
+        <x:document type="port" port="result" select="/_/*"/>
       </x:context>
       <x:expect label="result" type="compare">
         <x:document type="inline">
@@ -68,7 +69,7 @@
         <x:option name="grade" select="'2'"/>
       </x:call>
       <x:context label="result">
-        <x:document type="port" port="result"/>
+        <x:document type="port" port="result" select="/_/*"/>
       </x:context>
       <x:expect label="result" type="compare">
         <x:document type="inline">
@@ -105,7 +106,7 @@
       <x:option name="grade" select="'2'"/>
     </x:call>
     <x:context label="result">
-      <x:document type="port" port="result"/>
+      <x:document type="port" port="result" select="/_/*"/>
     </x:context>
     <x:expect label="result" type="compare">
       <x:document type="inline">

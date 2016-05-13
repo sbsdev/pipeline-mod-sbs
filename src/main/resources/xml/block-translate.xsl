@@ -24,15 +24,18 @@
 		<xsl:apply-templates/>
 	</xsl:template>
 	
-	<xsl:function name="my:louis-translate" as="xs:string">
-		<xsl:param name="context" as="node()"/>
-		<xsl:param name="table" as="xs:string"/>
-		<xsl:param name="text" as="xs:string"/>
+	<xsl:template name="translate" as="text()">
+		<xsl:param name="table" as="xs:string" required="yes"/>
+		<xsl:param name="text" as="xs:string" required="yes"/>
+		<xsl:param name="source-style" as="element()*" tunnel="yes"/> <!-- css:property* -->
+		<xsl:variable name="inline-style" as="element()*">
+		  <xsl:apply-templates select="$source-style" mode="property"/>
+		</xsl:variable>
 		<xsl:variable name="unicode-braille"
 			      select="pf:text-transform(
 		                      concat('(liblouis-table:&quot;',$table,'&quot;)',$hyphenator),
 		                      $text,
-		                      my:get-style($context))"/>
+		                      css:serialize-declaration-list($inline-style))"/>
 		<xsl:choose>
 		  <xsl:when test="$ascii-braille = 'yes'">
 		    <xsl:variable name="ascii-braille" as="xs:string*">
@@ -45,24 +48,13 @@
 			</xsl:non-matching-substring>
 		      </xsl:analyze-string>
 		    </xsl:variable>
-		    <xsl:sequence select="string-join($ascii-braille,'')"/>
+		    <xsl:value-of select="string-join($ascii-braille,'')"/>
 		  </xsl:when>
 		  <xsl:otherwise>
-		    <xsl:sequence select="$unicode-braille"/>
+		    <xsl:value-of select="$unicode-braille"/>
 		  </xsl:otherwise>
 		</xsl:choose>
-	</xsl:function>
-	
-	<xsl:function name="my:get-style" as="xs:string">
-		<xsl:param name="context" as="node()"/>
-		<xsl:variable name="inline-style" as="element()*"
-		              select="css:computed-properties($inline-properties, true(),
-		                        if ($context/self::*) then $context else $context/parent::*)"/>
-		<xsl:variable name="inline-style" as="element()*">
-			<xsl:apply-templates select="$inline-style" mode="property"/>
-		</xsl:variable>
-		<xsl:sequence select="css:serialize-declaration-list($inline-style)"/>
-	</xsl:function>
+	</xsl:template>
 	
 	<xsl:template match="css:property" mode="property">
 		<xsl:if test="not(@value=css:initial-value(@name))">
@@ -72,25 +64,90 @@
 	
 	<xsl:template match="css:property[@name='word-spacing']" mode="property"/>
 	
-	<xsl:template match="@style">
-		<xsl:variable name="translated-rules" as="element()*">
-			<xsl:apply-templates select="css:parse-stylesheet(.)" mode="translate-rule-list">
-				<xsl:with-param name="context" select="parent::*" tunnel="yes"/>
-			</xsl:apply-templates>
+	<xsl:template match="*" priority="10">
+		<xsl:param name="source-style" as="element()*" tunnel="yes"/> <!-- css:property* -->
+		<xsl:param name="result-style" as="element()*" tunnel="yes"/> <!-- css:property* -->
+		<xsl:variable name="style" as="element()*" select="css:deep-parse-stylesheet(@style)"/> <!-- css:rule* -->
+		<xsl:variable name="translated-style" as="element()*">
+			<xsl:call-template name="translate-style">
+				<xsl:with-param name="style" select="$style"/>
+				<xsl:with-param name="context" tunnel="yes" select="."/>
+			</xsl:call-template>
 		</xsl:variable>
-		<xsl:sequence select="css:style-attribute(css:serialize-stylesheet($translated-rules))"/>
+		<xsl:variable name="source-style" as="element()*">
+			<xsl:call-template name="css:computed-properties">
+				<xsl:with-param name="properties" select="$inline-properties"/>
+				<xsl:with-param name="context" select="$dummy-element"/>
+				<xsl:with-param name="cascaded-properties" tunnel="yes" select="$style/css:property"/>
+				<xsl:with-param name="parent-properties" tunnel="yes" select="$source-style"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:variable name="result-style" as="element()*">
+			<xsl:call-template name="css:computed-properties">
+				<xsl:with-param name="properties" select="$inline-properties"/>
+				<xsl:with-param name="context" select="$dummy-element"/>
+				<xsl:with-param name="cascaded-properties" tunnel="yes" select="$translated-style/css:property"/>
+				<xsl:with-param name="parent-properties" tunnel="yes" select="$result-style"/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:next-match>
+			<xsl:with-param name="translated-style" tunnel="yes" select="css:serialize-stylesheet($translated-style)"/>
+			<xsl:with-param name="source-style" tunnel="yes" select="$source-style"/>
+			<xsl:with-param name="result-style" tunnel="yes" select="$result-style"/>
+		</xsl:next-match>
 	</xsl:template>
 	
-	<xsl:template mode="translate-declaration-list"
-	              match="css:property[@name='hyphens' and @value='auto']">
-		<xsl:sequence select="css:property('hyphens','manual')"/>
+	<xsl:template match="@style">
+		<xsl:param name="translated-style" as="xs:string" tunnel="yes"/>
+		<xsl:sequence select="css:style-attribute($translated-style)"/>
 	</xsl:template>
 	
-	<xsl:template mode="translate-declaration-list"
+	<xsl:template mode="translate-style" match="css:property[@name='word-spacing']">
+		<xsl:sequence select="."/>
+	</xsl:template>
+	
+	<xsl:template mode="translate-style"
 	              match="css:property[@name=('letter-spacing',
 	                                         'font-style',
 	                                         'font-weight',
 	                                         'text-decoration',
 	                                         'color')]"/>
 	
+	<xsl:template mode="translate-style" match="css:property[@name='hyphens' and @value='auto']">
+		<xsl:param name="result-style" as="element()*" tunnel="yes"/>
+		<xsl:if test="$result-style[@name='hyphens' and not(@value='manual')]">
+			<css:property name="hyphens" value="manual"/>
+		</xsl:if>
+	</xsl:template>
+	
+	<!--
+	    FIXME: because of bug in block-translator-template.xsl (fixed in next version)
+	-->
+	<xsl:template mode="translate-style" match="css:string[@value]|css:attr" as="element()?">
+		<xsl:param name="context" as="element()" tunnel="yes"/>
+		<xsl:param name="source-style" as="element()*" tunnel="yes"/> <!-- css:property* -->
+		<xsl:param name="result-style" as="element()*" tunnel="yes"/> <!-- css:property* -->
+		<xsl:param name="mode" as="xs:string" tunnel="yes"/> <!-- before|after -->
+		<xsl:choose>
+			<xsl:when test="$mode=('before','after')">
+				<xsl:next-match/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:variable name="evaluated-string" as="xs:string">
+					<xsl:apply-templates mode="css:eval" select=".">
+						<xsl:with-param name="context" select="$context"/>
+					</xsl:apply-templates>
+				</xsl:variable>
+				<css:string value="{$evaluated-string}"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!--
+	    FIXME: because of bug in block-translator-template.xsl (fixed in next version)
+	-->
+	<xsl:template match="css:string[@name][not(@target)]" mode="css:serialize" as="xs:string">
+		<xsl:sequence select="concat('string(',@name,if (@scope) then concat(', ', @scope) else '',')')"/>
+	</xsl:template>
+
 </xsl:stylesheet>

@@ -6,7 +6,7 @@
   <x:param name="hyphenator">(locale:de)</x:param>
   
   <x:scenario label="simple test">
-    <x:context>
+    <x:context mode="identify-blocks">
       <_ xmlns="http://www.daisy.org/z3986/2005/dtbook/" style="display:block"> foo
         <span style="hyphens: auto">foobar</span>
         <span style="white-space: pre-wrap">   foo </span>
@@ -14,7 +14,9 @@
       </_>
     </x:context>
     <x:expect label="result">
-      <_ xmlns="http://www.daisy.org/z3986/2005/dtbook/" style="display: block; text-transform: none"> ⠋⠕⠕ <span style="hyphens: manual">⠋⠕⠕­⠃⠁⠗</span> <span style="white-space: pre-wrap">   ⠋⠕⠕ </span> <span style="text-transform: none">⠋⠕⠕</span>
+      <_ style="text-transform: none">
+        <_ xmlns="http://www.daisy.org/z3986/2005/dtbook/" style="display: block"> ⠋⠕⠕ <span>⠋⠕⠕­⠃⠁⠗</span> <span style="white-space: pre-wrap">   ⠋⠕⠕ </span> <span>⠋⠕⠕</span>
+        </_>
       </_>
     </x:expect>
   </x:scenario>
