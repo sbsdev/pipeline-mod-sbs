@@ -3,8 +3,9 @@
                xmlns:sbs="http://www.sbs.ch"
                script="http://www.sbs.ch/pipeline/modules/braille/dtbook-to-pef.xpl">
 
+  <!-- a few smaller layout tweaks do not work yet -->
   <x:scenario label="titlepage_normal_g0"
-	      pending="a few smaller layout tweaks do not work yet">
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
@@ -21,7 +22,8 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="titlepage_normal_g1" pending="not supported yet">
+  <x:scenario label="titlepage_normal_g1"
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
@@ -38,7 +40,8 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="titlepage_normal_g2" pending="not supported yet">
+  <x:scenario label="titlepage_normal_g2"
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
@@ -55,7 +58,8 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="titlepage_rucksack_g0" pending="not supported yet">
+  <x:scenario label="titlepage_rucksack_g0"
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
@@ -72,7 +76,8 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="titlepage_rucksack_g1" pending="not supported yet">
+  <x:scenario label="titlepage_rucksack_g1"
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
@@ -89,7 +94,8 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="titlepage_rucksack_g2" pending="not supported yet">
+  <x:scenario label="titlepage_rucksack_g2"
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
@@ -106,7 +112,8 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="titlepage_sjw_g0" pending="not supported yet">
+  <x:scenario label="titlepage_sjw_g0"
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
@@ -123,7 +130,8 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="titlepage_sjw_g1" pending="not supported yet">
+  <x:scenario label="titlepage_sjw_g1"
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
@@ -140,7 +148,8 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="titlepage_sjw_g2" pending="not implemented yes">
+  <x:scenario label="titlepage_sjw_g2"
+	      xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_titlepage.xml"/>
