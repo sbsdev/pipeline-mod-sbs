@@ -22,8 +22,8 @@ SBS specific modules for the DAISY Pipeline 2
 - Perform the release with Maven.
 
   ```sh
-  mvn clean release:clean release:prepare -DpushChanges=false
-  mvn release:perform -DlocalCheckout=true
+  mvn clean release:clean release:prepare
+  mvn release:perform
   ```
   
 - Push and make a pull request (for turning an existing issue into a PR use the `-i <issueno>` switch).
