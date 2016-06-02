@@ -29,7 +29,7 @@ h1 {
 	display: block;
 	text-align: center;
 	margin-top: 1;
-	border-bottom: ⠤;
+	-obfl-underline: ⠤;
 	margin-bottom: 1;
 	string-set: running-footer content();
 }

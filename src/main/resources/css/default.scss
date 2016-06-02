@@ -127,7 +127,7 @@ brl|volume[brl|grade='#{dollar-contraction-grade}'] {
     margin-left:4;
     margin-right:4;
     margin-bottom:1;
-    border-bottom:⠤;
+    -obfl-underline:⠤;
     page-break-before: always;
 }
 
@@ -249,7 +249,7 @@ h1 {
     margin-left: 4;
     margin-right: 4;
     margin-top: 1;
-    border-bottom: ⠤;
+    -obfl-underline: ⠤;
     margin-bottom: 1;
     page-break-after: avoid;
     hyphens: none;
@@ -259,7 +259,7 @@ h2 {
     display: block;
     margin-right: 4;
     text-align: left;
-    border-bottom: ⠒;
+    -obfl-underline: ⠒;
     page-break-after: avoid;
     hyphens: none;
 }
@@ -268,7 +268,7 @@ h3 {
     display: block;
     margin-right: 4;
     text-align: left;
-    border-bottom: ⠂;
+    -obfl-underline: ⠂;
     page-break-after: avoid;
     hyphens: none;
 }
@@ -370,7 +370,9 @@ frontmatter level2 {
 #cover-title {
     display: block;
     margin-top: 2;
-    border-bottom: ⠤;
+    -obfl-underline: ⠤; /* FIXME: add `text-indent: 0` in order to get rid of the two leading
+                           underlined spaces, and also for better centering (similar for
+                           p#cover-author, p.series, p.how-many-volumes, etc.) */
 }
 
 #number-of-volumes {
@@ -462,7 +464,7 @@ frontmatter > .titlepage > level2:nth-child(1)::before {
     margin-bottom:1;
     margin-left:4;
     margin-right:4;
-    border-bottom: ⠤;
+    -obfl-underline: ⠤;
     content: string(docauthor) "\A\A\A" string(doctitle);
 }
 

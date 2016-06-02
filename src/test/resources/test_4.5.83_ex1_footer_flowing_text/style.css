@@ -17,7 +17,7 @@ h1 {
 	display: block;
 	text-align: left;
 	margin-top: 1;
-	border-bottom: ⠤;
+	-obfl-underline: ⠤;
 	margin-bottom: 1;
 }
 

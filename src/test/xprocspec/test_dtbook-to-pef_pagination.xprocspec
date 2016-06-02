@@ -187,7 +187,6 @@
   <x:scenario label="4.5.82_ex2_parts_without_print_page_number" xfail="true">
     <x:documentation>
       Broken:
-      - "shrink-to-fit" not supported yet
       - print page range on first braille page does not include first print page
     </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
@@ -211,7 +210,6 @@
   <x:scenario label="4.5.83_ex1_footer_flowing_text" xfail="true">
     <x:documentation>
       Broken:
-      - "shrink-to-fit" not supported yet
       - flow into footer not supported yet
     </x:documentation>
     <x:call step="sbs:dtbook-to-pef">
