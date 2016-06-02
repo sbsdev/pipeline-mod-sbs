@@ -201,14 +201,17 @@ public interface SBSTranslator {
 									for (Term<?> t: values) {
 										String tt = ((TermIdent)t).getValue();
 										if (tt.equals("print-page")) {
+											style.removeProperty("hyphens");
 											if (values.size() > 1 || style.size() > 1)
 												throw new RuntimeException("Translator does not support '" + style +"'");
 											return Optional.of(translatePrintPageNumber(s.getText())).asSet(); }
 										else if (tt.equals("volume")) {
+											style.removeProperty("hyphens");
 											if (values.size() > 1 || style.size() > 1)
 												throw new RuntimeException("Translator does not support '" + style +"'");
 											return Optional.of(translateVolumeNumber(s.getText())).asSet(); }
 										else if (tt.equals("volumes")) {
+											style.removeProperty("hyphens");
 											if (values.size() > 1 || style.size() > 1)
 												throw new RuntimeException("Translator does not support '" + style +"'");
 											return Optional.of(translateVolumesCount(s.getText())).asSet(); }}}}}}
