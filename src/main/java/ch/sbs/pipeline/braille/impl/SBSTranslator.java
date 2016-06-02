@@ -209,12 +209,12 @@ public interface SBSTranslator {
 											style.removeProperty("hyphens");
 											if (values.size() > 1 || style.size() > 1)
 												throw new RuntimeException("Translator does not support '" + style +"'");
-											return Optional.of(translateVolumeNumber(s.getText())).asSet(); }
+											return translateVolumeNumber(s.getText()); }
 										else if (tt.equals("volumes")) {
 											style.removeProperty("hyphens");
 											if (values.size() > 1 || style.size() > 1)
 												throw new RuntimeException("Translator does not support '" + style +"'");
-											return Optional.of(translateVolumesCount(s.getText())).asSet(); }}}}}}
+											return translateVolumesCount(s.getText()); }}}}}}
 					return translator.transform(styledText);
 				}
 			};
@@ -235,14 +235,14 @@ public interface SBSTranslator {
 				return b.toString();
 			}
 			
-			private String translateVolumeNumber(String number) {
+			private java.lang.Iterable<String> translateVolumeNumber(String number) {
 				Matcher m = NUMBER.matcher(number);
 				String ret;
 				if (!m.matches())
 					throw new RuntimeException("'" + number + "' is not a valid volume number");
 				switch (number) {
 				case "1":
-				    ret = "Erster";
+					ret = "Erster";
 				    break;
 				case "2":
 				    ret = "Zweiter";
@@ -278,12 +278,12 @@ public interface SBSTranslator {
 				    ret = "Zwölfter";
 				    break;
 				default:
-				    ret = translateNaturalNumber(Integer.parseInt(number));
+				    return Optional.of(translateNaturalNumber(Integer.parseInt(number))).asSet();
 				}
-				return ret;
+				return translator.transform(Optional.of(new CSSStyledText(ret)).asSet());
 			}
 			
-			private String translateVolumesCount(String number) {
+			private java.lang.Iterable<String> translateVolumesCount(String number) {
 				Matcher m = NUMBER.matcher(number);
 				if (!m.matches())
 					throw new RuntimeException("'" + number + "' is not a valid number");
@@ -326,9 +326,9 @@ public interface SBSTranslator {
 				    ret = "Zwölf";
 				    break;
 				default:
-				    ret = translateNaturalNumber(Integer.parseInt(number));
+				    return Optional.of(translateNaturalNumber(Integer.parseInt(number))).asSet();
 				}
-				return translateNaturalNumber(Integer.parseInt(number));
+				return translator.transform(Optional.of(new CSSStyledText(ret)).asSet());
 			}
 			
 			private String translateNaturalNumber(int number) {
