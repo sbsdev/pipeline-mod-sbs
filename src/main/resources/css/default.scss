@@ -375,16 +375,16 @@ frontmatter level2 {
                            p#cover-author, p.series, p.how-many-volumes, etc.) */
 }
 
-#number-of-volumes {
+#number-of-volumes::after {
     content: -obfl-evaluate('(round $volumes)');
     text-transform: volumes;
 }
 
-#number-of-volumes-label {
+#number-of-volumes-label::after {
     content: -obfl-evaluate('(if (> $volumes 1) "Braillebänden" "Brailleband")');
 }
 
-#current-volume {
+#current-volume::after {
     content: -obfl-evaluate('(round $volume)');
     text-transform: volume;
 }
