@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>mod-sbs</artifactId>
-  <version>1.7.0</version>
+  <version>1.7.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>DP2 Braille Modules :: mod-sbs</name>
@@ -260,8 +260,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <scm>
-    <tag>v1.7.0</tag>
-  </scm>
 </project>
