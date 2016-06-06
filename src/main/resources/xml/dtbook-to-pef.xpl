@@ -26,8 +26,8 @@
         <px:data-type>
           <choice>
             <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0" xml:lang="de">
-              <value>Vollschrift</value>
               <value>Basisschrift</value>
+              <value>Vollschrift</value>
               <value>Kurzschrift</value>
             </documentation>
             <value>0</value>
@@ -38,7 +38,7 @@
       </p:pipeinfo>
       <p:documentation xmlns="http://www.w3.org/1999/xhtml">
         <h2 px:role="name">Translation/formatting of text: Contraction grade</h2>
-        <p px:role="desc">`Vollschrift` (uncontracted), `Basisschrift` (partly contracted) or `Kurzschrift` (fully contracted)</p>
+        <p px:role="desc">`Basisschrift` (uncontracted), `Vollschrift` (partly contracted) or `Kurzschrift` (fully contracted)</p>
       </p:documentation>
     </p:option>
 
