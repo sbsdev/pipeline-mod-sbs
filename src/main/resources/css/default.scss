@@ -167,9 +167,18 @@ brl|volume[brl|grade='#{dollar-contraction-grade}'] {
 
 #generated-volume-toc li a::after,
 #generated-document-toc li a::after {
-    /* TODO: target-string(attr(href), print-page) should be downshifted and preceded by a number sign
-           target-counter(attr(href), page) should be regular (upshifted) and not preceded by a number sign */
     content: " " leader('⠄') " " target-string(attr(href), print-page) target-counter(attr(href), page);
+    content: " " leader('⠄') " ";
+    &::after {
+        &::before {
+            content: target-string(attr(href), print-page);
+            text-transform: toc-print-page;
+        }
+        &::after {
+            content: target-counter(attr(href), page);
+            text-transform: toc-page;
+        }
+    }
 }
 
 dtbook {

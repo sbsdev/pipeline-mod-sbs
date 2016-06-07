@@ -187,7 +187,13 @@ public interface SBSTranslator {
 			public FromStyledTextToBraille fromStyledTextToBraille() {
 				return fromStyledTextToBraille;
 			}
-			
+
+			private void failIfOtherStyleAttached(SimpleInlineStyle style, TermList values) {
+				style.removeProperty("hyphens");
+				if (values.size() > 1 || style.size() > 1)
+					throw new RuntimeException("Translator does not support '" + style +"'");
+			}
+
 			private final FromStyledTextToBraille fromStyledTextToBraille = new FromStyledTextToBraille() {
 				public java.lang.Iterable<String> transform(java.lang.Iterable<CSSStyledText> styledText) {
 					if (size(styledText) == 1) {
@@ -201,24 +207,24 @@ public interface SBSTranslator {
 									for (Term<?> t: values) {
 										String tt = ((TermIdent)t).getValue();
 										if (tt.equals("print-page")) {
-											style.removeProperty("hyphens");
-											if (values.size() > 1 || style.size() > 1)
-												throw new RuntimeException("Translator does not support '" + style +"'");
+											failIfOtherStyleAttached(style, values);
 											return Optional.of(translatePrintPageNumber(s.getText())).asSet(); }
+										else if (tt.equals("toc-page")) {
+											failIfOtherStyleAttached(style, values);
+											return Optional.of(translateBraillePageNumberInToc(s.getText())).asSet(); }
+										else if (tt.equals(" toc-print-page")) {
+											failIfOtherStyleAttached(style, values);
+											return Optional.of(translatePrintPageNumberInToc(s.getText())).asSet(); }
 										else if (tt.equals("volume")) {
-											style.removeProperty("hyphens");
-											if (values.size() > 1 || style.size() > 1)
-												throw new RuntimeException("Translator does not support '" + style +"'");
+											failIfOtherStyleAttached(style, values);
 											return translateVolumeNumber(s.getText()); }
 										else if (tt.equals("volumes")) {
-											style.removeProperty("hyphens");
-											if (values.size() > 1 || style.size() > 1)
-												throw new RuntimeException("Translator does not support '" + style +"'");
+											failIfOtherStyleAttached(style, values);
 											return translateVolumesCount(s.getText()); }}}}}}
 					return translator.transform(styledText);
 				}
 			};
-			
+
 			private String translatePrintPageNumber(String number) {
 				Matcher m = PRINT_PAGE_NUMBER.matcher(number.replaceAll("\u200B",""));
 				if (!m.matches())
@@ -235,6 +241,17 @@ public interface SBSTranslator {
 				return b.toString();
 			}
 			
+			private String translatePrintPageNumberInToc(String number) {
+				StringBuilder b = new StringBuilder();
+				b.append(PRINT_PAGE_NUMBER_SIGN);
+				b.append(translateNaturalNumber(Integer.parseInt(number), true));
+				return b.toString();
+			}
+
+			private String translateBraillePageNumberInToc(String number) {
+				return translateNaturalNumber(Integer.parseInt(number));
+			}
+
 			private java.lang.Iterable<String> translateVolumeNumber(String number) {
 				Matcher m = NUMBER.matcher(number);
 				String ret;
