@@ -134,11 +134,15 @@ brl|volume[brl|grade='#{dollar-contraction-grade}'] {
 #generated-document-toc::-obfl-on-volume-start,
 #generated-volume-toc::-obfl-on-volume-start {
     display: block;
-    content: 'Band ' -obfl-evaluate('(round $started-volume-number)');
+    content: ' Band';
     text-align: center;
     text-indent:0;
     margin-top:1;
     margin-bottom:1;
+    &::before {
+        content: -obfl-evaluate('(round $started-volume-number)');
+        text-transform: volume;
+    }
 }
 
 #generated-document-toc::-obfl-on-volume-end,
