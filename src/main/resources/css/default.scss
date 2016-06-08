@@ -399,7 +399,7 @@ frontmatter level2 {
 }
 
 frontmatter > level1 > .how-many-volumes {
-    display: block;
+    display: -obfl-evaluate('(if (> $volumes 1) "block" "none")');
     margin-top: 4;
 }
 
