@@ -156,11 +156,10 @@ public interface SBSTranslator {
 		
 		private final static Pattern PRINT_PAGE_NUMBER = Pattern.compile("(?<first>[0-9]+)?(?:/(?<last>[0-9]+))?");
 		private final static Pattern NUMBER = Pattern.compile("[0-9]+");
-		private final static String PRINT_PAGE_NUMBER_SIGN = "\u2838\u283c";
-		private final static String[] UPPER_DIGIT_TABLE = new String[]{
-			"\u281a","\u2801","\u2803","\u2809","\u2819","\u2811","\u280b","\u281b","\u2813","\u280a"};
-		private final static String[] LOWER_DIGIT_TABLE = new String[]{
-			"\u2834","\u2802","\u2806","\u2812","\u2832","\u2822","\u2816","\u2836","\u2826","\u2814"};
+		private final static String PRINT_PAGE_NUMBER_SIGN = "⠸⠼";
+		private final static String NUMBER_SIGN = "⠼";
+		private final static String[] UPPER_DIGIT_TABLE = new String[]{"⠚","⠁","⠃","⠉","⠙","⠑","⠋","⠛","⠓","⠊"};
+		private final static String[] LOWER_DIGIT_TABLE = new String[]{"⠴","⠂","⠆","⠒","⠲","⠢","⠖","⠶","⠦","⠔"};
 
 		private class TransformImpl extends AbstractBrailleTranslator {
 			
@@ -243,7 +242,7 @@ public interface SBSTranslator {
 			
 			private String translatePrintPageNumberInToc(String number) {
 				StringBuilder b = new StringBuilder();
-				b.append(PRINT_PAGE_NUMBER_SIGN);
+				b.append(NUMBER_SIGN);
 				b.append(translateNaturalNumber(Integer.parseInt(number), true));
 				return b.toString();
 			}
