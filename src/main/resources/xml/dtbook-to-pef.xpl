@@ -90,7 +90,6 @@
         </p:input>
     </px:merge-parameters>
     <px:delete-parameters parameter-names="stylesheet
-                                           contraction-grade
                                            ascii-table
                                            include-brf
                                            include-preview
