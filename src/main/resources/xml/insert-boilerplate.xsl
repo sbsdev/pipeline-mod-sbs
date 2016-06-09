@@ -52,7 +52,7 @@
 
       <!-- Series -->
       <xsl:if test="$series = 'sjw'">
-	<p class="series">SJW-Heft NR. <xsl:value-of select="$series-number"/></p>
+	<p class="series-sjw">SJW-Heft NR. <xsl:value-of select="$series-number"/></p>
       </xsl:if>
 
       <!-- Volumes -->
@@ -68,7 +68,7 @@
       
       <!-- Series -->
       <xsl:if test="$series = 'rucksack'">
-	    <p class="series">Rucksackbuch Nr. <xsl:value-of select="$series-number"/></p>
+	    <p class="series-ppp">Rucksackbuch Nr. <xsl:value-of select="$series-number"/></p>
       </xsl:if>
 
       <!-- Publisher -->
@@ -104,7 +104,7 @@
 
       <!-- Series -->
       <xsl:if test="$series = 'rucksack'">
-	    <p class="series">Rucksackbuch Nr. <xsl:value-of select="$series-number"/></p>
+	    <p class="series-ppp">Rucksackbuch Nr. <xsl:value-of select="$series-number"/></p>
       </xsl:if>
 
       <!-- Publisher long -->
