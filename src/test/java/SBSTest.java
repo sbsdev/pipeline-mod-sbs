@@ -130,6 +130,8 @@ public class SBSTest {
 				brailleModule("liblouis-tables"),
 				// logging
 				logbackClassic(),
+				mavenBundle("org.slf4j:jul-to-slf4j:?"),
+				mavenBundle("org.daisy.pipeline:logging-activator:?"),
 				// xprocspec
 				xprocspec(),
 				mavenBundle("org.daisy.maven:xproc-engine-daisy-pipeline:?"),
