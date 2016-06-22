@@ -94,10 +94,10 @@
     }
 }
 
-/* uncomment once contraction-grade is supported
-brl|volume[brl|grade='#{dollar-contraction-grade}'] {
+brl|volume[brl|grade='#{$contraction-grade}'] {
+   display:block;
    volume-break-before:always;
-} */
+}
 
 
 @volume {
