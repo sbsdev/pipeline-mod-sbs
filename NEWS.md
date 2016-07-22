@@ -1,5 +1,37 @@
-pipeline-mod-sbs v1.5.0
-=======================
+v1.8.0
+======
+
+Includes
+--------
+- Support for SJW vs. Rucksack series
+- Improved rendering of volume numbers in TOC
+- Improved rendering of print page numbers in TOC (https://github.com/sbsdev/pipeline-mod-sbs/issues/24)
+- Various other improvements to default CSS
+- Correct mapping of contraction grades (https://github.com/snaekobbi/pipeline-mod-sbs/issues/20)
+- Other fixes (https://github.com/sbsdev/pipeline-mod-sbs/issues/23)
+
+v1.7.0
+======
+
+Includes
+--------
+- Correct underlining of headings (https://github.com/sbsdev/pipeline-mod-sbs/issues/18)
+- Fix for `text-transform: volume|volumes`
+
+v1.6.0
+======
+
+Includes
+--------
+- Fix for current volume and total number of volumes on title page
+- Fix for print page numbers (https://github.com/snaekobbi/pipeline-mod-sbs/issues/16)
+- Fix for `prodnote`
+- Internal change:
+  - preserving of all inline element tags during translation phase
+    (https://github.com/sbsdev/pipeline-mod-sbs/issues/14)
+
+v1.5.0
+======
 
 Includes
 --------
@@ -18,8 +50,8 @@ Includes
 - Fixes related to white space (https://github.com/snaekobbi/pipeline-mod-sbs/issues/11,
   https://github.com/sbsdev/sbs-braille-tables/issues/1)
 
-pipeline-mod-sbs v1.4.0
-=======================
+v1.4.0
+======
 
 Includes
 --------
@@ -31,31 +63,31 @@ Includes
   `brl:date`, `brl:time`, ...) (https://github.com/snaekobbi/pipeline-mod-sbs/issues/2)
 - Support for `text-transform: volume` and `text-transform: volumes`
 
-pipeline-mod-sbs v1.3.1
-=======================
+v1.3.1
+======
 Bugfix release
 
-pipeline-mod-sbs v1.3.0
-=======================
+v1.3.0
+======
 Compatibility update
 
-pipeline-mod-sbs v1.2.0
-=======================
+v1.2.0
+======
 
 Includes
 --------
 - Support for `text-transform: print-page`
 
-pipeline-mod-sbs v1.1.0
-=======================
+v1.1.0
+======
 
 Includes
 --------
 - Support for grade 0
 - Bugfixes
 
-pipeline-mod-sbs v1.0.0
-=======================
+v1.0.0
+======
 
 Includes
 --------
