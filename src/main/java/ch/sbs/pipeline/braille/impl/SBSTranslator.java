@@ -233,10 +233,12 @@ public interface SBSTranslator {
 				String first = m.group("first");
 				String last = m.group("last");
 				// TODO: warning if first == null
-				if (first != null)
+				if (first != null) {
 					b.append(translateNaturalNumber(Integer.parseInt(first)));
-				if (last != null)
-					b.append(translateNaturalNumber(Integer.parseInt(last), true));
+					if (last != null)
+						b.append(translateNaturalNumber(Integer.parseInt(last), true)); }
+				else if (last != null)
+					b.append(translateNaturalNumber(Integer.parseInt(last)));
 				return b.toString();
 			}
 			

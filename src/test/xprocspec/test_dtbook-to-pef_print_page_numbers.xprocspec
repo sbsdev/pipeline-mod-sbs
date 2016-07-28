@@ -3,8 +3,7 @@
                xmlns:sbs="http://www.sbs.ch"
                script="http://www.sbs.ch/pipeline/modules/braille/dtbook-to-pef.xpl">
 
-  <x:scenario label="print_page_numbers"
-	      pending="aren't working at the moment">
+  <x:scenario label="format of single print page number vs. print page number range">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_print_page_numbers/test_4.5.81.xml"/>
