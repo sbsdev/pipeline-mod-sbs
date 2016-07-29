@@ -1,19 +1,13 @@
-
-@page { size: 28 28; } 
+@page bodymatter:right {
+	@bottom-left {
+		content: none;
+	}
+}
 
 dtbook {
-  hyphens: none;
+	hyphens: none;
 }
 
-level1 {
-  page-break-after: right; 
+bodymatter > level1:not(:first-child) {
+	page-break-before: right;
 }
-
-
-p {
-	display: block;
-	text-align: left;
-	text-indent: 2;
-}
-
-

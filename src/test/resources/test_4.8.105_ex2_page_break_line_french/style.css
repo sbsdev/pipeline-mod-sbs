@@ -1,15 +1,26 @@
-
 @page {
-	size: 28 28;
 	margin-top: 1;
 	counter-increment: continuation;
 	@top-left {
 		content: counter(continuation, abc) "⠠" string(print-page, start);
-		/* this translates numbers by adding dot 6 to all digits: */
+		/* this should translate numbers by adding dot 6 to all digits: */
 		text-transform: pagenum;
 	}
 	@top-right {
 		content: "⠠" counter(page, pagenum);
+	}
+}
+
+@page bodymatter:right {
+	margin-bottom: 0;
+	@bottom-left {
+		content: none;
+	}
+	@bottom-center {
+		content: none;
+	}
+	@bottom-right {
+		content: none;
 	}
 }
 
@@ -30,31 +41,28 @@
 
 dtbook {
 	hyphens: none;
+}
+
+bodymatter {
 	counter-set: page 33;
 }
 
-level1 {
-	page-break-after: always;
-}
-
 h1 {
-	display: block;
-	text-align: center;
+	padding-top: 0;
 	margin-top: 1;
 	margin-bottom: 2;
+	-obfl-underline: none;
 }
 
 h2 {
-	display: block;
 	text-align: center;
 	margin-top: 1;
 	margin-bottom: 1;
+	-obfl-underline: none;
 }
 
-p {
-	display: block;
-	text-align: left;
-	text-indent: 2;
+level2 {
+	margin-top: 0;
 }
 
 pagenum {
@@ -73,3 +81,8 @@ pagenum:first-of-page {
 	display: none;
 }
 */
+
+/* alternative: */
+pagenum:has(+level2, +h1) {
+	display: none;
+}

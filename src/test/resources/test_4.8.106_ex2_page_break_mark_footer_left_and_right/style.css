@@ -1,6 +1,4 @@
-
 @page {
-	size: 28 28;
 	margin-bottom: 1;
 	margin-left: 2;
 	@bottom-left {
@@ -8,7 +6,7 @@
 		text-transform: print-page;
 	}
 	@bottom-center {
-		content: string(running-footer);
+		content: string(running-footer-body);
 	}
 	@bottom-right {
 		content: counter(page);
@@ -20,25 +18,12 @@
 
 dtbook {
 	hyphens: none;
-	display: block;
 }
 
 h1 {
-	display: block;
-	text-align: center;
-	margin-top: 1;
-	margin-bottom: 1;
-	string-set: running-footer content();
-}
-
-p {
-	display: block;
-	text-align: left;
-	text-indent: 2;
+	-obfl-underline: none;
 }
 
 pagenum {
-	display: none;
-	string-set: print-page-slash content() '/', print-page content();
 	-obfl-marker: pagenum;
 }

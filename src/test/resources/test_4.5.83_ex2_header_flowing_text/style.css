@@ -1,21 +1,18 @@
-
-@page {
-	size: 28 28;
-}
-
-@page:right {
+@page bodymatter:right {
+	margin-bottom: 0;
 	@top-right {
 		content: "      " counter(page);
+	}
+	@bottom-left {
+		content: none;
+	}
+	@bottom-right {
+		content: none;
 	}
 }
 
 dtbook {
-  hyphens: none;
-}
-p {
-	display: block;
-	text-align: left;
-	text-indent: 2;
+	hyphens: none;
 }
 
 

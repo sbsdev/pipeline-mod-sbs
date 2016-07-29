@@ -1,12 +1,10 @@
-
-@page { size: 28 28; } 
-
-dtbook {
-  hyphens: none;
+@page bodymatter:right {
+	margin-bottom: 0;
+	@bottom-left {
+		content: none;
+	}
 }
 
-p {
-	display: block;
-	text-align: left;
-	text-indent: 2;
+dtbook {
+	hyphens: none;
 }

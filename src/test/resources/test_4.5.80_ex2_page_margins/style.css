@@ -1,6 +1,4 @@
-
 @page {
-	size: 35 18;
 	/* the margin shorthand doesn't work in @page (why is not clear) */
 	/* margin: 2; */
 	margin-top: 2;
@@ -9,12 +7,17 @@
 	margin-right: 2;
 }
 
+@page bodymatter:right {
+	margin-bottom: 2;
+	@bottom-left {
+		content: none;
+	}
+}
+
 dtbook {
-  hyphens: none;
+	hyphens: none;
 }
 
 p {
-	display: block;
-	text-align: left;
 	text-indent: 0;
 }
