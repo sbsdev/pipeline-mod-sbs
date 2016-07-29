@@ -334,8 +334,8 @@ frontmatter > level1.toc {
 }
 
 
-bodymatter > level1:not(:nth-child(1)),
-rearmatter > level1:not(:nth-child(1)) {
+bodymatter > level1:not(:first-child),
+rearmatter > level1:not(:first-child) {
     display: block;
     page-break-before:always;
 }
@@ -379,7 +379,7 @@ frontmatter level2 {
     orphans:4;
 }
 
-frontmatter level2:nth-child(1) h2 {
+frontmatter level2:first-child h2 {
     padding-top:1;
 }
 
@@ -493,7 +493,7 @@ frontmatter > .titlepage {
     flow: cover;
 }
 
-frontmatter > .titlepage > level2:nth-child(1) > p {
+frontmatter > .titlepage > level2:first-child > p {
     display: block;
     text-align:center;
 }
@@ -511,7 +511,7 @@ frontmatter > .titlepage > level2:nth-child(2) > p {
     page-break-after:always;
 }
 
-frontmatter > .titlepage > level2:nth-child(1)::before {
+frontmatter > .titlepage > level2:first-child::before {
     display: block;
     text-align:center;
     white-space: pre-line;
