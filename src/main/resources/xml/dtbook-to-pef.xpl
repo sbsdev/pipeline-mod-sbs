@@ -45,37 +45,21 @@
     <p:option name="ascii-table" select="'(liblouis-table:&quot;http://www.sbs.ch/pipeline/liblouis/tables/sbs.dis&quot;)'"/>
     <p:option name="include-preview"/>
     <p:option name="include-brf"/>
-
     <p:option name="page-width" select="'28'"/>
     <p:option name="page-height" select="'28'"/>
-    <p:option name="left-margin"/>
     <p:option name="duplex"/>
     <p:option name="levels-in-footer"/>
-    <p:option name="main-document-language"/>
     <p:option name="hyphenation"/>
     <p:option name="line-spacing"/>
-    <p:option name="tab-width"/>
     <p:option name="capital-letters"/>
     <p:option name="accented-letters"/>
     <p:option name="polite-forms"/>
     <p:option name="downshift-ordinal-numbers"/>
-    <p:option name="include-captions"/>
-    <p:option name="include-images"/>
-    <p:option name="include-image-groups"/>
-    <p:option name="include-line-groups"/>
-    <p:option name="text-level-formatting"/>
-    <p:option name="include-note-references"/>
     <p:option name="include-production-notes"/>
     <p:option name="show-braille-page-numbers"/>
     <p:option name="show-print-page-numbers"/>
-    <p:option name="force-braille-page-break"/>
     <p:option name="toc-depth"/>
     <p:option name="footnotes-placement"/>
-    <p:option name="colophon-metadata-placement"/>
-    <p:option name="rear-cover-placement"/>
-    <p:option name="number-of-sheets"/>
-    <p:option name="maximum-number-of-sheets"/>
-    <p:option name="minimum-number-of-sheets"/>
     <p:option name="document-identifier"/>
 
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/library.xpl"/>
