@@ -139,13 +139,15 @@
     </x:expect>
   </x:scenario>
 
-  <x:scenario label="4.5.81_ex3_footer_no_print_page_number">
+  <x:scenario label="4.5.81_ex3_footer_no_print_page_number" xfail="true">
     <x:call step="sbs:dtbook-to-pef">
       <x:input port="source">
         <x:document type="file" href="../resources/test_4.5.81_ex3_footer_no_print_page_number/test_4.5.81.xml"/>
       </x:input>
       <x:option name="contraction-grade" select="0"/>
       <x:option name="show-print-page-numbers" select="false()"/>
+      <x:option name="show-braille-page-numbers" select="true()"/>
+      <x:option name="levels-in-footer" select="'0'"/>
       <x:option name="include-brf" select="true()"/>
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/test_4.5.81_ex3_footer_no_print_page_number/')"/>
       <x:option name="brf-output-dir" select="concat($temp-dir,'output-dir/test_4.5.81_ex3_footer_no_print_page_number/')"/>

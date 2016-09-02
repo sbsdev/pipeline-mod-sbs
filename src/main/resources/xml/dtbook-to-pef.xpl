@@ -21,7 +21,7 @@
 
     <p:option name="stylesheet" select="'http://www.sbs.ch/pipeline/modules/braille/default.scss'"/>
 
-    <p:option name="contraction-grade" required="false" select="'0'">
+    <p:option name="contraction-grade" required="false" select="'2'">
       <p:pipeinfo>
         <px:data-type>
           <choice>
@@ -43,23 +43,64 @@
     </p:option>
 
     <p:option name="ascii-table" select="'(liblouis-table:&quot;http://www.sbs.ch/pipeline/liblouis/tables/sbs.dis&quot;)'"/>
-    <p:option name="include-preview"/>
-    <p:option name="include-brf"/>
+    <p:option name="include-preview" select="'true'"/>
+    <p:option name="include-brf" select="'true'"/>
     <p:option name="page-width" select="'28'"/>
     <p:option name="page-height" select="'28'"/>
-    <p:option name="duplex"/>
-    <p:option name="levels-in-footer"/>
-    <p:option name="hyphenation"/>
-    <p:option name="line-spacing"/>
-    <p:option name="capital-letters"/>
-    <p:option name="accented-letters"/>
-    <p:option name="polite-forms"/>
-    <p:option name="downshift-ordinal-numbers"/>
-    <p:option name="include-production-notes"/>
-    <p:option name="show-braille-page-numbers"/>
-    <p:option name="show-print-page-numbers"/>
-    <p:option name="toc-depth"/>
-    <p:option name="footnotes-placement"/>
+    <p:option name="duplex" select="'true'"/>
+    <p:option name="levels-in-footer" select="'0'"/>
+    <p:option name="hyphenation" select="'false'"/>
+    <p:option name="line-spacing" select="'single'"/>
+    <p:option name="enable-capitalization" px:type="boolean" select="'false'">
+      <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+        <h2 px:role="name">Translation/formatting of text: Capital letters</h2>
+        <p px:role="desc" xml:space="preserve">When enabled, will indicate capital letters.</p>
+      </p:documentation>
+    </p:option>
+    <p:option name="accented-letters" select="'de-accents-ch'">
+      <p:pipeinfo>
+        <px:data-type>
+          <choice>
+            <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0" xml:lang="en">
+              <value>All Accents Detailed</value>
+              <value>All Accents Reduced</value>
+              <value>Only Swiss Accents Detailed</value>
+            </documentation>
+            <value>de-accents</value>
+            <value>de-accents-reduced</value>
+            <value>de-accents-ch</value>
+          </choice>
+        </px:data-type>
+      </p:pipeinfo>
+    </p:option>
+    <p:option name="polite-forms" select="'true'"/>
+    <p:option name="downshift-ordinal-numbers" select="'true'"/>
+    <p:option name="include-production-notes" select="'true'"/>
+    <p:option name="show-braille-page-numbers" select="'true'"/>
+    <p:option name="show-print-page-numbers" select="'true'"/>
+    <p:option name="toc-depth" select="'0'"/>
+    <p:option name="footnotes-placement" select="'standard'">
+      <p:pipeinfo>
+        <px:data-type>
+          <choice>
+            <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0" xml:lang="en">
+              <value>Standard</value>
+              <value>At end of volume</value>
+              <value>At end of level1</value>
+              <value>At end of level2</value>
+              <value>At end of level3</value>
+              <value>At end of level4</value>
+           </documentation>
+            <value>standard</value>
+            <value>end_vol</value>
+            <value>level1</value>
+            <value>level2</value>
+            <value>level3</value>
+            <value>level4</value>
+          </choice>
+        </px:data-type>
+      </p:pipeinfo>
+    </p:option>
     <p:option name="document-identifier"/>
 
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/library.xpl"/>
@@ -83,6 +124,7 @@
                                            temp-dir"/>
     <px:add-parameters>
         <p:with-param name="skip-margin-top-of-page" select="'true'"/>
+        <p:with-param name="enable-capitalization" select="'true'"/>
     </px:add-parameters>
     <p:identity name="input-options"/>
     <p:sink/>
