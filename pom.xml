@@ -17,8 +17,17 @@
   <name>DP2 Braille Modules :: mod-sbs</name>
 
   <properties>
-    <sbs-hyphenation-tables.version>1.23</sbs-hyphenation-tables.version>
+    <sbs-hyphenation-tables.version>1.24-SNAPSHOT</sbs-hyphenation-tables.version>
     <sbs-braille-tables.version>2.3-SNAPSHOT</sbs-braille-tables.version>
+    <expose-services>
+      org.daisy.pipeline.modules.impl.Module_mod_sbs,
+      org.daisy.pipeline.script.impl.XProcScript_sbs_dtbook_to_pef,
+      org.daisy.pipeline.script.impl.XProcScript_sbs_epub3_to_epub3,
+      org.daisy.pipeline.script.impl.XProcScript_sbs_epub3_to_pef,
+      ch.sbs.pipeline.braille.impl.SBSTranslator$Provider,
+      ch.sbs.pipeline.braille.impl.GermanInteger2TextFactoryService,
+      ch.sbs.pipeline.braille.pef.impl.SBSFileFormat$Provider
+    </expose-services>
   </properties>
 
   <dependencies>
@@ -95,6 +104,12 @@
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>liblouis-native</artifactId>
+      <classifier>linux</classifier>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline.modules.braille</groupId>
+      <artifactId>libhyphen-native</artifactId>
       <classifier>linux</classifier>
       <scope>runtime</scope>
     </dependency>
@@ -187,38 +202,16 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.ops4j.pax.exam</groupId>
-        <artifactId>maven-paxexam-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-depends-file</id>
-            <goals>
-              <goal>generate-depends-file</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <_dsannotations>
-              ch.sbs.pipeline.braille.impl.SBSTranslator$Provider,
-              ch.sbs.pipeline.braille.impl.GermanInteger2TextFactoryService,
-              ch.sbs.pipeline.braille.pef.impl.SBSFileFormat$Provider
-            </_dsannotations>
+            <Private-Package>
+              ${generated-packages}
+              ch.sbs.pipeline.braille.impl;-split-package:=first
+            </Private-Package>
           </instructions>
         </configuration>
-        <executions>
-          <execution>
-            <id>bundle-before-test</id>
-            <phase>generate-test-resources</phase>
-            <goals>
-              <goal>bundle</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-dependency-plugin</artifactId>
