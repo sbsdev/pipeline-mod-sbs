@@ -4,8 +4,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.daisy.pipeline.modules.braille</groupId>
-    <artifactId>braille-modules-parent</artifactId>
+    <groupId>org.daisy.pipeline.modules</groupId>
+    <artifactId>modules-parent</artifactId>
     <version>1.12.1-SNAPSHOT</version>
     <relativePath />
   </parent>
@@ -20,18 +20,6 @@
     <sbs-hyphenation-tables.version>1.23</sbs-hyphenation-tables.version>
     <sbs-braille-tables.version>2.3-SNAPSHOT</sbs-braille-tables.version>
   </properties>
-  
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.daisy.pipeline.modules</groupId>
-        <artifactId>scripts-bom</artifactId>
-        <version>1.12.1-SNAPSHOT</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <dependency>
